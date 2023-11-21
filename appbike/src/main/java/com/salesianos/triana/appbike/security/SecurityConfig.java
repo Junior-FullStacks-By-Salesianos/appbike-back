@@ -22,6 +22,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -81,31 +82,55 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .csrf().disable()
-                .exceptionHandling()
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .accessDeniedHandler(jwtAccessDeniedHandler)
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                .antMatchers("/note/**").hasRole("USER")
-                .antMatchers("/auth/register/admin").hasRole("ADMIN")
-                .anyRequest().authenticated();
+                .cors(Customizer.withDefaults())
+                //.csrf().disable()
+                .csrf((csrf)-> csrf
+                        .ignoringRequestMatchers(antMatcher("/**")))
+                /*
+                        .exceptionHandling()
+                                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                                .accessDeniedHandler(jwtAccessDeniedHandler)*/
+                .exceptionHandling((exceptionHandling) -> exceptionHandling
+                        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                        .accessDeniedHandler(jwtAccessDeniedHandler)
+                )
+                /*
+                        .and()
+                                .sessionManagement()
+                                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                */
+                .sessionManagement((session) -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                /*
+                        .and()
+                                .authorizeRequests()
+                                .antMatchers("/note/**").hasRole("USER")
+                                .antMatchers("/auth/register/admin").hasRole("ADMIN")
+                                .anyRequest().authenticated();*/
+                .authorizeHttpRequests((authz) -> authz
+                        .requestMatchers(antMatcher("/note/**")).hasRole("USER")
+                        .requestMatchers(antMatcher("/auth/register/admin")).hasRole("ADMIN")
+                        .anyRequest().authenticated());
 
 
 
-        //http.addFilterBefore(null, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
 
-        http.headers().frameOptions().disable();
+        //http.headers().frameOptions().disable();
+        http.headers((headers) -> headers
+                .frameOptions(opt -> opt.disable()));
 
         return http.build();
     }
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web -> web.ignoring().antMatchers("/h2-console/**", "/auth/register", "/auth/login", "/refreshtoken"));
-    }
+        return (web -> web.ignoring()
+                .requestMatchers(
+                        antMatcher("/h2-console/**"),
+                        antMatcher("/auth/register"),
+                        antMatcher("/auth/login"),
+                        antMatcher("/error")
+                ));    }
 }
