@@ -1,11 +1,13 @@
 package com.salesianos.triana.appbike.revision;
 
+import com.salesianos.triana.appbike.enums.EstadoRevision;
 import com.salesianos.triana.appbike.estacion.Estacion;
 import com.salesianos.triana.appbike.trabajador.Trabajador;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -33,5 +35,7 @@ public class Revision {
     @ManyToOne
     @JoinColumn(name = "trabajador_id")
     private Trabajador trabajador;
+
+    private EstadoRevision estado;
 
 }
