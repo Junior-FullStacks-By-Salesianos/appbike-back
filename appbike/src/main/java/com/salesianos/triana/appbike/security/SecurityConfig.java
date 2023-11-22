@@ -110,7 +110,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers(antMatcher("/note/**")).hasRole("USER")
                         .requestMatchers(antMatcher("/auth/register/admin")).hasRole("ADMIN")
-                        .anyRequest().authenticated());
+                        .anyRequest().permitAll());
 
 
 

@@ -7,9 +7,10 @@ import com.salesianos.triana.appbike.model.Uso;
 
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 public record AddStationDto(
-        Long id,
+        UUID id,
 
         Long numero,
 

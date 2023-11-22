@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 
-@SpringBootConfiguration
+@SpringBootApplication
 public class AppbikeApplication {
 
 	public static void main(String[] args) {
