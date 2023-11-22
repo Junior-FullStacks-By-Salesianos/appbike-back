@@ -2,10 +2,8 @@ package com.salesianos.triana.appbike.trabajador;
 
 import com.salesianos.triana.appbike.usuario.Usuario;
 import jakarta.persistence.Entity;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -15,6 +13,7 @@ import java.util.UUID;
 @Setter
 @ToString
 @NoArgsConstructor
+@SuperBuilder
 public class Trabajador extends Usuario {
 
     private String turno;

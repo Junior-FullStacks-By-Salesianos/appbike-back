@@ -5,10 +5,14 @@ import com.salesianos.triana.appbike.bicicleta.BicicletaRepository;
 import com.salesianos.triana.appbike.enums.Estados;
 import com.salesianos.triana.appbike.estacion.Estacion;
 import com.salesianos.triana.appbike.estacion.EstacionRepository;
+import com.salesianos.triana.appbike.trabajador.Trabajador;
+import com.salesianos.triana.appbike.trabajador.TrabajadorRepository;
+import com.salesianos.triana.appbike.usuariobici.UsuarioBiciRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Component
@@ -17,6 +21,8 @@ public class InitData {
 
     private final EstacionRepository estacionRepository;
     private final BicicletaRepository bicicletaRepository;
+    private final TrabajadorRepository trabajadorRepository;
+    private final UsuarioBiciRepository usuarioBiciRepository;
 
     @PostConstruct
     public void init() {
@@ -302,6 +308,14 @@ public class InitData {
         b29.setEstacion(e5);
         b30.setEstacion(e5);
 
-
+    Trabajador t1= Trabajador.builder()
+            .username("admin")
+            .password("admin")
+            .email("admin@bikeapp.com")
+            .nombre("admin")
+            .createdAt(LocalDateTime.now())
+            .turno("Tarde")
+            .esJefe(true)
+            .build();
     }
 }
