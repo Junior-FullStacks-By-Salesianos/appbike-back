@@ -4,17 +4,19 @@ import com.salesianos.triana.appbike.revision.dto.RevisionDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/issue")
 public class RevisionController {
 
     private final RevisionService revisionService;
 
-    @GetMapping("/admin/issues")
+    @GetMapping("/")
     public ResponseEntity<List<RevisionDTO>> getAll(){
         if(revisionService.findAll().isEmpty())
             return ResponseEntity.noContent().build();

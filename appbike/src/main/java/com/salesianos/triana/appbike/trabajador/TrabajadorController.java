@@ -5,13 +5,14 @@ import com.salesianos.triana.appbike.usuario.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/worker")
 public class TrabajadorController {
 
     private final TrabajadorService trabajadorService;
@@ -22,7 +23,7 @@ public class TrabajadorController {
 //
 //    }
 
-    @GetMapping("/admin/issues") //se cambiará a /admin/workes si se acaba haciendo esa página
+    @GetMapping("/") //se cambiará a /admin/workes si se acaba haciendo esa página
     public ResponseEntity<List<TrabajadorDTO>> getAll(){
         if(trabajadorService.findAll().isEmpty())
             return ResponseEntity.noContent().build();
