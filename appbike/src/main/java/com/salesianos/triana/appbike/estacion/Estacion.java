@@ -1,6 +1,6 @@
 package com.salesianos.triana.appbike.estacion;
 
-import com.salesianos.triana.appbike.bicileta.Bicicleta;
+import com.salesianos.triana.appbike.bicicleta.Bicicleta;
 import com.salesianos.triana.appbike.uso.Uso;
 import jakarta.persistence.*;
 import lombok.*;
