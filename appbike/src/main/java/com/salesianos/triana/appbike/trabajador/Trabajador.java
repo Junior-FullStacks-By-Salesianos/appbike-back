@@ -1,5 +1,6 @@
-package com.salesianos.triana.appbike.model;
+package com.salesianos.triana.appbike.trabajador;
 
+import com.salesianos.triana.appbike.usuario.Usuario;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.UUID;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Trabajador extends Usuario{
+public class Trabajador extends Usuario {
 
     private String turno;
 

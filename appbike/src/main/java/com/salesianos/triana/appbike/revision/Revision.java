@@ -1,5 +1,7 @@
-package com.salesianos.triana.appbike.model;
+package com.salesianos.triana.appbike.revision;
 
+import com.salesianos.triana.appbike.estacion.Estacion;
+import com.salesianos.triana.appbike.trabajador.Trabajador;
 import jakarta.persistence.*;
 import lombok.*;
 

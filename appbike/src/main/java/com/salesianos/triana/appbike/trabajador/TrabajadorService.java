@@ -1,4 +1,4 @@
-package com.salesianos.triana.appbike.service;
+package com.salesianos.triana.appbike.trabajador;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.salesianos.triana.appbike.dto;
+package com.salesianos.triana.appbike.security;
 
 public record LoginUser(
         String username,

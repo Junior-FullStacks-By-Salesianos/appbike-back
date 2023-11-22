@@ -1,8 +1,5 @@
-package com.salesianos.triana.appbike.service;
+package com.salesianos.triana.appbike.usuariobici;
 
-import com.salesianos.triana.appbike.dto.AddUsuarioBici;
-import com.salesianos.triana.appbike.model.UsuarioBici;
-import com.salesianos.triana.appbike.repository.UsuarioBiciRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

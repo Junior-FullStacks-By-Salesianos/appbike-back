@@ -1,10 +1,11 @@
-package com.salesianos.triana.appbike.model;
+package com.salesianos.triana.appbike.bicileta;
 
+import com.salesianos.triana.appbike.estacion.Estacion;
+import com.salesianos.triana.appbike.uso.Uso;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter

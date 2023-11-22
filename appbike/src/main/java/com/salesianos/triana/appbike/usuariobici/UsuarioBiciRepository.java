@@ -1,6 +1,6 @@
-package com.salesianos.triana.appbike.repository;
+package com.salesianos.triana.appbike.usuariobici;
 
-import com.salesianos.triana.appbike.model.UsuarioBici;
+import com.salesianos.triana.appbike.usuariobici.UsuarioBici;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

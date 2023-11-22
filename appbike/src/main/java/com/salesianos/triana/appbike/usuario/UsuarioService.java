@@ -1,7 +1,5 @@
-package com.salesianos.triana.appbike.service;
+package com.salesianos.triana.appbike.usuario;
 
-import com.salesianos.triana.appbike.model.Usuario;
-import com.salesianos.triana.appbike.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

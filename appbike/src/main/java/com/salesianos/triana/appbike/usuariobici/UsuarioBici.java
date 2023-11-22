@@ -1,9 +1,10 @@
-package com.salesianos.triana.appbike.model;
+package com.salesianos.triana.appbike.usuariobici;
 
+import com.salesianos.triana.appbike.uso.Uso;
+import com.salesianos.triana.appbike.usuario.Usuario;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.*;
-import org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchConnectionDetails;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.UUID;
 @Setter
 @ToString
 @NoArgsConstructor
-public class UsuarioBici extends Usuario{
+public class UsuarioBici extends Usuario {
 
     private String numTarjeta;
 

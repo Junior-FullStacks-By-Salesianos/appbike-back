@@ -1,7 +1,7 @@
 package com.salesianos.triana.appbike.security.jwt;
 
 
-import com.salesianos.triana.appbike.model.Usuario;
+import com.salesianos.triana.appbike.usuario.Usuario;
 import com.salesianos.triana.appbike.security.errorhandling.JwtTokenException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
@@ -14,7 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
-import java.security.SignatureException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;

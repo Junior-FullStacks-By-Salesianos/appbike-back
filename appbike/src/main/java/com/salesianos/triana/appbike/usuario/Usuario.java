@@ -1,5 +1,6 @@
-package com.salesianos.triana.appbike.model;
+package com.salesianos.triana.appbike.usuario;
 
+import com.salesianos.triana.appbike.trabajador.Trabajador;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;

@@ -1,6 +1,5 @@
-package com.salesianos.triana.appbike.service;
+package com.salesianos.triana.appbike.usuario;
 
-import com.salesianos.triana.appbike.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
