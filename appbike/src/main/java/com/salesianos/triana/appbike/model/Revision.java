@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @AllArgsConstructor
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @NoArgsConstructor
 @Builder
 public class Revision {
