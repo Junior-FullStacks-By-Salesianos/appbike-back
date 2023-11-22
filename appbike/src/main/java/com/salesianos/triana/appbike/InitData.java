@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -40,6 +41,7 @@ public class InitData {
                 .estado(String.valueOf(Estados.GOOD))
                 .nombre("Eustaquio")
                 .build();
+
 
         Bicicleta b3 = Bicicleta.builder()
                 .marca("ChimneyChains")
@@ -230,12 +232,16 @@ public class InitData {
                 .nombre("Alejandra")
                 .build();
 
+
+
         Bicicleta b30 = Bicicleta.builder()
                 .marca("FieldCletas")
                 .modelo("Gen15")
                 .estado(String.valueOf(Estados.GOOD))
                 .nombre("Lopera")
                 .build();
+
+
 
         Estacion e1 = Estacion.builder()
                 .numero(1L)
@@ -277,6 +283,8 @@ public class InitData {
                 .bicicletas(Set.of(b25, b26, b27, b28, b29, b30))
                 .build();
 
+        estacionRepository.saveAll(List.of(e1,e2,e3,e4,e5));
+
         b1.setEstacion(e1);
         b2.setEstacion(e1);
         b3.setEstacion(e1);
@@ -308,14 +316,19 @@ public class InitData {
         b29.setEstacion(e5);
         b30.setEstacion(e5);
 
-    Trabajador t1= Trabajador.builder()
-            .username("admin")
-            .password("admin")
-            .email("admin@bikeapp.com")
-            .nombre("admin")
-            .createdAt(LocalDateTime.now())
-            .turno("Tarde")
-            .esJefe(true)
-            .build();
+        bicicletaRepository.saveAll(List.of(b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21,b22,b23,b24,b25,b26,b26,b27,b28,b29,b30));
+
+        Trabajador t1 = Trabajador.builder()
+                .username("admin")
+                .password("admin")
+                .email("admin@bikeapp.com")
+                .nombre("admin")
+                .createdAt(LocalDateTime.now())
+                .turno("Tarde")
+                .esJefe(true)
+                .build();
+
+
     }
+
 }

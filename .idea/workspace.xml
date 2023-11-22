@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8df70de6-61f9-4458-b7a0-1f75983a2031" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/bicicleta/BicicletaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/bicicleta/BicicletaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/bicicleta/dto/GetBicicletaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/bicicleta/dto/PostBicicletaDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/bicicleta/Bicicleta.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/bicicleta/Bicicleta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appbike/db/database.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/db/database.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appbike/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/InitData.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/InitData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appbike/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +25,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -39,6 +42,9 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2YRIdQj7jMjDqHowSyl4tCNo2FB" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -49,10 +55,16 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "admin-bicicle-list-back",
-    "last_opened_file_path": "C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Álvaro PD/Desktop/repos-2DAM/appbike-back",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn spring-boot:run" />
+    </option>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
