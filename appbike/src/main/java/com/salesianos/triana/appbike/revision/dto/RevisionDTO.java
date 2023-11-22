@@ -7,7 +7,7 @@ import com.salesianos.triana.appbike.revision.Revision;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public record RevisionDTO(Long uuid, LocalDate fechaProgramada,
+public record RevisionDTO(Long id, LocalDate fechaProgramada,
                           LocalDate fechaRealizacion, String anotaciones,
                           String nombreEstacion, String nombreTrabajador,
                           EstadoRevision estado) {

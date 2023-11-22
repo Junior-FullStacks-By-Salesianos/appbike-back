@@ -1,11 +1,10 @@
 package com.salesianos.triana.appbike.revision;
 
+import com.salesianos.triana.appbike.revision.dto.EditRevisionDTO;
 import com.salesianos.triana.appbike.revision.dto.RevisionDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,13 +17,14 @@ public class RevisionController {
 
     @GetMapping("/")
     public ResponseEntity<List<RevisionDTO>> getAll(){
-        if(revisionService.findAll().isEmpty())
-            return ResponseEntity.noContent().build();
-
         List<RevisionDTO> allRevisionDTO = revisionService.findAll().stream()
                 .map(RevisionDTO::of)
                 .toList();
-
         return ResponseEntity.ok(allRevisionDTO);
+    }
+
+    @PutMapping("/{id}")
+    public EditRevisionDTO editRevision(@PathVariable Long id, @RequestBody EditRevisionDTO r){
+        return revisionService.edit(id,r);
     }
 }
