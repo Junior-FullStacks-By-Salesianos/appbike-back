@@ -1,4 +1,4 @@
-package com.salesianos.triana.appbike.controller;
+package com.salesianos.triana.appbike.usuario;
 
 import com.salesianos.triana.appbike.usuariobici.AddUsuarioBici;
 import com.salesianos.triana.appbike.security.jwt.JwtUserResponse;
