@@ -4,9 +4,12 @@ import com.salesianos.triana.appbike.bicicleta.Bicicleta;
 import com.salesianos.triana.appbike.uso.Uso;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -19,10 +22,14 @@ public class Estacion {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @UuidGenerator
+    @Column(columnDefinition = "uuid")
+    private UUID id;
 
+    @NaturalId
     private Long numero;
+
     private String nombre;
     private String coordenadas;
     private int capacidad;

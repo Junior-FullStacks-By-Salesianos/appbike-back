@@ -3,6 +3,7 @@ package com.salesianos.triana.appbike.revision.dto;
 import com.salesianos.triana.appbike.enums.EstadoRevision;
 import com.salesianos.triana.appbike.estacion.Estacion;
 import com.salesianos.triana.appbike.revision.Revision;
+import com.salesianos.triana.appbike.trabajador.Trabajador;
 import com.salesianos.triana.appbike.trabajador.dto.TrabajadorDTO;
 
 import java.time.LocalDate;
@@ -21,5 +22,15 @@ public record EditRevisionDTO(Long uuid, LocalDate fechaProgramada,
                 r.getEstacion(),
                 TrabajadorDTO.of(r.getTrabajador()),
                 r.getEstado());
+    }
+
+    public static Revision toEntity(EditRevisionDTO editDTO){
+        return Revision.builder()
+                .fechaProgramada(editDTO.fechaProgramada)
+                .anotaciones(editDTO.anotaciones())
+                .estacion(editDTO.estacion())
+                .trabajador(TrabajadorDTO.toEntity(editDTO.trabajador))
+                .estado(editDTO.estado)
+                .build();
     }
 }

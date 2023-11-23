@@ -5,11 +5,14 @@ import com.salesianos.triana.appbike.bicicleta.BicicletaRepository;
 import com.salesianos.triana.appbike.enums.Estados;
 import com.salesianos.triana.appbike.estacion.Estacion;
 import com.salesianos.triana.appbike.estacion.EstacionRepository;
+import com.salesianos.triana.appbike.security.PasswordEncoderConfig;
 import com.salesianos.triana.appbike.trabajador.Trabajador;
 import com.salesianos.triana.appbike.trabajador.TrabajadorRepository;
 import com.salesianos.triana.appbike.usuariobici.UsuarioBiciRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -237,8 +240,9 @@ public class InitData {
                 .estado(String.valueOf(Estados.GOOD))
                 .nombre("Lopera")
                 .build();
-        List<Bicicleta> bicicletas = List.of(b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14
-                ,b15,b16,b17,b18,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30);
+
+        List<Bicicleta> bicicletas = List.of(b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14
+                , b15, b16, b17, b18, b19, b20, b21, b22, b23, b24, b25, b26, b27, b28, b29, b30);
 
         bicicletaRepository.saveAll(bicicletas);
 
@@ -251,7 +255,7 @@ public class InitData {
                 .build();
 
         Estacion e2 = Estacion.builder()
-                .numero(1L)
+                .numero(2L)
                 .nombre("Plaza de España")
                 .coordenadas("")
                 .capacidad(10)
@@ -259,7 +263,7 @@ public class InitData {
                 .build();
 
         Estacion e3 = Estacion.builder()
-                .numero(1L)
+                .numero(3L)
                 .nombre("Setas de Sevilla")
                 .coordenadas("")
                 .capacidad(10)
@@ -267,7 +271,7 @@ public class InitData {
                 .build();
 
         Estacion e4 = Estacion.builder()
-                .numero(1L)
+                .numero(4L)
                 .nombre("Isla de la Cartuja")
                 .coordenadas("")
                 .capacidad(10)
@@ -275,14 +279,14 @@ public class InitData {
                 .build();
 
         Estacion e5 = Estacion.builder()
-                .numero(1L)
+                .numero(5L)
                 .nombre("La Giralda")
                 .coordenadas("")
                 .capacidad(10)
                 .bicicletas(Set.of(b25, b26, b27, b28, b29, b30))
                 .build();
 
-        estacionRepository.saveAll(List.of(e1,e2,e3,e4,e5));
+        estacionRepository.saveAll(List.of(e1, e2, e3, e4, e5));
 
         b1.setEstacion(e1);
         b2.setEstacion(e1);
@@ -315,18 +319,20 @@ public class InitData {
         b29.setEstacion(e5);
         b30.setEstacion(e5);
 
-    Trabajador t1= Trabajador.builder()
-            .username("admin")
-            .password("admin")
-            .email("admin@bikeapp.com")
-            .nombre("admin")
-            .createdAt(LocalDateTime.now())
-            .turno("Tarde")
-            .esJefe(true)
-            .build();
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        Trabajador t1 = Trabajador.builder()
+                .username("admin")
+                .password(passwordEncoder.encode("admin1"))
+                .email("admin@bikeapp.com")
+                .nombre("admin")
+                .createdAt(LocalDateTime.now())
+                .turno("Tarde")
+                .esJefe(true)
+                .build();
 
 
-    bicicletaRepository.saveAll(bicicletas);
-    trabajadorRepository.saveAll(List.of(t1));
+        bicicletaRepository.saveAll(bicicletas);
+        trabajadorRepository.saveAll(List.of(t1));
     }
 }

@@ -11,4 +11,11 @@ public record TrabajadorDTO(UUID id, String email, String nombre) {
                 t.getEmail(),
                 t.getNombre());
     }
+
+    public static Trabajador toEntity(TrabajadorDTO t){
+        return Trabajador.builder()
+                .email(t.email)
+                .nombre(t.nombre)
+                .build();
+    }
 }
