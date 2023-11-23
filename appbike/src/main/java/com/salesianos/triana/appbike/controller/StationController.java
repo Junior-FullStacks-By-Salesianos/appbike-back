@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,7 +51,7 @@ public class StationController {
     )
     @PostMapping("/add")
     @Operation(summary = "addEstacion",description = "Create a new Station")
-    public ResponseEntity<StationResponse>addStation(@RequestBody AddStationDto estacion){
+    public ResponseEntity<StationResponse>addStation(@Valid @RequestBody AddStationDto estacion){
         Estacion e = estacionService.newStation(estacion);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
