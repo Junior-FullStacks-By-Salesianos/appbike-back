@@ -34,6 +34,10 @@ public class BicicletaService {
         return repository.findById(uuid);
     }
 
+    public Bicicleta findByName(String nombre){
+        return repository.findByNombre(nombre);
+    }
+
     public boolean existsById(UUID uuid){
         return repository.existsById(uuid);
     }

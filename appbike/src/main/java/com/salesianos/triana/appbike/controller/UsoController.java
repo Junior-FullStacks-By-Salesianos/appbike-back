@@ -22,14 +22,13 @@ import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/use")
 @Tag(name = "Uso", description = "El controlador de usos tiene diferentes métodos para obtener información variada" +
         " sobre los usos, y opciones como alquilar una bicicleta o finalizar un viaje")
 public class UsoController {
 
     private final UsoService usoService;
 
-    @PostMapping("/rent")
+    /*@PostMapping("/rent")
     public ResponseEntity<UsoBeginResponse> rentABike(@Valid @RequestBody AddUso addUso, @AuthenticationPrincipal Usuario user) {
 
         Uso newUso = usoService.addUso(addUso, user);
@@ -46,5 +45,5 @@ public class UsoController {
         return ResponseEntity
                 .created(createdURI)
                 .body(UsoBeginResponse.of(newUso));
-    }
+    }*/
 }

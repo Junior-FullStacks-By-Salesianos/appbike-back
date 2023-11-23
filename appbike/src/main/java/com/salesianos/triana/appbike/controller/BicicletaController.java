@@ -1,9 +1,13 @@
 package com.salesianos.triana.appbike.controller;
 
+import com.salesianos.triana.appbike.dto.AddUso;
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
+import com.salesianos.triana.appbike.dto.UsoBeginResponse;
 import com.salesianos.triana.appbike.model.Bicicleta;
+import com.salesianos.triana.appbike.model.Uso;
 import com.salesianos.triana.appbike.model.Usuario;
 import com.salesianos.triana.appbike.service.BicicletaService;
+import com.salesianos.triana.appbike.service.UsoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -12,13 +16,15 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,6 +35,7 @@ import java.util.UUID;
 public class BicicletaController {
 
         private final BicicletaService bicicletaService;
+        private final UsoService usoService;
 
         @Operation(summary = "Obtains a list of bikes")
         @ApiResponses(value = {
@@ -74,5 +81,29 @@ public class BicicletaController {
         @GetMapping("/{uuid}")
         public GetBicicletaDTO findBikeById(@PathVariable UUID uuid){
                 return GetBicicletaDTO.of(bicicletaService.findById(uuid).get());
+        }
+
+        @GetMapping("/byname/{name}")
+        public GetBicicletaDTO findBikeByName(@PathVariable String name){
+                return GetBicicletaDTO.of(bicicletaService.findByName(name));
+        }
+
+        @PostMapping("/rent/{idBicicleta}")
+        public ResponseEntity<UsoBeginResponse> rentABike(@PathVariable UUID idBicicleta, @AuthenticationPrincipal Usuario user) {
+
+                Uso newUso = usoService.addUso(idBicicleta, user);
+
+                if (newUso == null) {
+                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+                }
+
+                URI createdURI = ServletUriComponentsBuilder
+                        .fromCurrentRequest()
+                        .path("/{id}")
+                        .buildAndExpand(newUso.getId()).toUri();
+
+                return ResponseEntity
+                        .created(createdURI)
+                        .body(UsoBeginResponse.of(newUso));
         }
 }
