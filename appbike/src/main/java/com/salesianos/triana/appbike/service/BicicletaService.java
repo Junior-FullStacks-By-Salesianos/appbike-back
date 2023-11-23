@@ -1,5 +1,6 @@
 package com.salesianos.triana.appbike.service;
 
+import com.salesianos.triana.appbike.error.StationNotFoundInBikesException;
 import com.salesianos.triana.appbike.repository.BicicletaRepository;
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.model.Bicicleta;
@@ -26,8 +27,12 @@ public class BicicletaService {
 
     }
 
-    public List<Bicicleta> findAllByStation(UUID uuidEstacion){
-        return repository.findBicicletaByEstacionUuid(uuidEstacion);
+    public List<GetBicicletaDTO> findAllByStation(UUID uuidEstacion){
+
+        if(repository.findBicicletaByEstacionUuid(uuidEstacion).isEmpty())
+            throw new StationNotFoundInBikesException(uuidEstacion);
+
+        return repository.findBicicletaByEstacionUuid(uuidEstacion).stream().map(GetBicicletaDTO::of).toList();
     }
 
     public Optional<Bicicleta> findById(UUID uuid){

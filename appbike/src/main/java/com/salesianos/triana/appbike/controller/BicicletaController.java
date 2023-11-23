@@ -60,18 +60,46 @@ public class BicicletaController {
                     description = "Not found any bike",
                     content = @Content),
     })
-
     @GetMapping("/")
     public List<GetBicicletaDTO> findAll() {
         return bicicletaService.findAll();
     }
 
+
+    @Operation(summary = "Obtains a list of bikes of a station")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "All bikes have been found in that station.",
+                    content = { @Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Bicicleta.class)),
+                            examples = {@ExampleObject(
+                                    value = """
+                                            [
+                                                {"nombre": "Rogelio", "marca":
+                                                "Asis", "modelo": "michaeltooper",
+                                                "estado":"new", "usos": 3,
+                                                "estacion": "Plaza de armas"},
+                        
+                                                
+                                                {"nombre": "Hermenegildo", "marca":
+                                                "Asis", "modelo": "michaeltooper",
+                                                "estado":"worn_out", "usos": 7,
+                                                "estacion": "Plaza de armas"},
+                                                
+                                                {"nombre": "Hugo", "marca":
+                                                "Pole", "modelo": "chimneychains",
+                                                "estado":"need_to_be_replaced", "usos": 18,
+                                                "estacion": "Plaza de armas"}
+                                            ]                                          
+                                            """
+                            )}
+                    )}),
+            @ApiResponse(responseCode = "404",
+                    description = "Not found the station",
+                    content = @Content),
+    })
     @GetMapping("/station/{idEstacion}/bikes")
     public List<GetBicicletaDTO> findAllByStation(@PathVariable UUID idEstacion) {
-        List<Bicicleta> data=bicicletaService.findAllByStation(idEstacion);
-
-        return data.stream()
-                .map(GetBicicletaDTO::of)
-                .toList();
+        return bicicletaService.findAllByStation(idEstacion);
     }
 }
