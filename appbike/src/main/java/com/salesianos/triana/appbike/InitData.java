@@ -11,7 +11,6 @@ import com.salesianos.triana.appbike.trabajador.TrabajadorRepository;
 import com.salesianos.triana.appbike.usuariobici.UsuarioBiciRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +25,7 @@ public class InitData {
     private final EstacionRepository estacionRepository;
     private final BicicletaRepository bicicletaRepository;
     private final TrabajadorRepository trabajadorRepository;
-    private final UsuarioBiciRepository usuarioBiciRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @PostConstruct
     public void init() {
@@ -319,8 +318,6 @@ public class InitData {
         b29.setEstacion(e5);
         b30.setEstacion(e5);
 
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
         Trabajador t1 = Trabajador.builder()
                 .username("admin")
                 .password(passwordEncoder.encode("admin1"))
@@ -329,6 +326,10 @@ public class InitData {
                 .createdAt(LocalDateTime.now())
                 .turno("Tarde")
                 .esJefe(true)
+                .accountNonExpired(true)
+                .accountNonLocked(true)
+                .credentialsNonExpired(true)
+                .enabled(true)
                 .build();
 
 
