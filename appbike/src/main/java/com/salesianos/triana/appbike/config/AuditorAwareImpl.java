@@ -1,6 +1,6 @@
 package com.salesianos.triana.appbike.config;
 
-import com.salesianos.triana.appbike.usuario.Usuario;
+import com.salesianos.triana.appbike.model.Usuario;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
