@@ -103,9 +103,9 @@ public class SecurityConfig {
                                  * .anyRequest().authenticated();
                                  */
                                 .authorizeHttpRequests((authz) -> authz
-                                                .requestMatchers(antMatcher("/use/rent")).hasRole("USER")
-                                                // .requestMatchers(antMatcher("/auth/register/admin")).hasRole("ADMIN")
-                                                .anyRequest().permitAll());
+                                                .requestMatchers(antMatcher("/bikes/**")).hasRole("USER")
+                                                .requestMatchers(antMatcher("/admin/**")).hasRole("ADMIN")
+                                                .anyRequest().authenticated());
 
                 http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 

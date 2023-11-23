@@ -2,6 +2,7 @@ package com.salesianos.triana.appbike.controller;
 
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.model.Bicicleta;
+import com.salesianos.triana.appbike.model.Usuario;
 import com.salesianos.triana.appbike.service.BicicletaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -12,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,5 +68,11 @@ public class BicicletaController {
                 return data.stream()
                                 .map(GetBicicletaDTO::of)
                                 .toList();
+        }
+
+
+        @GetMapping("/{uuid}")
+        public GetBicicletaDTO findBikeById(@PathVariable UUID uuid){
+                return GetBicicletaDTO.of(bicicletaService.findById(uuid).get());
         }
 }
