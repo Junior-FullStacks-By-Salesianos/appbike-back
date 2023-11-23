@@ -16,22 +16,18 @@ import java.util.*;
 @Data
 public class StationResponse {
     private UUID id;
-    private Long numero;
-    private String nombre;
-    private String coordenadas;
-    private int capacidad;
-    private Set<Bicicleta> bicicletas = new HashSet<>();
-    private List<Uso> usos=new ArrayList<>();
+    private String name;
+    private String coordinates;
+    private int capacity;
+    private Set<Bicicleta> bikes = new HashSet<>();
 
     public static StationResponse of (Estacion e){
         return StationResponse.builder()
                 .id(e.getId())
-                .nombre(e.getNombre())
-                .capacidad(e.getCapacidad())
-                .numero(e.getNumero())
-                .coordenadas(e.getCoordenadas())
-                .bicicletas(e.getBicicletas())
-                .usos(e.getUsos())
+                .name(e.getNombre())
+                .capacity(e.getCapacidad())
+                .coordinates(e.getCoordenadas())
+                .bikes(e.getBicicletas())
                 .build();
 
     }
