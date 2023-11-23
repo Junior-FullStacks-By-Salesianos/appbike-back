@@ -1,13 +1,12 @@
-package com.salesianos.triana.appbike.controller;
+package com.salesianos.triana.appbike.usuario;
 
-import com.salesianos.triana.appbike.dto.AddUsuarioBici;
-import com.salesianos.triana.appbike.dto.JwtUserResponse;
-import com.salesianos.triana.appbike.dto.LoginUser;
-import com.salesianos.triana.appbike.dto.UserResponse;
-import com.salesianos.triana.appbike.model.Usuario;
-import com.salesianos.triana.appbike.model.UsuarioBici;
+
+import com.salesianos.triana.appbike.security.LoginUser;
 import com.salesianos.triana.appbike.security.jwt.JwtProvider;
-import com.salesianos.triana.appbike.service.UsuarioBiciService;
+import com.salesianos.triana.appbike.security.jwt.JwtUserResponse;
+import com.salesianos.triana.appbike.usuariobici.AddUsuarioBici;
+import com.salesianos.triana.appbike.usuariobici.UsuarioBici;
+import com.salesianos.triana.appbike.usuariobici.UsuarioBiciService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;

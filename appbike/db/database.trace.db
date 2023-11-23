@@ -1,135 +1,10 @@
-2023-11-22 20:15:59 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:15:59 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:15:59 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:15:59 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:15:59 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:16:28 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:16:28 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:16:28 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:16:28 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:16:28 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:29:38 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:29:38 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:29:38 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:29:38 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:29:38 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:48:03 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:48:03 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:48:03 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:48:03 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:48:03 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:51:45 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:51:45 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:51:45 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:51:45 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 20:51:45 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 21:20:54 jdbc[3]: null
-org.h2.message.DbException: La conexión no fue cerrada por la aplicación y esta siendo limpiada (garbage collected)
-The connection was not closed by the application and is garbage collected [90018-214]
-	at org.h2.message.DbException.get(DbException.java:223)
-	at org.h2.message.DbException.get(DbException.java:199)
-	at org.h2.message.DbException.get(DbException.java:188)
-	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:190)
-	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:132)
-	at org.h2.Driver.connect(Driver.java:59)
-	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
-	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
-	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
-	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
-	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:733)
-	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:833)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: La conexión no fue cerrada por la aplicación y esta siendo limpiada (garbage collected)
-The connection was not closed by the application and is garbage collected [90018-214]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:678)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
-	... 16 more
-2023-11-22 21:21:02 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 21:21:02 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 21:21:02 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 21:21:02 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 21:21:02 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 21:49:55 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 21:49:55 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 21:49:55 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 21:49:55 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-22 21:49:55 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
-The object is already closed [90007-214]
-2023-11-23 08:38:37 database: flush
-org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/db/database.mv.db [2.1.214/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/db/database.mv.db [2.1.214/7]" [50000-214]
+2023-11-23 08:35:21 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]ESTACION"; se esperaba "EXPLAIN, EXECUTE"
+Syntax error in SQL statement "[*]ESTACION"; expected "EXPLAIN, EXECUTE"; SQL statement:
+ESTACION [42001-214]
+2023-11-23 08:37:09 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/appbike/db/database.mv.db [2.1.214/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/appbike/db/database.mv.db [2.1.214/7]" [50000-214]
 	at org.h2.message.DbException.get(DbException.java:212)
 	at org.h2.message.DbException.convert(DbException.java:395)
 	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:125)
@@ -228,20 +103,20 @@ General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/po
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
 	at com.salesianos.triana.appbike.AppbikeApplication.main(AppbikeApplication.java:22)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/db/database.mv.db [2.1.214/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/db/database.mv.db [2.1.214/7]" [50000-214]
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/appbike/db/database.mv.db [2.1.214/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/appbike/db/database.mv.db [2.1.214/7]" [50000-214]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
 	... 98 more
-Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/db/database.mv.db [2.1.214/7]
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/appbike/db/database.mv.db [2.1.214/7]
 	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
 	at org.h2.mvstore.FileStore.open(FileStore.java:178)
 	at org.h2.mvstore.FileStore.open(FileStore.java:128)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:452)
 	... 92 more
-2023-11-23 08:38:38 database: flush
-org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/db/database.mv.db [2.1.214/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/db/database.mv.db [2.1.214/7]" [50000-214]
+2023-11-23 08:37:11 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/appbike/db/database.mv.db [2.1.214/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/appbike/db/database.mv.db [2.1.214/7]" [50000-214]
 	at org.h2.message.DbException.get(DbException.java:212)
 	at org.h2.message.DbException.convert(DbException.java:395)
 	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:125)
@@ -388,12 +263,12 @@ General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/po
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
 	at com.salesianos.triana.appbike.AppbikeApplication.main(AppbikeApplication.java:22)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/db/database.mv.db [2.1.214/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/db/database.mv.db [2.1.214/7]" [50000-214]
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/appbike/db/database.mv.db [2.1.214/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/appbike/db/database.mv.db [2.1.214/7]" [50000-214]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
 	... 146 more
-Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/db/database.mv.db [2.1.214/7]
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/polonio.doalv23_tria/Desktop/repos/appbike-back/appbike/db/database.mv.db [2.1.214/7]
 	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
 	at org.h2.mvstore.FileStore.open(FileStore.java:178)
 	at org.h2.mvstore.FileStore.open(FileStore.java:128)

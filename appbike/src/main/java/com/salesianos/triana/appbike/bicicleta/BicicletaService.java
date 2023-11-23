@@ -1,5 +1,7 @@
 package com.salesianos.triana.appbike.bicicleta;
 
+import com.salesianos.triana.appbike.bicicleta.dto.GetBicicletaDTO;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,17 @@ public class BicicletaService {
 
     private final BicicletaRepository repository;
 
-    public List<Bicicleta> findAll(){
-        return repository.findAll();
+    public List<GetBicicletaDTO> findAll(){
+
+        if(repository.findAll().isEmpty())
+            throw new EntityNotFoundException("There are no bikes");
+
+        return repository.findAll().stream().map(GetBicicletaDTO::of).toList();
+
+    }
+
+    public List<Bicicleta> findAllByStation(UUID uuidEstacion){
+        return repository.findBicicletaByEstacionUuid(uuidEstacion);
     }
 
     public Optional<Bicicleta> findById(UUID uuid){
