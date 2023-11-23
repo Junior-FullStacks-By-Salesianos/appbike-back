@@ -1,5 +1,7 @@
 package com.salesianos.triana.appbike.model;
 
+import com.salesianos.triana.appbike.model.Bicicleta;
+import com.salesianos.triana.appbike.model.Estacion;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedBy;

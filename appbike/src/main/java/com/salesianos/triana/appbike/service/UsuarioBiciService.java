@@ -1,6 +1,6 @@
 package com.salesianos.triana.appbike.service;
 
-import com.salesianos.triana.appbike.dto.AddUsuarioBici;
+import com.salesianos.triana.appbike.dto.UsuarioBici.AddUsuarioBici;
 import com.salesianos.triana.appbike.model.UsuarioBici;
 import com.salesianos.triana.appbike.repository.UsuarioBiciRepository;
 import lombok.RequiredArgsConstructor;

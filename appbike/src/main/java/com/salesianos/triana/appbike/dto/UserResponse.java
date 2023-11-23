@@ -2,7 +2,6 @@ package com.salesianos.triana.appbike.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.salesianos.triana.appbike.model.Usuario;
-import com.salesianos.triana.appbike.model.UsuarioBici;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

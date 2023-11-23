@@ -14,7 +14,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-//@RequiredArgsConstructor
+// @RequiredArgsConstructor
 @Builder
 public class Bicicleta {
 

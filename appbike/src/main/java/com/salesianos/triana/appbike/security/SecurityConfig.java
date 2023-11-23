@@ -30,107 +30,99 @@ import static org.springframework.security.web.util.matcher.AntPathRequestMatche
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final UserDetailsService userDetailsService;
-    private final PasswordEncoder passwordEncoder;
+        private final UserDetailsService userDetailsService;
+        private final PasswordEncoder passwordEncoder;
 
-    private final AuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    private final AccessDeniedHandler jwtAccessDeniedHandler;
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+        private final AuthenticationEntryPoint jwtAuthenticationEntryPoint;
+        private final AccessDeniedHandler jwtAccessDeniedHandler;
+        private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        AuthenticationManagerBuilder authenticationManagerBuilder =
-                http.getSharedObject(AuthenticationManagerBuilder.class);
+        @Bean
+        public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+                AuthenticationManagerBuilder authenticationManagerBuilder = http
+                                .getSharedObject(AuthenticationManagerBuilder.class);
 
-
-        // Versión 1
-        /*
-        AuthenticationManager authenticationManager =
-                authenticationManagerBuilder
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder)
-                        .and().build();
-        */
-
-        // Versión 2
-        AuthenticationManager authenticationManager =
-                authenticationManagerBuilder.authenticationProvider(authenticationProvider())
-                        .build();
-
-        return authenticationManager;
-
-    }
-
-
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-
-        authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder);
-        authenticationProvider.setHideUserNotFoundExceptions(false);
-
-        return authenticationProvider;
-
-    }
-
-
-
-
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-        http
-                .cors(Customizer.withDefaults())
-                //.csrf().disable()
-                .csrf((csrf)-> csrf
-                        .ignoringRequestMatchers(antMatcher("/**")))
+                // Versión 1
                 /*
-                        .exceptionHandling()
-                                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                                .accessDeniedHandler(jwtAccessDeniedHandler)*/
-                .exceptionHandling((exceptionHandling) -> exceptionHandling
-                        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                        .accessDeniedHandler(jwtAccessDeniedHandler)
-                )
-                /*
-                        .and()
-                                .sessionManagement()
-                                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                */
-                .sessionManagement((session) -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                /*
-                        .and()
-                                .authorizeRequests()
-                                .antMatchers("/note/**").hasRole("USER")
-                                .antMatchers("/auth/register/admin").hasRole("ADMIN")
-                                .anyRequest().authenticated();*/
-                .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers(antMatcher("/use/rent")).hasRole("USER")
-                        //.requestMatchers(antMatcher("/auth/register/admin")).hasRole("ADMIN")
-                        .anyRequest().permitAll());
+                 * AuthenticationManager authenticationManager =
+                 * authenticationManagerBuilder
+                 * .userDetailsService(userDetailsService)
+                 * .passwordEncoder(passwordEncoder)
+                 * .and().build();
+                 */
 
+                // Versión 2
+                AuthenticationManager authenticationManager = authenticationManagerBuilder
+                                .authenticationProvider(authenticationProvider())
+                                .build();
 
+                return authenticationManager;
 
-        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        }
 
+        @Bean
+        public DaoAuthenticationProvider authenticationProvider() {
+                DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
 
-        //http.headers().frameOptions().disable();
-        http.headers((headers) -> headers
-                .frameOptions(opt -> opt.disable()));
+                authenticationProvider.setUserDetailsService(userDetailsService);
+                authenticationProvider.setPasswordEncoder(passwordEncoder);
+                authenticationProvider.setHideUserNotFoundExceptions(false);
 
-        return http.build();
-    }
+                return authenticationProvider;
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web -> web.ignoring()
-                .requestMatchers(
-                        antMatcher("/h2-console/**"),
-                        antMatcher("/auth/register"),
-                        antMatcher("/auth/login"),
-                        antMatcher("/error")
-                ));    }
+        }
+
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+                http
+                                .cors(Customizer.withDefaults())
+                                // .csrf().disable()
+                                .csrf((csrf) -> csrf
+                                                .ignoringRequestMatchers(antMatcher("/**")))
+                                /*
+                                 * .exceptionHandling()
+                                 * .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                                 * .accessDeniedHandler(jwtAccessDeniedHandler)
+                                 */
+                                .exceptionHandling((exceptionHandling) -> exceptionHandling
+                                                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                                                .accessDeniedHandler(jwtAccessDeniedHandler))
+                                /*
+                                 * .and()
+                                 * .sessionManagement()
+                                 * .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                                 */
+                                .sessionManagement((session) -> session
+                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                /*
+                                 * .and()
+                                 * .authorizeRequests()
+                                 * .antMatchers("/note/**").hasRole("USER")
+                                 * .antMatchers("/auth/register/admin").hasRole("ADMIN")
+                                 * .anyRequest().authenticated();
+                                 */
+                                .authorizeHttpRequests((authz) -> authz
+                                                .requestMatchers(antMatcher("/use/rent")).hasRole("USER")
+                                                // .requestMatchers(antMatcher("/auth/register/admin")).hasRole("ADMIN")
+                                                .anyRequest().permitAll());
+
+                http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+                // http.headers().frameOptions().disable();
+                http.headers((headers) -> headers
+                                .frameOptions(opt -> opt.disable()));
+
+                return http.build();
+        }
+
+        @Bean
+        public WebSecurityCustomizer webSecurityCustomizer() {
+                return (web -> web.ignoring()
+                                .requestMatchers(
+                                                antMatcher("/h2-console/**"),
+                                                antMatcher("/auth/register"),
+                                                antMatcher("/auth/login"),
+                                                antMatcher("/error")));
+        }
 }
