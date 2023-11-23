@@ -15,7 +15,7 @@ public record UsoBeginResponse(
         return new UsoBeginResponse(
                 u.getFechaInicio(),
                 u.getBicicleta().getNombre(),
-                u.getUsuario()
+                u.getAuthor()
         );
     }
 

@@ -20,9 +20,12 @@ public class UsoService {
 
     public Uso addUso(AddUso add, Usuario user){
         Uso u = new Uso();
-        u.setBicicleta(bicicletaRepository.findByUuid(add.id_bicicleta()));
+        System.out.println(add.id_bicicleta());
+        if(bicicletaRepository.findById(add.id_bicicleta()).isPresent());{
+            u.setBicicleta(bicicletaRepository.findById(add.id_bicicleta()).get());
+        }
         u.setFechaInicio(LocalDateTime.now());
-        u.setUsuario(user.getNombre());
+        u.setAuthor(user.getId().toString());
         return u;
     }
 }

@@ -33,6 +33,6 @@ public class Uso {
     private Estacion estacion; //finaliza
 
     @CreatedBy
-    private String usuario;
+    private String author;
 
 }
