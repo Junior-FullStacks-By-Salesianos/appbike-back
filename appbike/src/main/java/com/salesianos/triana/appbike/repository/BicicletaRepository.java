@@ -17,11 +17,6 @@ public interface BicicletaRepository extends JpaRepository<Bicicleta, UUID> {
             """)
     Page<Bicicleta> searchPage(Pageable pageable);
 
-    @Query(value = "SELECT  * FROM bicicleta b WHERE b.estacion_id = :uuid" ,nativeQuery = true)
+    @Query(value = "SELECT  * FROM bicicleta b WHERE b.estacion_id = :uuid", nativeQuery = true)
     List<Bicicleta> findBicicletaByEstacionUuid(@Param("uuid") UUID uuid);
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.UUID;
-
-public interface BicicletaRepository extends JpaRepository<Bicicleta, UUID> {
 }

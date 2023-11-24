@@ -27,8 +27,6 @@ public class Bicicleta {
     })
     @Column(columnDefinition = "uuid")
     private UUID id;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @NaturalId
     private String nombre;
