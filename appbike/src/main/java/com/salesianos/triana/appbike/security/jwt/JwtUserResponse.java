@@ -1,8 +1,8 @@
 package com.salesianos.triana.appbike.security.jwt;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.salesianos.triana.appbike.security.UserResponse;
-import com.salesianos.triana.appbike.usuario.Usuario;
+import com.salesianos.triana.appbike.dto.UserResponse;
+import com.salesianos.triana.appbike.model.Usuario;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -23,6 +23,7 @@ public class JwtUserResponse extends UserResponse {
         nombre = userResponse.getNombre();
         email = userResponse.getEmail();
         createdAt = userResponse.getCreatedAt();
+        role = userResponse.getRole();
     }
 
     public static JwtUserResponse of (Usuario user, String token) {

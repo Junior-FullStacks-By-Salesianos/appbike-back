@@ -1,14 +1,12 @@
 package com.salesianos.triana.appbike;
 
-import com.salesianos.triana.appbike.bicicleta.Bicicleta;
-import com.salesianos.triana.appbike.bicicleta.BicicletaRepository;
-import com.salesianos.triana.appbike.enums.Estados;
-import com.salesianos.triana.appbike.estacion.Estacion;
-import com.salesianos.triana.appbike.estacion.EstacionRepository;
-import com.salesianos.triana.appbike.security.PasswordEncoderConfig;
-import com.salesianos.triana.appbike.trabajador.Trabajador;
-import com.salesianos.triana.appbike.trabajador.TrabajadorRepository;
-import com.salesianos.triana.appbike.usuariobici.UsuarioBiciRepository;
+import com.salesianos.triana.appbike.model.Bicicleta;
+import com.salesianos.triana.appbike.repository.BicicletaRepository;
+import com.salesianos.triana.appbike.model.Estados;
+import com.salesianos.triana.appbike.model.Estacion;
+import com.salesianos.triana.appbike.repository.EstacionRepository;
+import com.salesianos.triana.appbike.model.Trabajador;
+import com.salesianos.triana.appbike.repository.TrabajadorRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

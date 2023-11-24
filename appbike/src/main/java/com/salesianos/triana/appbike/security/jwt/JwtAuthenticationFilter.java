@@ -1,7 +1,7 @@
 package com.salesianos.triana.appbike.security.jwt;
 
-import com.salesianos.triana.appbike.usuario.Usuario;
-import com.salesianos.triana.appbike.usuario.UsuarioService;
+import com.salesianos.triana.appbike.model.Usuario;
+import com.salesianos.triana.appbike.service.UsuarioService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
