@@ -8,10 +8,10 @@ import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class StationNotFoundInBikesException extends ErrorResponseException {
+public class NoBikesInThatStationException extends ErrorResponseException {
 
-    public StationNotFoundInBikesException(UUID uuidEstacion){
-        super(HttpStatus.NOT_FOUND, asProblemDetail("La estación con el UUID "+uuidEstacion+" no existe, introduzca otro UUID"),null);
+    public NoBikesInThatStationException(UUID uuidEstacion){
+        super(HttpStatus.NOT_FOUND, asProblemDetail("En la estación con el UUID "+uuidEstacion+" no hay bicicletas"),null);
     }
 
     private static ProblemDetail asProblemDetail(String message){
