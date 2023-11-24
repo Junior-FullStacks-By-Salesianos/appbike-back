@@ -31,6 +31,7 @@ public class JwtProvider {
 
     @Value("${jwt.duration}")
     private int jwtLifeInDays;
+    //private int jwtLifeInMinutes;
 
     private JwtParser jwtParser;
 
@@ -103,7 +104,7 @@ public class JwtProvider {
             //jwtParser.parseClaimsJws(token);
             jwtParser.parse(token);
             return true;
-        } catch (/*SignatureException |*/ MalformedJwtException | ExpiredJwtException | UnsupportedJwtException | IllegalArgumentException ex) {
+        } catch (SignatureException | MalformedJwtException | ExpiredJwtException | UnsupportedJwtException | IllegalArgumentException ex) {
             log.info("Error con el token: " + ex.getMessage());
             throw new JwtTokenException(ex.getMessage());
         }

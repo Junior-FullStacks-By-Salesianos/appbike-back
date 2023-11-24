@@ -28,6 +28,6 @@ public class UsoService {
         //Gestionar error
         u.setFechaInicio(LocalDateTime.now());
         u.setAuthor(user.getId().toString());
-        return u;
+        return usoRepository.save(u);
     }
 }
