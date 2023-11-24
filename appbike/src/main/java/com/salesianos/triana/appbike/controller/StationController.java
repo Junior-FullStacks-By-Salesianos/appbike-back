@@ -64,14 +64,14 @@ public class StationController {
                             {@Content(mediaType = "application/json",examples = {@ExampleObject(
                                     value = """
                                                 {
-                                                    "id": "f49e77b6-93bc-4d32-be09-0f0eac88fe02",
+                                                    "number": "1",
                                                     "name": "Plaza de Armas",
                                                     "coordinates": "12.345,-0.12345",
                                                     "capacity": 0,
                                                     "bikes": 0
                                                 },
                                                 {
-                                                    "id": "aceaaabc-b678-4115-9638-1f881bc6e734",
+                                                    "number": "12",
                                                     "name": "Plaza de Cuba",
                                                     "coordinates": "12.345,-0.12345",
                                                     "capacity": 0,
@@ -80,7 +80,7 @@ public class StationController {
                                             """
                             )})}),
                     @ApiResponse(responseCode = "400",
-                            description = "An error happears with the list of the stations",
+                            description = "An error appears with the list of the stations",
                             content = @Content)
 
             }

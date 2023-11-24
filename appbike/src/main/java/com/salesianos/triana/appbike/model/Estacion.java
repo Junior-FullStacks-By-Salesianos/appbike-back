@@ -37,4 +37,18 @@ public class Estacion {
 
     @OneToMany(mappedBy = "estacion")
     private List<Uso> usos;
+
+    @PrePersist
+    private void asegurarNumeroUnico() {
+        if (this.numero == null) {
+            this.numero = generarNumeroUnico();
+        }
+    }
+
+    private static Long numeroUnicoActual = 0L;
+    //Por el momento esto está bien pero realizar una consulta
+    private synchronized Long generarNumeroUnico() {
+        numeroUnicoActual++;
+        return numeroUnicoActual;
+    }
 }

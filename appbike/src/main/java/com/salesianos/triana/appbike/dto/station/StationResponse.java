@@ -15,7 +15,7 @@ import java.util.*;
 @SuperBuilder
 @Data
 public class StationResponse {
-    private UUID id;
+    private Long numero;
     private String name;
     private String coordinates;
     private int capacity;
@@ -23,7 +23,7 @@ public class StationResponse {
 
     public static StationResponse of (Estacion e){
         return StationResponse.builder()
-                .id(e.getId())
+                .numero(e.getNumero())
                 .name(e.getNombre())
                 .capacity(e.getCapacidad())
                 .coordinates(e.getCoordenadas())
