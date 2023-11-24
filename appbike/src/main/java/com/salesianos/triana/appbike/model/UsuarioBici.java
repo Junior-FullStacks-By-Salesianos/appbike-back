@@ -1,5 +1,6 @@
 package com.salesianos.triana.appbike.model;
 
+import com.salesianos.triana.appbike.model.Uso;
 import com.salesianos.triana.appbike.model.Usuario;
 import jakarta.persistence.Entity;
 import lombok.*;
@@ -20,8 +21,11 @@ public class UsuarioBici extends Usuario {
 
     private double saldo;
 
-    public UsuarioBici(UUID id, String username, String password, String email, String nombre, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled, LocalDateTime createdAt, LocalDateTime lastPasswordChangeAt, String numTarjeta, String pin, double saldo) {
-        super(id, username, password, email, nombre, accountNonExpired, accountNonLocked, credentialsNonExpired, enabled, createdAt, lastPasswordChangeAt);
+    public UsuarioBici(UUID id, String username, String password, String email, String nombre,
+            boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled,
+            LocalDateTime createdAt, LocalDateTime lastPasswordChangeAt, String numTarjeta, String pin, double saldo) {
+        super(id, username, password, email, nombre, accountNonExpired, accountNonLocked, credentialsNonExpired,
+                enabled, createdAt, lastPasswordChangeAt);
         this.numTarjeta = numTarjeta;
         this.pin = pin;
         this.saldo = saldo;
