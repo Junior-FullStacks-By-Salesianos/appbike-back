@@ -1,17 +1,16 @@
 package com.salesianos.triana.appbike;
 
-import com.salesianos.triana.appbike.model.Bicicleta;
+import com.salesianos.triana.appbike.model.*;
 import com.salesianos.triana.appbike.repository.BicicletaRepository;
-import com.salesianos.triana.appbike.model.Estados;
-import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.repository.EstacionRepository;
-import com.salesianos.triana.appbike.model.Trabajador;
+import com.salesianos.triana.appbike.repository.RevisionRepository;
 import com.salesianos.triana.appbike.repository.TrabajadorRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -24,6 +23,7 @@ public class InitData {
     private final BicicletaRepository bicicletaRepository;
     private final TrabajadorRepository trabajadorRepository;
     private final PasswordEncoder passwordEncoder;
+    private final RevisionRepository revisionRepository;
 
     @PostConstruct
     public void init() {
@@ -333,5 +333,50 @@ public class InitData {
 
         bicicletaRepository.saveAll(bicicletas);
         trabajadorRepository.saveAll(List.of(t1));
+
+        Revision r1 = Revision.builder()
+                .fechaProgramada(LocalDate.of(2023,11,29))
+                .fechaRealizacion(null)
+                .anotaciones("Esta revisión es una de prueba")
+                .estacion(e1)
+                .trabajador(t1)
+                .estado(EstadoRevision.FINISHED)
+                .build();
+
+        Revision r2 = Revision.builder()
+                .fechaProgramada(LocalDate.of(2023,11,29))
+                .fechaRealizacion(null)
+                .anotaciones("Esta revisión es una de prueba")
+                .estacion(e1)
+                .trabajador(t1)
+                .estado(EstadoRevision.FINISHED)
+                .build();
+
+        Revision r3 = Revision.builder()
+                .fechaProgramada(LocalDate.of(2023,11,29))
+                .fechaRealizacion(null)
+                .anotaciones("Esta revisión es una de prueba")
+                .estacion(e1)
+                .trabajador(t1)
+                .estado(EstadoRevision.FINISHED)
+                .build();
+
+        Revision r4 = Revision.builder()
+                .fechaProgramada(LocalDate.of(2023,11,29))
+                .fechaRealizacion(null)
+                .anotaciones("Esta revisión es una de prueba")
+                .estacion(e1)
+                .trabajador(t1)
+                .estado(EstadoRevision.FINISHED)
+                .build();
+
+        Revision r5 = Revision.builder()
+                .fechaProgramada(LocalDate.of(2023,11,29))
+                .fechaRealizacion(null)
+                .anotaciones("Esta revisión es una de prueba")
+                .estacion(e1)
+                .trabajador(t1)
+                .estado(EstadoRevision.FINISHED)
+                .build();
     }
 }
