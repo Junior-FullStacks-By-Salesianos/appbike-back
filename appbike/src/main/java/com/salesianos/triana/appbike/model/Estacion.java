@@ -14,13 +14,12 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-//@RequiredArgsConstructor
+// @RequiredArgsConstructor
 @Builder
 public class Estacion {
 
-
     @Id
-    @GeneratedValue(generator = "UUID",strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "UUID", strategy = GenerationType.AUTO)
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", updatable = false, nullable = false, columnDefinition = "BINARY(16)")
     private UUID id;
@@ -46,7 +45,8 @@ public class Estacion {
     }
 
     private static Long numeroUnicoActual = 0L;
-    //Por el momento esto está bien pero realizar una consulta
+
+    // Por el momento esto está bien pero realizar una consulta
     private synchronized Long generarNumeroUnico() {
         numeroUnicoActual++;
         return numeroUnicoActual;
