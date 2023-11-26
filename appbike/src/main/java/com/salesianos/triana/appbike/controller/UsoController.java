@@ -1,49 +1,71 @@
 package com.salesianos.triana.appbike.controller;
 
-import com.salesianos.triana.appbike.dto.AddUso;
-import com.salesianos.triana.appbike.dto.UsoBeginResponse;
-import com.salesianos.triana.appbike.model.Uso;
+import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
+import com.salesianos.triana.appbike.dto.Uso.UsoResponse;
 import com.salesianos.triana.appbike.model.Usuario;
-import com.salesianos.triana.appbike.model.UsuarioBici;
 import com.salesianos.triana.appbike.service.UsoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "Uso", description = "El controlador de usos tiene diferentes métodos para obtener información variada" +
-        " sobre los usos, y opciones como alquilar una bicicleta o finalizar un viaje")
+@RequestMapping("/use")
+@Tag(name = "Uses", description = "Controller who manages all requests regarding uses")
 public class UsoController {
 
     private final UsoService usoService;
 
-    /*@PostMapping("/rent")
-    public ResponseEntity<UsoBeginResponse> rentABike(@Valid @RequestBody AddUso addUso, @AuthenticationPrincipal Usuario user) {
+    @Operation(summary = "Gets a use from its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "The use has been found", content = {
+                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoResponse.class)), examples = {
+                            @ExampleObject(value = """
+                                    {
+                                        "id": 1,
+                                        "fechaInicio": "2023-11-26T10:31:40.804104",
+                                        "fechaFin": null,
+                                        "coste": 0.0,
+                                        "bicicleta": "Pacote",
+                                        "estacionFin": "El viaje aun no tiene estación de fin",
+                                        "usuario": "5b08c955-1463-43d5-8326-8b511663e848"
+                                    }
+   
+                                                                        """) }) }),
+            @ApiResponse(responseCode = "404", description = "Not found any use", content = @Content),
+    })
+    @GetMapping("/{id}")
+    public UsoResponse findById (@PathVariable Long id){
+        return UsoResponse.of(usoService.findById(id));
+    }
 
-        Uso newUso = usoService.addUso(addUso, user);
-
-        if (newUso == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
-
-        URI createdURI = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(newUso.getId()).toUri();
-
-        return ResponseEntity
-                .created(createdURI)
-                .body(UsoBeginResponse.of(newUso));
-    }*/
+    @Operation(summary = "Gets an active use by an user")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "The use has been found", content = {
+                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoResponse.class)), examples = {
+                            @ExampleObject(value = """
+                                    {
+                                        "id": 1,
+                                        "fechaInicio": "2023-11-26T10:31:40.804104",
+                                        "fechaFin": null,
+                                        "coste": 0.0,
+                                        "bicicleta": "Pacote",
+                                        "estacionFin": "El viaje aun no tiene estación de fin",
+                                        "usuario": "5b08c955-1463-43d5-8326-8b511663e848"
+                                    }
+                                                                        """) }) }),
+            @ApiResponse(responseCode = "404", description = "Not found any active use", content = @Content),
+    })
+    @GetMapping("/active")
+    public UsoResponse findActiveUse (@AuthenticationPrincipal Usuario usuario){
+        return UsoResponse.of(usoService.findActiveUseByUser(usuario.getId()));
+    }
 }

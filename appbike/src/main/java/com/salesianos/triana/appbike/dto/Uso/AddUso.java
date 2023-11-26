@@ -1,4 +1,4 @@
-package com.salesianos.triana.appbike.dto;
+package com.salesianos.triana.appbike.dto.Uso;
 
 import jakarta.validation.constraints.NotNull;
 

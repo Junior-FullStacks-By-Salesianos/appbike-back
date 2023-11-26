@@ -1,5 +1,6 @@
 package com.salesianos.triana.appbike.service;
 
+import com.salesianos.triana.appbike.exception.NotFoundException;
 import com.salesianos.triana.appbike.repository.BicicletaRepository;
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.model.Bicicleta;
@@ -27,15 +28,24 @@ public class BicicletaService {
     }
 
     public List<Bicicleta> findAllByStation(UUID uuidEstacion){
-        return repository.findBicicletaByEstacionUuid(uuidEstacion);
+        if(!repository.findBicicletaByEstacionUuid(uuidEstacion).isEmpty()){
+            return repository.findBicicletaByEstacionUuid(uuidEstacion);
+        }
+        throw new NotFoundException("Bicicleta");
     }
 
-    public Optional<Bicicleta> findById(UUID uuid){
-        return repository.findById(uuid);
+    public Bicicleta findById(UUID uuid){
+        if(repository.findById(uuid).isPresent()) {
+            return repository.findById(uuid).get();
+        }
+        throw new NotFoundException("Bicicleta");
     }
 
     public Bicicleta findByName(String nombre){
-        return repository.findByNombre(nombre);
+        if(repository.findByNombre(nombre) !=null){
+            return repository.findByNombre(nombre);
+        }
+        throw new NotFoundException("Bicicleta");
     }
 
     public boolean existsById(UUID uuid){

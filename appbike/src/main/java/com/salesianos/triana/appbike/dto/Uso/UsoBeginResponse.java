@@ -1,23 +1,22 @@
-package com.salesianos.triana.appbike.dto;
+package com.salesianos.triana.appbike.dto.Uso;
 
 import com.salesianos.triana.appbike.model.Uso;
-import com.salesianos.triana.appbike.model.Usuario;
 
 import java.time.LocalDateTime;
 
 public record UsoBeginResponse(
+        Long id,
         LocalDateTime fechaInicio,
         String bicicleta,
-        String usuario,
-        String estacionInicio
+        String usuario
 ) {
 
     public static UsoBeginResponse of(Uso u){
         return new UsoBeginResponse(
+                u.getId(),
                 u.getFechaInicio(),
                 u.getBicicleta().getNombre(),
-                u.getAuthor(),
-                u.getBicicleta().getEstacion().getNombre()
+                u.getAuthor()
         );
     }
 

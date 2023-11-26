@@ -24,4 +24,5 @@ public class UsuarioBiciService {
         return usuarioBiciRepository.save(user);
     }
 
+
 }
