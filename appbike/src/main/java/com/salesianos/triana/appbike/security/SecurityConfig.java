@@ -102,7 +102,8 @@ public class SecurityConfig {
                                  * .antMatchers("/auth/register/admin").hasRole("ADMIN")
                                  * .anyRequest().authenticated();
                                  */
-                        .authorizeHttpRequests((authz) -> authz.requestMatchers(antMatcher("/admin/**")).hasRole("ADMIN")                                                 .anyRequest().authenticated());
+                                .authorizeHttpRequests((authz) -> authz.requestMatchers(antMatcher("/admin/**"))
+                                                .hasRole("ADMIN").anyRequest().authenticated());
 
                 http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
