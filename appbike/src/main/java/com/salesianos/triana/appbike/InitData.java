@@ -340,7 +340,7 @@ public class InitData {
                 .anotaciones("Esta revisión es una de prueba")
                 .estacion(e1)
                 .trabajador(t1)
-                .estado(EstadoRevision.FINISHED)
+                .estado(EstadoRevision.IN_PROGRESS)
                 .build();
 
         Revision r2 = Revision.builder()
@@ -378,5 +378,7 @@ public class InitData {
                 .trabajador(t1)
                 .estado(EstadoRevision.FINISHED)
                 .build();
+
+        revisionRepository.saveAll(List.of(r1,r2,r3,r4,r5));
     }
 }
