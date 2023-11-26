@@ -3,6 +3,7 @@ import com.salesianos.triana.appbike.model.Bicicleta;
 
 
 public record GetBicicletaDTO(
+        String uuid,
 
         String nombre,
         String marca,
@@ -15,10 +16,11 @@ public record GetBicicletaDTO(
     public static GetBicicletaDTO of(Bicicleta b){
 
         return new GetBicicletaDTO (
+                b.getUuid().toString(),
                 b.getNombre(),
                 b.getMarca(),
                 b.getModelo(),
-                b.getEstado(),
+                b.getEstado().toString(),
                 b.getUsos().size(),
                 b.getEstacion() == null ? "Sin estación" : b.getEstacion().getNombre()
         );

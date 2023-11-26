@@ -28,13 +28,13 @@ public class Uso {
 
     @ManyToOne
     @JoinColumn(name = "bicicleta_id")
-    private Bicicleta bicicleta;
+    private Bicicleta bicicleta; //es usada
 
     @ManyToOne
     @JoinColumn(name = "estacion_id")
-    private Estacion estacion;
+    private Estacion estacion; //finaliza
 
     @CreatedBy
-    private String usuario;
+    private String author;
 
 }

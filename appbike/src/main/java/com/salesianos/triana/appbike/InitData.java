@@ -1,16 +1,15 @@
 package com.salesianos.triana.appbike;
 
 import com.salesianos.triana.appbike.model.Bicicleta;
-import com.salesianos.triana.appbike.repository.BicicletaRepository;
-import com.salesianos.triana.appbike.model.Estados;
 import com.salesianos.triana.appbike.model.Estacion;
-import com.salesianos.triana.appbike.repository.EstacionRepository;
+import com.salesianos.triana.appbike.model.Estados;
 import com.salesianos.triana.appbike.model.Trabajador;
+import com.salesianos.triana.appbike.repository.BicicletaRepository;
+import com.salesianos.triana.appbike.repository.EstacionRepository;
 import com.salesianos.triana.appbike.repository.TrabajadorRepository;
 import com.salesianos.triana.appbike.repository.UsuarioBiciRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -33,210 +32,206 @@ public class InitData {
                 Bicicleta b1 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("Gen15")
-                                .estado(String.valueOf(Estados.NEW))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEW)))
                                 .nombre("Michael")
                                 .build();
 
                 Bicicleta b2 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("Gen15")
-                                .estado(String.valueOf(Estados.GOOD))
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
                                 .nombre("Eustaquio")
                                 .build();
 
                 Bicicleta b3 = Bicicleta.builder()
                                 .marca("ChimneyChains")
                                 .modelo("CamelBox")
-                                .estado(String.valueOf(Estados.WORN_OUT))
-                                .nombre("Rogelio")
-                                .build();
-
-                Bicicleta b4 = Bicicleta.builder()
+                                .estado(Estados.valueOf(String.valueOf(Estados.WORN_OUT)))
                                 .marca("FieldCletas")
                                 .modelo("FieldTrooper")
-                                .estado(String.valueOf(Estados.ACCEPTABLE))
+                                .estado(Estados.valueOf(String.valueOf(Estados.ACCEPTABLE)))
                                 .nombre("Antonia")
                                 .build();
 
                 Bicicleta b5 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("Gen15")
-                                .estado(String.valueOf(Estados.NEEDS_TO_BE_REPLACED))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEEDS_TO_BE_REPLACED)))
                                 .nombre("Pacote")
                                 .build();
 
                 Bicicleta b6 = Bicicleta.builder()
                                 .marca("ChimneyChains")
                                 .modelo("SmokeyCruise")
-                                .estado(String.valueOf(Estados.NEW))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEW)))
                                 .nombre("Ñoño")
                                 .build();
 
                 Bicicleta b7 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("Gen15")
-                                .estado(String.valueOf(Estados.NEW))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEW)))
                                 .nombre("Fernando")
                                 .build();
 
                 Bicicleta b8 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("Gen15")
-                                .estado(String.valueOf(Estados.NEW))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEW)))
                                 .nombre("Braulio")
                                 .build();
 
                 Bicicleta b9 = Bicicleta.builder()
                                 .marca("ChimneyChains")
                                 .modelo("SmokeyCruise")
-                                .estado(String.valueOf(Estados.NEW))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEW)))
                                 .nombre("Hofrague")
                                 .build();
 
                 Bicicleta b10 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("Gen15")
-                                .estado(String.valueOf(Estados.WORN_OUT))
+                                .estado(Estados.valueOf(String.valueOf(Estados.WORN_OUT)))
                                 .nombre("Patricio")
                                 .build();
 
                 Bicicleta b11 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("FieldTrooper")
-                                .estado(String.valueOf(Estados.NEEDS_TO_BE_REPLACED))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEEDS_TO_BE_REPLACED)))
                                 .nombre("Gaspar")
                                 .build();
 
                 Bicicleta b12 = Bicicleta.builder()
                                 .marca("ChimneyChains")
                                 .modelo("CamelBox")
-                                .estado(String.valueOf(Estados.NEW))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEW)))
                                 .nombre("Bochán")
                                 .build();
 
                 Bicicleta b13 = Bicicleta.builder()
                                 .marca("ChimneyChains")
                                 .modelo("SmokeyCruise")
-                                .estado(String.valueOf(Estados.GOOD))
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
                                 .nombre("Manubrio")
                                 .build();
 
                 Bicicleta b14 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("FieldTrooper")
-                                .estado(String.valueOf(Estados.ACCEPTABLE))
+                                .estado(Estados.valueOf(String.valueOf(Estados.ACCEPTABLE)))
                                 .nombre("Pinecilio")
                                 .build();
 
                 Bicicleta b15 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("Gen15")
-                                .estado(String.valueOf(Estados.GOOD))
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
                                 .nombre("Bartolo")
                                 .build();
 
                 Bicicleta b16 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("FieldTrooper")
-                                .estado(String.valueOf(Estados.GOOD))
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
                                 .nombre("Jesús")
                                 .build();
 
                 Bicicleta b17 = Bicicleta.builder()
                                 .marca("ChimneyChains")
                                 .modelo("CamelBol")
-                                .estado(String.valueOf(Estados.GOOD))
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
                                 .nombre("Ballotelli")
                                 .build();
 
                 Bicicleta b18 = Bicicleta.builder()
                                 .marca("ChimneyChains")
                                 .modelo("CamelBox")
-                                .estado(String.valueOf(Estados.WORN_OUT))
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
                                 .nombre("Zidane")
                                 .build();
 
                 Bicicleta b19 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("FieldTrooper")
-                                .estado(String.valueOf(Estados.ACCEPTABLE))
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
                                 .nombre("Melendi")
                                 .build();
 
                 Bicicleta b20 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("Gen15")
-                                .estado(String.valueOf(Estados.NEEDS_TO_BE_REPLACED))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEEDS_TO_BE_REPLACED)))
                                 .nombre("Bloste")
                                 .build();
 
                 Bicicleta b21 = Bicicleta.builder()
                                 .marca("ChimneyChains")
                                 .modelo("SmokeyCruise")
-                                .estado(String.valueOf(Estados.NEW))
+                                ..estado(Estados.valueOf(String.valueOf(Estados.NEW)))
                                 .nombre("Poste")
                                 .build();
 
                 Bicicleta b22 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("Gen15")
-                                .estado(String.valueOf(Estados.NEW))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEEDS_TO_BE_REPLACED)))
                                 .nombre("Goste")
                                 .build();
 
                 Bicicleta b23 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("Gen15")
-                                .estado(String.valueOf(Estados.NEW))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEEDS_TO_BE_REPLACED)))
                                 .nombre("Toste")
                                 .build();
 
                 Bicicleta b24 = Bicicleta.builder()
                                 .marca("ChimneyChains")
                                 .modelo("SmokeyCruise")
-                                .estado(String.valueOf(Estados.NEW))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEW)))
                                 .nombre("Donatello")
                                 .build();
 
                 Bicicleta b25 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("Gen15")
-                                .estado(String.valueOf(Estados.WORN_OUT))
+                                ..estado(Estados.valueOf(String.valueOf(Estados.WORN_OUT)))
                                 .nombre("Leonardo")
                                 .build();
 
                 Bicicleta b26 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("FieldTrooper")
-                                .estado(String.valueOf(Estados.NEEDS_TO_BE_REPLACED))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEEDS_TO_BE_REPLACED)))
                                 .nombre("Raphael")
                                 .build();
 
                 Bicicleta b27 = Bicicleta.builder()
                                 .marca("ChimneyChains")
                                 .modelo("CamelBox")
-                                .estado(String.valueOf(Estados.NEW))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEW)))
                                 .nombre("Mariano")
                                 .build();
 
                 Bicicleta b28 = Bicicleta.builder()
                                 .marca("ChimneyChains")
                                 .modelo("SmokeyCruise")
-                                .estado(String.valueOf(Estados.GOOD))
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
                                 .nombre("Bellingham")
                                 .build();
 
                 Bicicleta b29 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("FieldTrooper")
-                                .estado(String.valueOf(Estados.ACCEPTABLE))
+                                ..estado(Estados.valueOf(String.valueOf(Estados.ACCEPTABLE)))
                                 .nombre("Alejandra")
                                 .build();
 
                 Bicicleta b30 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("Gen15")
-                                .estado(String.valueOf(Estados.GOOD))
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
                                 .nombre("Lopera")
                                 .build();
 

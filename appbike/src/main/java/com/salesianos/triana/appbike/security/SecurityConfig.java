@@ -108,6 +108,8 @@ public class SecurityConfig {
                                                 .requestMatchers(antMatcher("/note/**")).hasRole("USER")
                                                 .requestMatchers(antMatcher("/auth/register/admin")).hasRole("ADMIN")
                                                 .anyRequest().permitAll());
+                                                .requestMatchers(antMatcher("/admin/**")).hasRole("ADMIN")
+                                                .anyRequest().authenticated();
 
                 http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
