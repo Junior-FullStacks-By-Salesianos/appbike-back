@@ -23,6 +23,7 @@ import com.salesianos.triana.appbike.model.Usuario;
 import com.salesianos.triana.appbike.model.UsuarioBici;
 import com.salesianos.triana.appbike.security.jwt.JwtProvider;
 import com.salesianos.triana.appbike.service.UsuarioBiciService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -61,11 +62,12 @@ public class UserController {
                         @ApiResponse(responseCode = "400 Bad Request", description = "Login was not succesful", content = @Content),
         })
         @PostMapping("/auth/register")
-        public ResponseEntity<UserResponse> createUserWithUserRole(@RequestBody AddUsuarioBici addUsuarioBici) {
+        public ResponseEntity<JwtUserResponse> createUserWithUserRole(@Valid @RequestBody AddUsuarioBici addUsuarioBici) {
                 UsuarioBici usuario = userService.createUser(addUsuarioBici);
-
-                return ResponseEntity.status(HttpStatus.CREATED).body(UserResponse.of(usuario));
-        }
+                Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(addUsuarioBici.username(),addUsuarioBici.password()));
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                String token = jwtProvider.generateToken(authentication);
+                return ResponseEntity.status(HttpStatus.CREATED).body(JwtUserResponse.of(usuario, token));}
 
         @PostMapping("/auth/login")
         public ResponseEntity<JwtUserResponse> login(@RequestBody LoginUser loginUser) {

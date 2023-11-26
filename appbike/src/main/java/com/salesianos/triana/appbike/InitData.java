@@ -48,18 +48,12 @@ public class InitData {
                                 .marca("ChimneyChains")
                                 .modelo("CamelBox")
                                 .estado(Estados.valueOf(String.valueOf(Estados.WORN_OUT)))
-                                .marca("FieldCletas")
-                                .modelo("FieldTrooper")
-                                .estado(Estados.valueOf(String.valueOf(Estados.ACCEPTABLE)))
                                 .nombre("Antonia")
                                 .build();
                 Bicicleta b4  = Bicicleta.builder()
                         .marca("ChimneyChains")
                         .modelo("CamelBox")
                         .estado(Estados.valueOf(String.valueOf(Estados.WORN_OUT)))
-                        .marca("FieldCletas")
-                        .modelo("FieldTrooper")
-                        .estado(Estados.valueOf(String.valueOf(Estados.ACCEPTABLE)))
                         .nombre("FelipeYeit")
                         .build();
 
@@ -277,6 +271,7 @@ public class InitData {
                                 .numero(4L)
                                 .coordenadas("")
                                 .bicicletas(Set.of(b19, b20, b21, b22, b23, b24))
+                                .capacidad(10)
                                 .build();
 
                 Estacion e5 = Estacion.builder()

@@ -1,6 +1,7 @@
 package com.salesianos.triana.appbike.controller;
 
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
+import com.salesianos.triana.appbike.dto.Bike.PostBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Uso.UsoBeginResponse;
 import com.salesianos.triana.appbike.model.Bicicleta;
 import com.salesianos.triana.appbike.model.Uso;
@@ -15,10 +16,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -161,7 +164,7 @@ public class BicicletaController {
                 return GetBicicletaDTO.of(bicicletaService.findByName(name));
         }
 
-        @Operation(summary = "Gets a bicycle from its name")
+        @Operation(summary = "Create a use with a bike rent")
         @ApiResponses(value = {
                 @ApiResponse(responseCode = "201", description = "The use has been created", content = {
                         @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoBeginResponse.class)), examples = {
@@ -189,5 +192,33 @@ public class BicicletaController {
                 return ResponseEntity
                         .created(createdURI)
                         .body(UsoBeginResponse.of(newUso));
+        }
+
+        @Operation(summary = "Create a new bike")
+        @ApiResponses(value = {
+                @ApiResponse(responseCode = "201", description = "The bike has been created",
+                    content = {
+                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoBeginResponse.class)), examples = {
+                            @ExampleObject(value = """
+                                        {
+                                            "id": 1,
+                                            "fechaInicio": "2023-11-25T19:52:45.5159449",
+                                            "bicicleta": "Michael",
+                                            "usuario": "933913fc-187e-412e-a77d-54b5e6b0888f"
+                                        }
+                                                                        """)
+                    })
+                }),
+            @ApiResponse(responseCode = "400", description = "Bad request from the user", content = @Content),
+        })
+        @PostMapping("/add")
+        public ResponseEntity<GetBicicletaDTO> addABike(@Valid @RequestBody PostBicicletaDTO bike){
+            Bicicleta b = bicicletaService.saveDTO(bike);
+
+            URI createdURI = ServletUriComponentsBuilder
+                    .fromCurrentRequest()
+                    .buildAndExpand(b.getUuid()).toUri();
+
+            return ResponseEntity.created(createdURI).body(GetBicicletaDTO.of(b));
         }
 }

@@ -1,18 +1,20 @@
 package com.salesianos.triana.appbike.service;
 
-import com.salesianos.triana.appbike.error.NoBikesInThatStationException;
-import com.salesianos.triana.appbike.exception.NotFoundException;
+import com.salesianos.triana.appbike.dto.Bike.PostBicicletaDTO;
+import com.salesianos.triana.appbike.exception.*;
+import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.repository.BicicletaRepository;
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.model.Bicicleta;
+import com.salesianos.triana.appbike.repository.EstacionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -20,6 +22,7 @@ import java.util.UUID;
 public class BicicletaService {
 
     private final BicicletaRepository repository;
+    private final EstacionRepository repositoryStation;
 
     public List<GetBicicletaDTO> findAll(){
 
@@ -42,9 +45,40 @@ public class BicicletaService {
     public List<Bicicleta> findAllByStation(UUID uuidEstacion){
 
         if(repository.findBicicletaByEstacionUuid(uuidEstacion).isEmpty())
-            throw new NoBikesInThatStationException(uuidEstacion);
+            throw new NoBikesInThatStationException("Station not found");
 
         return repository.findBicicletaByEstacionUuid(uuidEstacion);
+    }
+
+    public Bicicleta saveDTO(PostBicicletaDTO nuevo) {
+
+        List<Bicicleta> bicicletas = repository.findAll();
+        Estacion estacion = repositoryStation.findByNumero(nuevo.estacion());
+
+        boolean nameExists = bicicletas.stream()
+                .anyMatch(b -> b.getNombre().equals(nuevo.nombre()));
+
+        if (nameExists) {
+            throw new BikeWithSameNameException("Enter another bike name, there is currently a bike with that name");
+        }
+
+        if(estacion.getBicicletas().size()>=estacion.getCapacidad()){
+            throw new StationWithoutCapacityException("Station without more capacity of bikes");
+        }
+            Bicicleta bike = new Bicicleta();
+            bike.setNombre(nuevo.nombre());
+            bike.setMarca(nuevo.marca());
+            bike.setModelo(nuevo.modelo());
+            bike.setEstacion(addBicicletaToStationByNumber(nuevo.estacion()));
+            bike.setEstado(nuevo.estado());
+            bike.setUsos(Collections.emptyList());
+
+            return repository.save(bike);
+
+    }
+
+    public Estacion addBicicletaToStationByNumber(Long number){
+        return repositoryStation.findByNumero(number);
     }
 
     public Bicicleta findById(UUID uuid){
