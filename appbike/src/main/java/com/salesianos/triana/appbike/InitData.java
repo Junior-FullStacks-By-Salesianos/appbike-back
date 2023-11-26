@@ -10,6 +10,7 @@ import com.salesianos.triana.appbike.repository.TrabajadorRepository;
 import com.salesianos.triana.appbike.repository.UsuarioBiciRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -52,6 +53,15 @@ public class InitData {
                                 .estado(Estados.valueOf(String.valueOf(Estados.ACCEPTABLE)))
                                 .nombre("Antonia")
                                 .build();
+                Bicicleta b4  = Bicicleta.builder()
+                        .marca("ChimneyChains")
+                        .modelo("CamelBox")
+                        .estado(Estados.valueOf(String.valueOf(Estados.WORN_OUT)))
+                        .marca("FieldCletas")
+                        .modelo("FieldTrooper")
+                        .estado(Estados.valueOf(String.valueOf(Estados.ACCEPTABLE)))
+                        .nombre("FelipeYeit")
+                        .build();
 
                 Bicicleta b5 = Bicicleta.builder()
                                 .marca("FieldCletas")
@@ -168,7 +178,7 @@ public class InitData {
                 Bicicleta b21 = Bicicleta.builder()
                                 .marca("ChimneyChains")
                                 .modelo("SmokeyCruise")
-                                ..estado(Estados.valueOf(String.valueOf(Estados.NEW)))
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEW)))
                                 .nombre("Poste")
                                 .build();
 
@@ -196,7 +206,7 @@ public class InitData {
                 Bicicleta b25 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("Gen15")
-                                ..estado(Estados.valueOf(String.valueOf(Estados.WORN_OUT)))
+                                .estado(Estados.valueOf(String.valueOf(Estados.WORN_OUT)))
                                 .nombre("Leonardo")
                                 .build();
 
@@ -224,7 +234,7 @@ public class InitData {
                 Bicicleta b29 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("FieldTrooper")
-                                ..estado(Estados.valueOf(String.valueOf(Estados.ACCEPTABLE)))
+                                .estado(Estados.valueOf(String.valueOf(Estados.ACCEPTABLE)))
                                 .nombre("Alejandra")
                                 .build();
 
