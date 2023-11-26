@@ -31,7 +31,7 @@ public class BicicletaService {
         if(!repository.findBicicletaByEstacionUuid(uuidEstacion).isEmpty()){
             return repository.findBicicletaByEstacionUuid(uuidEstacion);
         }
-        throw new NotFoundException("Bicicleta");
+        throw new NotFoundException("Estacion");
     }
 
     public Bicicleta findById(UUID uuid){

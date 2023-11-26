@@ -1,12 +1,16 @@
 package com.salesianos.triana.appbike.controller;
 
 
+import com.salesianos.triana.appbike.exception.InvalidCredentialsException;
+import com.salesianos.triana.appbike.exception.NotFoundException;
 import com.salesianos.triana.appbike.model.Usuario;
 import com.salesianos.triana.appbike.dto.LoginUser;
+import com.salesianos.triana.appbike.repository.UsuarioRepository;
 import com.salesianos.triana.appbike.security.jwt.JwtProvider;
 import com.salesianos.triana.appbike.security.jwt.JwtUserResponse;
 import com.salesianos.triana.appbike.dto.UsuarioBici.AddUsuarioBici;
 import com.salesianos.triana.appbike.model.UsuarioBici;
+import com.salesianos.triana.appbike.service.CustomUserDetailsService;
 import com.salesianos.triana.appbike.service.UsuarioBiciService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -16,13 +20,16 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +43,8 @@ public class UserController {
     private final UsuarioBiciService userService;
     private final AuthenticationManager authManager;
     private final JwtProvider jwtProvider;
+
+    //Hacer un registro para trabajadores
 
 
     @Operation(summary = "Register user")
@@ -62,7 +71,7 @@ public class UserController {
                     content = @Content),
     })
     @PostMapping("/auth/register")
-    public ResponseEntity<JwtUserResponse> createUserWithUserRole(@RequestBody AddUsuarioBici addUsuarioBici) {
+    public ResponseEntity<JwtUserResponse> createUserWithUserRole(@Valid @RequestBody AddUsuarioBici addUsuarioBici) {
         UsuarioBici usuario = userService.createUser(addUsuarioBici);
 
         Authentication authentication =
@@ -98,34 +107,35 @@ public class UserController {
                                             """
                             )}
                     )}),
-            @ApiResponse(responseCode = "400 Bad Request",
-                    description = "Login was not succesful",
+            @ApiResponse(responseCode = "401 Unauthorized",
+                    description = "Invalid Username or password",
                     content = @Content),
     })
     @PostMapping("/auth/login")
-    public ResponseEntity<JwtUserResponse> login(@RequestBody LoginUser loginUser) {
+    public ResponseEntity<JwtUserResponse> login(@Valid @RequestBody LoginUser loginUser) {
 
-        // Realizamos la autenticación
+        try {
+            Authentication authentication =
+                    authManager.authenticate(
+                            new UsernamePasswordAuthenticationToken(
+                                    loginUser.username(),
+                                    loginUser.password()
+                            )
+                    );
 
-        Authentication authentication =
-                authManager.authenticate(
-                        new UsernamePasswordAuthenticationToken(
-                                loginUser.username(),
-                                loginUser.password()
-                        )
-                );
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        // Una vez realizada, la guardamos en el contexto de seguridad
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+            String token = jwtProvider.generateToken(authentication);
 
-        // Devolvemos una respuesta adecuada
-        String token = jwtProvider.generateToken(authentication);
+            Usuario user = (Usuario) authentication.getPrincipal();
 
-        Usuario user = (Usuario) authentication.getPrincipal();
-
-
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(JwtUserResponse.of(user, token));
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(JwtUserResponse.of(user, token));
+        } catch (BadCredentialsException e) {
+            throw new InvalidCredentialsException("Invalid username or password");
+        } catch (UsernameNotFoundException e){
+            throw new NotFoundException("User");
+        }
 
 
     }

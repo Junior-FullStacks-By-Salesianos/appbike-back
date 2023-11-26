@@ -2,6 +2,7 @@ package com.salesianos.triana.appbike.error;
 
 import com.salesianos.triana.appbike.error.impl.ApiValidationSubError;
 import com.salesianos.triana.appbike.exception.InUseException;
+import com.salesianos.triana.appbike.exception.InvalidCredentialsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.net.URI;
+import java.nio.file.AccessDeniedException;
 import java.time.Instant;
 import java.util.List;
 
@@ -45,15 +47,31 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler({InUseException.class})
-    public ResponseEntity<Object> handleAlreadyInUseException(InUseException exception) {
-        ErrorResponse er = ErrorResponse.builder(exception, HttpStatus.BAD_REQUEST, exception.getMessage())
+    public ErrorResponse handleAlreadyInUseException(InUseException exception) {
+        return ErrorResponse.builder(exception, HttpStatus.BAD_REQUEST, exception.getMessage())
                 .title("Already in use")
                 .type(URI.create("https://api.bikeapp.com/errors/user-bike-in-use"))
                 .property("timestamp", Instant.now())
                 .build();
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(er);
     }
 
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ErrorResponse handleInvalidCredentialsException(
+            InvalidCredentialsException exception) {
+        return ErrorResponse.builder(exception, HttpStatus.UNAUTHORIZED, exception.getMessage())
+                .title("Username or password incorrect")
+                .type(URI.create("https://api.bikeapp.com/errors/invalid-credentials"))
+                .property("timestamp", Instant.now())
+                .build();
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ErrorResponse handleAccessDeniedException(AccessDeniedException exception) {
+        return ErrorResponse.builder(exception, HttpStatus.FORBIDDEN, exception.getMessage())
+                .title("Access denied")
+                .type(URI.create("https://api.bikeapp.com/errors/access-denied"))
+                .property("timestamp", Instant.now())
+                .build();
+    }
 
 }
