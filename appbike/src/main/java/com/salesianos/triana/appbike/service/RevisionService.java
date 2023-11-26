@@ -1,11 +1,11 @@
 package com.salesianos.triana.appbike.service;
 
-import com.salesianos.triana.appbike.dto.Station.GetStationDto;
+import com.salesianos.triana.appbike.dto.Revision.NewRevisionDTO;
+import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.model.EstadoRevision;
 import com.salesianos.triana.appbike.model.Revision;
 import com.salesianos.triana.appbike.repository.EstacionRepository;
 import com.salesianos.triana.appbike.repository.RevisionRepository;
-import com.salesianos.triana.appbike.dto.Revision.EditRevisionDTO;
 import com.salesianos.triana.appbike.dto.Revision.RevisionDTO;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -59,8 +60,12 @@ public class RevisionService {
                 " with id: " + id));
     }
 
-    public Revision save(RevisionDTO revisionDTO){
-        return revisionRepository.save(RevisionDTO.toEntity(revisionDTO));
+    public Revision save(NewRevisionDTO revisionDTO){
+        //Busco la estación porque no se puede hacer GetStationDTO toEntity
+
+        return revisionRepository.save(NewRevisionDTO.toEntity(revisionDTO,
+                estacionRepository.findById(revisionDTO.estacion()).orElse(null),
+                trabajadorService.findById(revisionDTO.trabajador())));
     }
 
     public void delete(Long id){

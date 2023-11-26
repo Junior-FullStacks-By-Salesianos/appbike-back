@@ -1,9 +1,9 @@
 package com.salesianos.triana.appbike.controller;
 
+import com.salesianos.triana.appbike.dto.Revision.NewRevisionDTO;
 import com.salesianos.triana.appbike.model.Revision;
 import com.salesianos.triana.appbike.repository.EstacionRepository;
 import com.salesianos.triana.appbike.service.RevisionService;
-import com.salesianos.triana.appbike.dto.Revision.EditRevisionDTO;
 import com.salesianos.triana.appbike.dto.Revision.RevisionDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -75,7 +76,7 @@ public class RevisionController {
     })
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/")
-    public ResponseEntity<Revision> createIssue(@RequestBody RevisionDTO revisionDTO) {
+    public ResponseEntity<Revision> createIssue(@RequestBody @Valid NewRevisionDTO revisionDTO) {
         Revision newRevision = revisionService.save(revisionDTO);
         newRevision.setEstacion(estacionRepository.findById(newRevision.getEstacion().getId()).orElse(null));
 

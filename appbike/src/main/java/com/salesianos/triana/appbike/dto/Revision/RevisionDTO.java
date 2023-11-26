@@ -7,13 +7,14 @@ import com.salesianos.triana.appbike.model.EstadoRevision;
 import com.salesianos.triana.appbike.model.Revision;
 import com.salesianos.triana.appbike.model.Trabajador;
 import com.salesianos.triana.appbike.repository.EstacionRepository;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 
-public record RevisionDTO(Long id, LocalDate fechaProgramada,
-                          LocalDate fechaRealizacion, String anotaciones,
-                          GetStationDto estacion, TrabajadorDTO trabajador,
+public record RevisionDTO(Long id, @NotNull LocalDate fechaProgramada,
+                          LocalDate fechaRealizacion,String anotaciones,
+                          @NotNull GetStationDto estacion, @NotNull TrabajadorDTO trabajador,
                           EstadoRevision estado) {
 
     public static RevisionDTO of(Revision r) {

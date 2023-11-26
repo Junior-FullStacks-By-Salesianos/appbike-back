@@ -1,8 +1,6 @@
 package com.salesianos.triana.appbike.dto.Station;
 
 import com.salesianos.triana.appbike.model.Estacion;
-import com.salesianos.triana.appbike.repository.EstacionRepository;
-
 import java.util.UUID;
 
 public record GetStationDto (
