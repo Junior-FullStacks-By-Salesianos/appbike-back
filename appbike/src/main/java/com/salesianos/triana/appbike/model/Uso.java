@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-//@RequiredArgsConstructor
+// @RequiredArgsConstructor
 @Builder
 public class Uso {
 

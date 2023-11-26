@@ -1,11 +1,14 @@
 package com.salesianos.triana.appbike.service;
 
+import com.salesianos.triana.appbike.error.NoBikesInThatStationException;
 import com.salesianos.triana.appbike.exception.NotFoundException;
 import com.salesianos.triana.appbike.repository.BicicletaRepository;
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.model.Bicicleta;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,11 +30,21 @@ public class BicicletaService {
 
     }
 
+    public Page<Bicicleta> searchPage(Pageable pageable){
+        Page<Bicicleta> pagedResult = repository.searchPage(pageable);
+
+        if(pagedResult.isEmpty())
+            throw new EntityNotFoundException("There are no bikes in that page.");
+
+        return pagedResult;
+    }
+
     public List<Bicicleta> findAllByStation(UUID uuidEstacion){
-        if(!repository.findBicicletaByEstacionUuid(uuidEstacion).isEmpty()){
-            return repository.findBicicletaByEstacionUuid(uuidEstacion);
-        }
-        throw new NotFoundException("Bicicleta");
+
+        if(repository.findBicicletaByEstacionUuid(uuidEstacion).isEmpty())
+            throw new NoBikesInThatStationException(uuidEstacion);
+
+        return repository.findBicicletaByEstacionUuid(uuidEstacion);
     }
 
     public Bicicleta findById(UUID uuid){

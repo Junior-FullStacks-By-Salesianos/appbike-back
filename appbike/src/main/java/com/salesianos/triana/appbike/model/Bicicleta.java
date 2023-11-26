@@ -8,6 +8,9 @@ import org.hibernate.annotations.UuidGenerator;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import org.hibernate.annotations.NaturalId;
+
+import java.util.List;
 
 @Entity
 @Getter
