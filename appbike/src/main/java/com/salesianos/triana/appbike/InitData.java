@@ -11,6 +11,7 @@ import com.salesianos.triana.appbike.repository.UsuarioBiciRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -24,7 +25,6 @@ public class InitData {
         private final EstacionRepository estacionRepository;
         private final BicicletaRepository bicicletaRepository;
         private final TrabajadorRepository trabajadorRepository;
-        private final UsuarioBiciRepository usuarioBiciRepository;
         private final PasswordEncoder passwordEncoder;
 
         @PostConstruct
@@ -322,7 +322,7 @@ public class InitData {
 
                 Trabajador t1 = Trabajador.builder()
                                 .username("admin")
-                                .password(passwordEncoder.encode("admin1"))
+                                .password(passwordEncoder.encode("admin"))
                                 .email("admin@bikeapp.com")
                                 .nombre("admin")
                                 .createdAt(LocalDateTime.now())

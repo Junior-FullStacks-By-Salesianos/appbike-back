@@ -40,11 +40,10 @@ public class BicicletaService {
     }
 
     public List<Bicicleta> findAllByStation(UUID uuidEstacion){
-
-        if(repository.findBicicletaByEstacionUuid(uuidEstacion).isEmpty())
-            throw new NoBikesInThatStationException(uuidEstacion);
-
-        return repository.findBicicletaByEstacionUuid(uuidEstacion);
+        if(!repository.findBicicletaByEstacionUuid(uuidEstacion).isEmpty()){
+            return repository.findBicicletaByEstacionUuid(uuidEstacion);
+        }
+        throw new NotFoundException("Estacion");
     }
 
     public Bicicleta findById(UUID uuid){
