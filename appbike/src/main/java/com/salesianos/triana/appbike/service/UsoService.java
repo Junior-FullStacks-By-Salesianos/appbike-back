@@ -3,15 +3,16 @@ package com.salesianos.triana.appbike.service;
 import com.salesianos.triana.appbike.exception.NotFoundException;
 import com.salesianos.triana.appbike.exception.InUseException;
 import com.salesianos.triana.appbike.model.Bicicleta;
+import com.salesianos.triana.appbike.model.Coste;
 import com.salesianos.triana.appbike.model.Uso;
 import com.salesianos.triana.appbike.model.Usuario;
-import com.salesianos.triana.appbike.repository.BicicletaRepository;
-import com.salesianos.triana.appbike.repository.UsoRepository;
-import com.salesianos.triana.appbike.repository.UsuarioBiciRepository;
+import com.salesianos.triana.appbike.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -23,6 +24,8 @@ public class UsoService {
     private final UsoRepository usoRepository;
     private final BicicletaRepository bicicletaRepository;
     private final UsuarioBiciRepository usuarioBiciRepository;
+    private final EstacionRepository estacionRepository;
+    private final CosteRepository costeRepository;
 
     public Uso addUso(UUID idBicicleta, Usuario user) {
         Uso u = new Uso();
@@ -55,10 +58,28 @@ public class UsoService {
 
     public Uso findActiveUseByUser(UUID uuid){
         //Authentication principal
-        if(usuarioBiciRepository.findActiveUsoByUsuario(uuid.toString()).isPresent()){
-         return usuarioBiciRepository.findActiveUsoByUsuario(uuid.toString()).get();
+        return usuarioBiciRepository.findActiveUsoByUsuario(uuid.toString())
+                .orElseThrow(() -> new NotFoundException("Uso"));
+    }
+
+    public Uso finishActiveUseByUser(UUID idUser, UUID idEstacion) {
+        Duration duration;
+        Coste coste = costeRepository.getCurrentCost();
+
+        Uso toFinish = usuarioBiciRepository.findActiveUsoByUsuario(idUser.toString())
+                .orElseThrow(() -> new NotFoundException("Uso"));
+
+        if (estacionRepository.findById(idEstacion).isPresent()) {
+            toFinish.setFechaFin(LocalDateTime.now());
+            toFinish.setEstacion(estacionRepository.findById(idEstacion).get());
+        } else {
+            throw new NotFoundException("Estacion");
         }
 
-        throw new NotFoundException("Uso");
+        long difference = ChronoUnit.MINUTES.between(toFinish.getFechaInicio(), toFinish.getFechaFin());
+
+        toFinish.setCoste(difference * coste.getPrecioMinuto()); //Entity Cost
+
+        return usoRepository.save(toFinish);
     }
 }

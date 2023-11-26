@@ -1,7 +1,9 @@
 package com.salesianos.triana.appbike.controller;
 
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
+import com.salesianos.triana.appbike.dto.Uso.UsoBeginResponse;
 import com.salesianos.triana.appbike.dto.Uso.UsoResponse;
+import com.salesianos.triana.appbike.model.Uso;
 import com.salesianos.triana.appbike.model.Usuario;
 import com.salesianos.triana.appbike.service.UsoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,8 +15,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -67,5 +74,20 @@ public class UsoController {
     @GetMapping("/active")
     public UsoResponse findActiveUse (@AuthenticationPrincipal Usuario usuario){
         return UsoResponse.of(usoService.findActiveUseByUser(usuario.getId()));
+    }
+
+
+    @PostMapping("/finish/{idEstacion}")
+    public ResponseEntity<UsoResponse> finishUse(@AuthenticationPrincipal Usuario usuario, @PathVariable UUID idEstacion){
+        Uso newUso = usoService.finishActiveUseByUser(usuario.getId(), idEstacion);
+
+        URI createdURI = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{idBicicleta}")
+                .buildAndExpand(newUso.getId()).toUri();
+
+        return ResponseEntity
+                .created(createdURI)
+                .body(UsoResponse.of(newUso));
     }
 }
