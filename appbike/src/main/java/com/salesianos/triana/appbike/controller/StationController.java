@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RestController
@@ -96,6 +97,30 @@ public class StationController {
             return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(all);
+    }
+
+    @ApiResponses(
+            @ApiResponse(
+                    responseCode = "204 ",description = "Bike from station delete correctly"
+            )
+    )
+    @Operation(summary = "deleteBike",description = "Delete a bike from a station checking that exits previously")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteBikeFromStation(@PathVariable Long id) {
+        /*bicicletaServicio.delete(id);*/
+        return ResponseEntity.noContent().build();
+    }
+
+    @ApiResponses(
+            @ApiResponse(
+                    responseCode = "204 ",description = "Station delete"
+            )
+    )
+    @Operation(summary = "deleteBike",description = "Delete a Station checking that the station is in the database saved")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable UUID id) {
+        estacionService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 
