@@ -37,12 +37,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "User", description = "El controlador de user tiene diferentes métodos para obtener información variada" +
-        " sobre los usuarios, tanto como métodos para el registro y login")
+                " sobre los usuarios, tanto como métodos para el registro y login")
 public class UserController {
 
-    private final UsuarioBiciService userService;
-    private final AuthenticationManager authManager;
-    private final JwtProvider jwtProvider;
+        private final UsuarioBiciService userService;
+        private final AuthenticationManager authManager;
+        private final JwtProvider jwtProvider;
 
     //Hacer un registro para trabajadores
 
@@ -137,7 +137,6 @@ public class UserController {
             throw new NotFoundException("User");
         }
 
-
-    }
+        }
 
 }

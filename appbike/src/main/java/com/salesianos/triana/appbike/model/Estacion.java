@@ -14,10 +14,9 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-//@RequiredArgsConstructor
+// @RequiredArgsConstructor
 @Builder
 public class Estacion {
-
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -28,6 +27,7 @@ public class Estacion {
     @NaturalId
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long numero;
+
     private String nombre;
     private String coordenadas;
     private int capacidad;

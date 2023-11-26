@@ -11,6 +11,7 @@ import com.salesianos.triana.appbike.repository.UsuarioBiciRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -47,15 +48,20 @@ public class InitData {
                                 .marca("ChimneyChains")
                                 .modelo("CamelBox")
                                 .estado(Estados.valueOf(String.valueOf(Estados.WORN_OUT)))
-                                .nombre("Rogelio")
-                                .build();
-
-                Bicicleta b4 = Bicicleta.builder()
                                 .marca("FieldCletas")
                                 .modelo("FieldTrooper")
                                 .estado(Estados.valueOf(String.valueOf(Estados.ACCEPTABLE)))
                                 .nombre("Antonia")
                                 .build();
+                Bicicleta b4  = Bicicleta.builder()
+                        .marca("ChimneyChains")
+                        .modelo("CamelBox")
+                        .estado(Estados.valueOf(String.valueOf(Estados.WORN_OUT)))
+                        .marca("FieldCletas")
+                        .modelo("FieldTrooper")
+                        .estado(Estados.valueOf(String.valueOf(Estados.ACCEPTABLE)))
+                        .nombre("FelipeYeit")
+                        .build();
 
                 Bicicleta b5 = Bicicleta.builder()
                                 .marca("FieldCletas")
@@ -106,8 +112,145 @@ public class InitData {
                                 .nombre("Gaspar")
                                 .build();
 
+                Bicicleta b12 = Bicicleta.builder()
+                                .marca("ChimneyChains")
+                                .modelo("CamelBox")
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEW)))
+                                .nombre("Bochán")
+                                .build();
+
+                Bicicleta b13 = Bicicleta.builder()
+                                .marca("ChimneyChains")
+                                .modelo("SmokeyCruise")
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
+                                .nombre("Manubrio")
+                                .build();
+
+                Bicicleta b14 = Bicicleta.builder()
+                                .marca("FieldCletas")
+                                .modelo("FieldTrooper")
+                                .estado(Estados.valueOf(String.valueOf(Estados.ACCEPTABLE)))
+                                .nombre("Pinecilio")
+                                .build();
+
+                Bicicleta b15 = Bicicleta.builder()
+                                .marca("FieldCletas")
+                                .modelo("Gen15")
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
+                                .nombre("Bartolo")
+                                .build();
+
+                Bicicleta b16 = Bicicleta.builder()
+                                .marca("FieldCletas")
+                                .modelo("FieldTrooper")
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
+                                .nombre("Jesús")
+                                .build();
+
+                Bicicleta b17 = Bicicleta.builder()
+                                .marca("ChimneyChains")
+                                .modelo("CamelBol")
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
+                                .nombre("Ballotelli")
+                                .build();
+
+                Bicicleta b18 = Bicicleta.builder()
+                                .marca("ChimneyChains")
+                                .modelo("CamelBox")
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
+                                .nombre("Zidane")
+                                .build();
+
+                Bicicleta b19 = Bicicleta.builder()
+                                .marca("FieldCletas")
+                                .modelo("FieldTrooper")
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
+                                .nombre("Melendi")
+                                .build();
+
+                Bicicleta b20 = Bicicleta.builder()
+                                .marca("FieldCletas")
+                                .modelo("Gen15")
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEEDS_TO_BE_REPLACED)))
+                                .nombre("Bloste")
+                                .build();
+
+                Bicicleta b21 = Bicicleta.builder()
+                                .marca("ChimneyChains")
+                                .modelo("SmokeyCruise")
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEW)))
+                                .nombre("Poste")
+                                .build();
+
+                Bicicleta b22 = Bicicleta.builder()
+                                .marca("FieldCletas")
+                                .modelo("Gen15")
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEEDS_TO_BE_REPLACED)))
+                                .nombre("Goste")
+                                .build();
+
+                Bicicleta b23 = Bicicleta.builder()
+                                .marca("FieldCletas")
+                                .modelo("Gen15")
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEEDS_TO_BE_REPLACED)))
+                                .nombre("Toste")
+                                .build();
+
+                Bicicleta b24 = Bicicleta.builder()
+                                .marca("ChimneyChains")
+                                .modelo("SmokeyCruise")
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEW)))
+                                .nombre("Donatello")
+                                .build();
+
+                Bicicleta b25 = Bicicleta.builder()
+                                .marca("FieldCletas")
+                                .modelo("Gen15")
+                                .estado(Estados.valueOf(String.valueOf(Estados.WORN_OUT)))
+                                .nombre("Leonardo")
+                                .build();
+
+                Bicicleta b26 = Bicicleta.builder()
+                                .marca("FieldCletas")
+                                .modelo("FieldTrooper")
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEEDS_TO_BE_REPLACED)))
+                                .nombre("Raphael")
+                                .build();
+
+                Bicicleta b27 = Bicicleta.builder()
+                                .marca("ChimneyChains")
+                                .modelo("CamelBox")
+                                .estado(Estados.valueOf(String.valueOf(Estados.NEW)))
+                                .nombre("Mariano")
+                                .build();
+
+                Bicicleta b28 = Bicicleta.builder()
+                                .marca("ChimneyChains")
+                                .modelo("SmokeyCruise")
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
+                                .nombre("Bellingham")
+                                .build();
+
+                Bicicleta b29 = Bicicleta.builder()
+                                .marca("FieldCletas")
+                                .modelo("FieldTrooper")
+                                .estado(Estados.valueOf(String.valueOf(Estados.ACCEPTABLE)))
+                                .nombre("Alejandra")
+                                .build();
+
+                Bicicleta b30 = Bicicleta.builder()
+                                .marca("FieldCletas")
+                                .modelo("Gen15")
+                                .estado(Estados.valueOf(String.valueOf(Estados.GOOD)))
+                                .nombre("Lopera")
+                                .build();
+
+                List<Bicicleta> bicicletas = List.of(b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15,
+                                b16, b17, b18, b19, b20, b21, b22, b23, b24, b25, b26, b27, b28, b29, b30);
+
+                bicicletaRepository.saveAll(bicicletas);
+
                 Estacion e1 = Estacion.builder()
-                                .numero(1L)
                                 .nombre("Plaza de Armas")
                                 .coordenadas("")
                                 .capacidad(10)
@@ -119,8 +262,32 @@ public class InitData {
                                 .nombre("Plaza de España")
                                 .coordenadas("")
                                 .capacidad(10)
-                                .bicicletas(Set.of(b7, b8, b9, b10, b11))
+                                .bicicletas(Set.of(b7, b8, b9, b10, b11, b12))
                                 .build();
+
+                Estacion e3 = Estacion.builder()
+                                .numero(3L)
+                                .nombre("Setas de Sevilla")
+                                .coordenadas("")
+                                .capacidad(10)
+                                .bicicletas(Set.of(b13, b14, b15, b16, b17, b18))
+                                .build();
+
+                Estacion e4 = Estacion.builder()
+                                .numero(4L)
+                                .coordenadas("")
+                                .bicicletas(Set.of(b19, b20, b21, b22, b23, b24))
+                                .build();
+
+                Estacion e5 = Estacion.builder()
+                                .numero(5L)
+                                .nombre("La Giralda")
+                                .coordenadas("")
+                                .capacidad(10)
+                                .bicicletas(Set.of(b25, b26, b27, b28, b29, b30))
+                                .build();
+
+                estacionRepository.saveAll(List.of(e1, e2, e3, e4, e5));
 
                 b1.setEstacion(e1);
                 b2.setEstacion(e1);
@@ -133,19 +300,41 @@ public class InitData {
                 b9.setEstacion(e2);
                 b10.setEstacion(e2);
                 b11.setEstacion(e2);
+                b12.setEstacion(e2);
+                b13.setEstacion(e3);
+                b14.setEstacion(e3);
+                b15.setEstacion(e3);
+                b16.setEstacion(e3);
+                b17.setEstacion(e3);
+                b18.setEstacion(e3);
+                b19.setEstacion(e4);
+                b20.setEstacion(e4);
+                b21.setEstacion(e4);
+                b22.setEstacion(e4);
+                b23.setEstacion(e4);
+                b24.setEstacion(e4);
+                b25.setEstacion(e5);
+                b26.setEstacion(e5);
+                b27.setEstacion(e5);
+                b28.setEstacion(e5);
+                b29.setEstacion(e5);
+                b30.setEstacion(e5);
 
-                estacionRepository.saveAll(List.of(e1, e2));
-                bicicletaRepository.saveAll(List.of(b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11));
+                Trabajador t1 = Trabajador.builder()
+                                .username("admin")
+                                .password(passwordEncoder.encode("admin"))
+                                .email("admin@bikeapp.com")
+                                .nombre("admin")
+                                .createdAt(LocalDateTime.now())
+                                .turno("Tarde")
+                                .esJefe(true)
+                                .accountNonExpired(true)
+                                .accountNonLocked(true)
+                                .credentialsNonExpired(true)
+                                .enabled(true)
+                                .build();
 
-                Trabajador t1 = new Trabajador();
-                t1.setUsername("admin");
-                t1.setPassword(passwordEncoder.encode("admin"));
-                t1.setEmail("admin@bikeapp.com");
-                t1.setNombre("admin");
-                t1.setCreatedAt(LocalDateTime.now());
-                t1.setTurno("Tarde");
-                t1.setEsJefe(true);
-
-                trabajadorRepository.save(t1);
+                bicicletaRepository.saveAll(bicicletas);
+                trabajadorRepository.saveAll(List.of(t1));
         }
 }
