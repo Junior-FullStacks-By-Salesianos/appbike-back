@@ -32,4 +32,6 @@ public class Revision {
     @JoinColumn(name = "trabajador_id")
     private Trabajador trabajador;
 
+    private EstadoRevision estado;
+
 }
