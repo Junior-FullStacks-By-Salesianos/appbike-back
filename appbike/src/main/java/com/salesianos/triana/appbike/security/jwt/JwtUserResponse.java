@@ -1,6 +1,7 @@
-package com.salesianos.triana.appbike.dto;
+package com.salesianos.triana.appbike.security.jwt;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.salesianos.triana.appbike.dto.UserResponse;
 import com.salesianos.triana.appbike.model.Usuario;
 import lombok.*;
 import lombok.experimental.SuperBuilder;

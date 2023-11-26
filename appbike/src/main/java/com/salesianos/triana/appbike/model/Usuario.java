@@ -1,8 +1,9 @@
 package com.salesianos.triana.appbike.model;
 
+import com.salesianos.triana.appbike.model.Trabajador;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.UuidGenerator;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@SuperBuilder
 @Table(name="user_entity")
 @EntityListeners(AuditingEntityListener.class)
 @Getter
