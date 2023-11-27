@@ -252,7 +252,7 @@ public class InitData {
 
                 Estacion e1 = Estacion.builder()
                                 .nombre("Plaza de Armas")
-                                .coordenadas("")
+                                .coordenadas("37.3922720728435, -6.003619431313711")
                                 .capacidad(10)
                                 .bicicletas(Set.of(b1, b2, b3, b4, b5, b6))
                                 .build();
@@ -260,7 +260,7 @@ public class InitData {
                 Estacion e2 = Estacion.builder()
                                 .numero(2L)
                                 .nombre("Plaza de España")
-                                .coordenadas("")
+                                .coordenadas("37.37739933159319, -5.987447323379356")
                                 .capacidad(10)
                                 .bicicletas(Set.of(b7, b8, b9, b10, b11, b12))
                                 .build();
@@ -268,21 +268,22 @@ public class InitData {
                 Estacion e3 = Estacion.builder()
                                 .numero(3L)
                                 .nombre("Setas de Sevilla")
-                                .coordenadas("")
+                                .coordenadas("37.393483004227846, -5.991776908297368")
                                 .capacidad(10)
                                 .bicicletas(Set.of(b13, b14, b15, b16, b17, b18))
                                 .build();
 
                 Estacion e4 = Estacion.builder()
+                                .nombre("Cartuja Center")
                                 .numero(4L)
-                                .coordenadas("")
+                                .coordenadas("37.404758478972624, -6.0079080736412225")
                                 .bicicletas(Set.of(b19, b20, b21, b22, b23, b24))
                                 .build();
 
                 Estacion e5 = Estacion.builder()
                                 .numero(5L)
                                 .nombre("La Giralda")
-                                .coordenadas("")
+                                .coordenadas("37.38637444017633, -5.992613702477828")
                                 .capacidad(10)
                                 .bicicletas(Set.of(b25, b26, b27, b28, b29, b30))
                                 .build();
