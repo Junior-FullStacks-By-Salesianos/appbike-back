@@ -80,6 +80,43 @@ public class BicicletaController {
         return pagedResult.map(GetBicicletaDTO::of);
     }
 
+    @Operation(summary = "Obtains a list of bikes without pageable")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "All bikes have been found.",
+                    content = { @Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Bicicleta.class)),
+                            examples = {@ExampleObject(
+                                    value = """
+                                            [
+                                                {"nombre": "Rogelio", "marca":
+                                                "Asis", "modelo": "michaeltooper",
+                                                "estado":"new", "usos": 3,
+                                                "estacion": "Plaza de armas"},
+                        
+                                                
+                                                {"nombre": "Hermenegildo", "marca":
+                                                "Asis", "modelo": "michaeltooper",
+                                                "estado":"worn_out", "usos": 7,
+                                                "estacion": "Setas de Sevilla"},
+                                                
+                                                {"nombre": "Hugo", "marca":
+                                                "Pole", "modelo": "chimneychains",
+                                                "estado":"need_to_be_replaced", "usos": 18,
+                                                "estacion": "Alameda de Hercules"}
+                                            ]                                          
+                                            """
+                            )}
+                    )}),
+            @ApiResponse(responseCode = "404",
+                    description = "Not found any bike",
+                    content = @Content),
+    })
+    @GetMapping("/")
+    public List<GetBicicletaDTO> findAll() {
+        return bicicletaService.findAll();
+    }
+
 
     @Operation(summary = "Obtains a list of bikes of a station")
     @ApiResponses(value = {
@@ -156,7 +193,9 @@ public class BicicletaController {
                                             "usos": 0,
                                             "estacion": "Plaza de Armas"
                                         }
-                                                                        """) }) }),
+                                                                        """)
+                        })
+                }),
                 @ApiResponse(responseCode = "404", description = "Not found any bike", content = @Content),
         })
         @GetMapping("/byname/{name}")
@@ -201,10 +240,13 @@ public class BicicletaController {
                     @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoBeginResponse.class)), examples = {
                             @ExampleObject(value = """
                                         {
-                                            "id": 1,
-                                            "fechaInicio": "2023-11-25T19:52:45.5159449",
-                                            "bicicleta": "Michael",
-                                            "usuario": "933913fc-187e-412e-a77d-54b5e6b0888f"
+                                            "uuid": "1c90f4dc-d57f-4398-a33d-f66c42a95f21",
+                                            "nombre": "Luis",
+                                            "marca": "FieldCletas",
+                                            "modelo": "Gen15",
+                                            "estado": "NEEDS_TO_BE_REPLACED",
+                                            "usos": 0,
+                                            "estacion": "Plaza de Armas"
                                         }
                                                                         """)
                     })

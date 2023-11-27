@@ -62,18 +62,14 @@ public class BicicletaService {
             throw new BikeWithSameNameException("Enter another bike name, there is currently a bike with that name");
         }
 
-        if (estacion== null || estacion.getBicicletas().size() >= estacion.getCapacidad()) {
+        if (estacion!= null && estacion.getBicicletas().size() >= estacion.getCapacidad()) {
             throw new StationWithoutCapacityException("Station without more capacity of bikes");
         }
         Bicicleta bike = new Bicicleta();
         bike.setNombre(nuevo.nombre());
         bike.setMarca(nuevo.marca());
         bike.setModelo(nuevo.modelo());
-        if(nuevo.estacion()==null){
-            bike.setEstacion(null);
-        }else{
-            bike.setEstacion(addBicicletaToStationByNumber(nuevo.estacion()));
-        }
+        bike.setEstacion(nuevo.estacion() == null ? null : addBicicletaToStationByNumber(nuevo.estacion()));
         bike.setEstado(nuevo.estado());
         bike.setUsos(Collections.emptyList());
 
