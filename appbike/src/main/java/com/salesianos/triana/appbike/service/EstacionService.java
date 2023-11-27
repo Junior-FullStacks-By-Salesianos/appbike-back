@@ -4,6 +4,7 @@ import com.salesianos.triana.appbike.dto.station.AddStationDto;
 import com.salesianos.triana.appbike.dto.station.GetStationDto;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.repository.EstacionRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,11 @@ public class EstacionService {
                 .stream()
                 .map(GetStationDto::of)
                 .toList();
+    }
+
+    public Estacion findStationById(UUID id){
+        return estacionRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Unable to find a station with id: " + id));
     }
 
     public String delete(UUID id){

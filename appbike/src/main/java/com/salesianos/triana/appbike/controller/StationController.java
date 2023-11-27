@@ -3,6 +3,7 @@ package com.salesianos.triana.appbike.controller;
 import com.salesianos.triana.appbike.dto.station.AddStationDto;
 import com.salesianos.triana.appbike.dto.station.GetStationDto;
 import com.salesianos.triana.appbike.dto.station.StationResponse;
+import com.salesianos.triana.appbike.error.impl.BikesInThatStationException;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.service.EstacionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,10 +12,12 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,6 +54,7 @@ public class StationController {
 
     )
     @PostMapping("/add")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "addEstacion",description = "Create a new Station")
     public ResponseEntity<StationResponse>addStation(@Valid @RequestBody AddStationDto estacion){
         Estacion e = estacionService.newStation(estacion);
@@ -99,6 +103,7 @@ public class StationController {
         return ResponseEntity.ok(all);
     }
 
+
     /*
     @ApiResponses(
             @ApiResponse(
@@ -107,22 +112,29 @@ public class StationController {
     )
     @Operation(summary = "deleteBike",description = "Delete a bike from a station checking that exits previously")
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteBikeFromStation(@PathVariable Long id) {
-        /*bicicletaServicio.delete(id);*//*
-        return ResponseEntity.noContent().build();
-    }
-
-    @ApiResponses(
-            @ApiResponse(
-                    responseCode = "204 ",description = "Station delete"
-            )
-    )
-    @Operation(summary = "deleteBike",description = "Delete a Station checking that the station is in the database saved")
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id) {
-        estacionService.delete(id);
+    public ResponseEntity<?> deleteBikeFromStation(@PathVariable UUID id) {
+            estacionService.delete(id);
         return ResponseEntity.noContent().build();
     }
 */
+
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Station delete")
+    })
+    @Operation(summary = "deleteBike", description = "Delete a Station checking that the station is in the database saved")
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<?> deleteStationById(@PathVariable UUID id) {
+        Estacion estacion = estacionService.findStationById(id)
+                .orElseThrow(() -> new EntityNotFoundException("La estación no existe"));
+
+        if (estacion.getBicicletas() != null && !estacion.getBicicletas().isEmpty()) {
+            throw new BikesInThatStationException();
+        }
+
+        estacionService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }

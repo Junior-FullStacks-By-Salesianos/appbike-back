@@ -18,6 +18,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
+import static com.salesianos.triana.appbike.model.Estacion.generarNumeroUnico;
+
 @Component
 @RequiredArgsConstructor
 public class InitData {
@@ -253,12 +255,13 @@ public class InitData {
                 Estacion e1 = Estacion.builder()
                                 .nombre("Plaza de Armas")
                                 .coordenadas("37.3922720728435, -6.003619431313711")
+                                .numero(generarNumeroUnico())
                                 .capacidad(10)
                                 .bicicletas(Set.of(b1, b2, b3, b4, b5, b6))
                                 .build();
 
                 Estacion e2 = Estacion.builder()
-                                .numero(2L)
+                                .numero(generarNumeroUnico())
                                 .nombre("Plaza de España")
                                 .coordenadas("37.37739933159319, -5.987447323379356")
                                 .capacidad(10)
@@ -266,7 +269,7 @@ public class InitData {
                                 .build();
 
                 Estacion e3 = Estacion.builder()
-                                .numero(3L)
+                                .numero(generarNumeroUnico())
                                 .nombre("Setas de Sevilla")
                                 .coordenadas("37.393483004227846, -5.991776908297368")
                                 .capacidad(10)
@@ -275,13 +278,13 @@ public class InitData {
 
                 Estacion e4 = Estacion.builder()
                                 .nombre("Cartuja Center")
-                                .numero(4L)
+                                .numero(generarNumeroUnico())
                                 .coordenadas("37.404758478972624, -6.0079080736412225")
                                 .bicicletas(Set.of(b19, b20, b21, b22, b23, b24))
                                 .build();
 
                 Estacion e5 = Estacion.builder()
-                                .numero(5L)
+                                .numero(generarNumeroUnico())
                                 .nombre("La Giralda")
                                 .coordenadas("37.38637444017633, -5.992613702477828")
                                 .capacidad(10)
