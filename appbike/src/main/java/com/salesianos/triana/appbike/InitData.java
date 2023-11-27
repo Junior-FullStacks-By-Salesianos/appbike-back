@@ -245,11 +245,12 @@ public class InitData {
                 bicicletaRepository.saveAll(bicicletas);
 
                 Estacion e1 = Estacion.builder()
-                                .nombre("Plaza de Armas")
-                                .coordenadas("")
-                                .capacidad(10)
-                                .bicicletas(Set.of(b1, b2, b3, b4, b5, b6))
-                                .build();
+                        .numero(1L)
+                        .nombre("Plaza de Armas")
+                        .coordenadas("")
+                        .capacidad(10)
+                        .bicicletas(Set.of(b1, b2, b3, b4, b5, b6))
+                        .build();
 
                 Estacion e2 = Estacion.builder()
                                 .numero(2L)
@@ -269,6 +270,7 @@ public class InitData {
 
                 Estacion e4 = Estacion.builder()
                                 .numero(4L)
+                                .nombre("Torre del oro")
                                 .coordenadas("")
                                 .bicicletas(Set.of(b19, b20, b21, b22, b23, b24))
                                 .capacidad(10)
