@@ -23,7 +23,7 @@ public class TrabajadorController {
 //
 //    }
 
-    @GetMapping("/") //se cambiará a /admin/workes si se acaba haciendo esa página
+    @GetMapping("/")
     public ResponseEntity<List<TrabajadorDTO>> getAll(){
         if(trabajadorService.findAll().isEmpty())
             return ResponseEntity.noContent().build();

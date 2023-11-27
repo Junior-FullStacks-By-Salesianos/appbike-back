@@ -1,5 +1,6 @@
 package com.salesianos.triana.appbike.controller;
 
+import com.salesianos.triana.appbike.dto.Revision.NewRevisionDTO;
 import com.salesianos.triana.appbike.model.Revision;
 import com.salesianos.triana.appbike.service.RevisionService;
 import com.salesianos.triana.appbike.dto.Revision.EditRevisionDTO;
@@ -11,6 +12,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +24,7 @@ import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/issue")
+@RequestMapping("admin/issues")
 public class RevisionController {
 
     private final RevisionService revisionService;
@@ -71,8 +73,8 @@ public class RevisionController {
                     content = @Content),
     })
     @PostMapping("/")
-    public ResponseEntity<Revision> createIssue(@RequestBody EditRevisionDTO editRevisionDTO) {
-        Revision newRevision = revisionService.save(editRevisionDTO);
+    public ResponseEntity<Revision> createIssue(@RequestBody @Valid NewRevisionDTO newRevisionDTO) {
+        Revision newRevision = revisionService.save(newRevisionDTO);
 
         URI createdURI = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -104,7 +106,7 @@ public class RevisionController {
                     content = @Content),
     })
     @PutMapping("/{id}")
-    public EditRevisionDTO editRevision(@PathVariable Long id, @RequestBody EditRevisionDTO r) {
+    public RevisionDTO editRevision(@PathVariable Long id, @RequestBody RevisionDTO r) {
         return revisionService.edit(id, r);
     }
 

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public record RevisionDTO(Long id, LocalDate fechaProgramada,
                           LocalDate fechaRealizacion, String anotaciones,
                           String nombreEstacion, String nombreTrabajador,
-                          EstadoRevision estado) {
+                          String estado) {
 
     public static RevisionDTO of(Revision r) {
         return new RevisionDTO(r.getId(),
@@ -17,6 +17,6 @@ public record RevisionDTO(Long id, LocalDate fechaProgramada,
                 r.getAnotaciones(),
                 r.getEstacion().getNombre(),
                 r.getTrabajador().getNombre(),
-                r.getEstado());
+                r.getEstado().toString());
     }
 }

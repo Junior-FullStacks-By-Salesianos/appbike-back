@@ -1,19 +1,14 @@
 package com.salesianos.triana.appbike;
 
-import com.salesianos.triana.appbike.model.Bicicleta;
-import com.salesianos.triana.appbike.model.Estacion;
-import com.salesianos.triana.appbike.model.Estados;
-import com.salesianos.triana.appbike.model.Trabajador;
-import com.salesianos.triana.appbike.repository.BicicletaRepository;
-import com.salesianos.triana.appbike.repository.EstacionRepository;
-import com.salesianos.triana.appbike.repository.TrabajadorRepository;
-import com.salesianos.triana.appbike.repository.UsuarioBiciRepository;
+import com.salesianos.triana.appbike.model.*;
+import com.salesianos.triana.appbike.repository.*;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -24,8 +19,10 @@ public class InitData {
 
         private final EstacionRepository estacionRepository;
         private final BicicletaRepository bicicletaRepository;
-        private final TrabajadorRepository trabajadorRepository;
+        private final RevisionRepository revisionRepository;
         private final PasswordEncoder passwordEncoder;
+        private final UsuarioBiciRepository usuarioBiciRepository;
+        private final UsuarioRepository usuarioRepository;
 
         @PostConstruct
         public void init() {
@@ -320,9 +317,9 @@ public class InitData {
                 b29.setEstacion(e5);
                 b30.setEstacion(e5);
 
-                Trabajador t1 = Trabajador.builder()
+                Usuario t1 = Trabajador.builder()
                                 .username("admin")
-                                .password(passwordEncoder.encode("admin"))
+                                .password(passwordEncoder.encode("admin1"))
                                 .email("admin@bikeapp.com")
                                 .nombre("admin")
                                 .createdAt(LocalDateTime.now())
@@ -335,6 +332,53 @@ public class InitData {
                                 .build();
 
                 bicicletaRepository.saveAll(bicicletas);
-                trabajadorRepository.saveAll(List.of(t1));
+                usuarioRepository.saveAll(List.of(t1));
+
+                Revision r1 = Revision.builder()
+                        .fechaProgramada(LocalDate.of(2023,11,29))
+                        .fechaRealizacion(null)
+                        .anotaciones("Esta revisión es una de prueba")
+                        .estacion(e1)
+                        .trabajador((Trabajador) t1)
+                        .estado(EstadoRevision.IN_PROGRESS)
+                        .build();
+
+                Revision r2 = Revision.builder()
+                        .fechaProgramada(LocalDate.of(2023,11,29))
+                        .fechaRealizacion(null)
+                        .anotaciones("Esta revisión es una de prueba")
+                        .estacion(e1)
+                        .trabajador((Trabajador) t1)
+                        .estado(EstadoRevision.FINISHED)
+                        .build();
+
+                Revision r3 = Revision.builder()
+                        .fechaProgramada(LocalDate.of(2023,11,29))
+                        .fechaRealizacion(null)
+                        .anotaciones("Esta revisión es una de prueba")
+                        .estacion(e1)
+                        .trabajador((Trabajador) t1)
+                        .estado(EstadoRevision.FINISHED)
+                        .build();
+
+                Revision r4 = Revision.builder()
+                        .fechaProgramada(LocalDate.of(2023,11,29))
+                        .fechaRealizacion(null)
+                        .anotaciones("Esta revisión es una de prueba")
+                        .estacion(e1)
+                        .trabajador((Trabajador) t1)
+                        .estado(EstadoRevision.FINISHED)
+                        .build();
+
+                Revision r5 = Revision.builder()
+                        .fechaProgramada(LocalDate.of(2023,11,29))
+                        .fechaRealizacion(null)
+                        .anotaciones("Esta revisión es una de prueba")
+                        .estacion(e1)
+                        .trabajador((Trabajador) t1)
+                        .estado(EstadoRevision.FINISHED)
+                        .build();
+
+                revisionRepository.saveAll(List.of(r1,r2,r3,r4,r5));
         }
 }
