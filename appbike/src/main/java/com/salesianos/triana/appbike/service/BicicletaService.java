@@ -3,9 +3,11 @@ package com.salesianos.triana.appbike.service;
 import com.salesianos.triana.appbike.dto.Bike.PostBicicletaDTO;
 import com.salesianos.triana.appbike.exception.*;
 import com.salesianos.triana.appbike.model.Estacion;
+import com.salesianos.triana.appbike.exception.NotFoundException;
 import com.salesianos.triana.appbike.repository.BicicletaRepository;
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.model.Bicicleta;
+import com.salesianos.triana.appbike.repository.EstacionRepository;
 import com.salesianos.triana.appbike.repository.EstacionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -42,13 +44,15 @@ public class BicicletaService {
         return pagedResult;
     }
 
-    public List<Bicicleta> findAllByStation(UUID uuidEstacion) {
-
-        if (repository.findBicicletaByEstacionUuid(uuidEstacion).isEmpty())
-            throw new NoBikesInThatStationException("Station not found");
-
-        return repository.findBicicletaByEstacionUuid(uuidEstacion);
-    }
+    public List<Bicicleta> findAllByStation(UUID uuidEstacion){
+        List<Bicicleta> bikes = repository.findBicicletaByEstacionUuid(uuidEstacion);
+        if(!bikes.isEmpty()){
+            return bikes;
+        }
+        if(estacionRepository.findById(uuidEstacion).isPresent()){
+            throw new NotFoundException("Bicicleta");
+        }
+        throw new NotFoundException("Estación");
 
     public Bicicleta saveDTO(PostBicicletaDTO nuevo) {
 
@@ -88,9 +92,10 @@ public class BicicletaService {
         throw new NotFoundException("Bicicleta");
     }
 
-    public Bicicleta findByName(String nombre) {
-        if (repository.findByNombre(nombre) != null) {
-            return repository.findByNombre(nombre);
+    public Bicicleta findByName(String nombre){
+        Optional<Bicicleta> bike = repository.findByNombre(nombre);
+        if(bike.isPresent()){
+            return bike.get();
         }
         throw new NotFoundException("Bicicleta");
     }

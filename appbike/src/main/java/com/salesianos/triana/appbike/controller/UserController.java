@@ -1,7 +1,7 @@
 package com.salesianos.triana.appbike.controller;
 
 import com.salesianos.triana.appbike.model.Usuario;
-import com.salesianos.triana.appbike.dto.LoginUser;
+import com.salesianos.triana.appbike.dto.Usuario.LoginUser;
 import com.salesianos.triana.appbike.security.jwt.JwtProvider;
 import com.salesianos.triana.appbike.security.jwt.JwtUserResponse;
 import com.salesianos.triana.appbike.dto.UsuarioBici.AddUsuarioBici;

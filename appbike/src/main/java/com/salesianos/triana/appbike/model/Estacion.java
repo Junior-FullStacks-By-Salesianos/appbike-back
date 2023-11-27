@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.List;
 import java.util.Set;
@@ -19,9 +20,9 @@ import java.util.UUID;
 public class Estacion {
 
     @Id
-    @GeneratedValue(generator = "UUID", strategy = GenerationType.AUTO)
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "BINARY(16)")
+    @GeneratedValue(generator = "UUID")
+    @UuidGenerator
+    @Column(columnDefinition = "uuid")
     private UUID id;
 
     @NaturalId

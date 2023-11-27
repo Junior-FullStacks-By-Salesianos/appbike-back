@@ -3,6 +3,7 @@ package com.salesianos.triana.appbike.controller;
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Bike.PostBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Uso.UsoBeginResponse;
+import com.salesianos.triana.appbike.dto.Uso.UsoResponse;
 import com.salesianos.triana.appbike.model.Bicicleta;
 import com.salesianos.triana.appbike.model.Uso;
 import com.salesianos.triana.appbike.model.Usuario;
@@ -203,7 +204,7 @@ public class BicicletaController {
                 return GetBicicletaDTO.of(bicicletaService.findByName(name));
         }
 
-        @Operation(summary = "Create a use with a bike rent")
+        @Operation(summary = "Method to rent a bike")
         @ApiResponses(value = {
                 @ApiResponse(responseCode = "201", description = "The use has been created", content = {
                         @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoBeginResponse.class)), examples = {
@@ -220,17 +221,48 @@ public class BicicletaController {
                 @ApiResponse(responseCode = "400", description = "The user has already a bike in use", content = @Content)
         })
         @PostMapping("/rent/{idBicicleta}")
-        public ResponseEntity<UsoBeginResponse> rentABike(@PathVariable UUID idBicicleta, @AuthenticationPrincipal Usuario user) {
+        public ResponseEntity<UsoResponse> rentABike(@PathVariable UUID idBicicleta, @AuthenticationPrincipal Usuario user) {
                 Uso newUso = usoService.addUso(idBicicleta, user);
 
                 URI createdURI = ServletUriComponentsBuilder
                         .fromCurrentRequest()
-                        .path("/{id}")
+                        .path("/{idBicicleta}")
                         .buildAndExpand(newUso.getId()).toUri();
 
                 return ResponseEntity
                         .created(createdURI)
-                        .body(UsoBeginResponse.of(newUso));
+                        .body(UsoResponse.of(newUso));
+        }
+
+        @Operation(summary = "Create a new bike")
+        @ApiResponses(value = {
+                @ApiResponse(responseCode = "201", description = "The bike has been created",
+                    content = {
+                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoBeginResponse.class)), examples = {
+                            @ExampleObject(value = """
+                                        {
+                                            "uuid": "1c90f4dc-d57f-4398-a33d-f66c42a95f21",
+                                            "nombre": "Luis",
+                                            "marca": "FieldCletas",
+                                            "modelo": "Gen15",
+                                            "estado": "NEEDS_TO_BE_REPLACED",
+                                            "usos": 0,
+                                            "estacion": "Plaza de Armas"
+                                        }
+                                                                        """)
+                    })
+                }),
+            @ApiResponse(responseCode = "400", description = "Bad request from the user", content = @Content),
+        })
+        @PostMapping("/add")
+        public ResponseEntity<GetBicicletaDTO> addABike(@Valid @RequestBody PostBicicletaDTO bike){
+            Bicicleta b = bicicletaService.saveDTO(bike);
+
+            URI createdURI = ServletUriComponentsBuilder
+                    .fromCurrentRequest()
+                    .buildAndExpand(b.getUuid()).toUri();
+
+            return ResponseEntity.created(createdURI).body(GetBicicletaDTO.of(b));
         }
 
         @Operation(summary = "Create a new bike")
