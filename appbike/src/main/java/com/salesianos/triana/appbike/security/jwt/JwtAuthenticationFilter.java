@@ -1,6 +1,7 @@
 package com.salesianos.triana.appbike.security.jwt;
 
 import com.salesianos.triana.appbike.model.Usuario;
+import com.salesianos.triana.appbike.security.errorhandling.JwtTokenException;
 import com.salesianos.triana.appbike.service.UsuarioService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -8,12 +9,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -24,8 +28,13 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final UsuarioService usuarioService;
+    private final UsuarioService userService;
     private final JwtProvider jwtProvider;
+
+    @Autowired
+    @Qualifier("handlerExceptionResolver")
+    private HandlerExceptionResolver resolver;
+
 
 
     @Override
@@ -37,7 +46,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if (StringUtils.hasText(token) && jwtProvider.validateToken(token)) {
                 UUID userId = jwtProvider.getUserIdFromJwtToken(token);
 
-                Optional<Usuario> result = usuarioService.findById(userId);
+                Optional<Usuario> result = userService.findById(userId);
 
                 if (result.isPresent()) {
                     Usuario user = result.get();
@@ -55,11 +64,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 }
 
             }
-        } catch (Exception ex) {
+
+            filterChain.doFilter(request, response);
+
+        } catch (JwtTokenException ex) {
             log.info("Authentication error using token JWT: " + ex.getMessage());
+            resolver.resolveException(request, response, null, ex);
         }
 
-        filterChain.doFilter(request, response);
+
 
     }
 

@@ -3,6 +3,12 @@ package com.salesianos.triana.appbike.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.UuidGenerator;
+
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+import org.hibernate.annotations.NaturalId;
 
 import java.util.List;
 
@@ -11,18 +17,21 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-//@RequiredArgsConstructor
+// @RequiredArgsConstructor
 @Builder
 public class Bicicleta {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @UuidGenerator
+    @Column(columnDefinition = "uuid")
+    private UUID uuid;
 
     @NaturalId
     private String nombre;
 
-    private String marca, modelo, estado;
+    private String marca, modelo;
+    private Estados estado;
 
     @OneToMany(mappedBy = "bicicleta")
     private List<Uso> usos;

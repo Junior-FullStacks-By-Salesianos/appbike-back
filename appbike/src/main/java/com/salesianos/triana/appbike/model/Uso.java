@@ -1,7 +1,11 @@
 package com.salesianos.triana.appbike.model;
 
+import com.salesianos.triana.appbike.model.Bicicleta;
+import com.salesianos.triana.appbike.model.Estacion;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
@@ -10,7 +14,8 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-//@RequiredArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
+// @RequiredArgsConstructor
 @Builder
 public class Uso {
 
@@ -23,14 +28,13 @@ public class Uso {
 
     @ManyToOne
     @JoinColumn(name = "bicicleta_id")
-    private Bicicleta bicicleta;
+    private Bicicleta bicicleta; //es usada
 
     @ManyToOne
     @JoinColumn(name = "estacion_id")
-    private Estacion estacion;
+    private Estacion estacion; //finaliza
 
-    @ManyToOne
-    @JoinColumn(name = "usuarioBici_id")
-    private UsuarioBici usuarioBici;
+    @CreatedBy
+    private String author;
 
 }
