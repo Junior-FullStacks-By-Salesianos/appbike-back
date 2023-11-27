@@ -2,6 +2,7 @@ package com.salesianos.triana.appbike.controller;
 
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Uso.UsoBeginResponse;
+import com.salesianos.triana.appbike.dto.Uso.UsoResponse;
 import com.salesianos.triana.appbike.model.Bicicleta;
 import com.salesianos.triana.appbike.model.Uso;
 import com.salesianos.triana.appbike.model.Usuario;
@@ -161,7 +162,7 @@ public class BicicletaController {
                 return GetBicicletaDTO.of(bicicletaService.findByName(name));
         }
 
-        @Operation(summary = "Gets a bicycle from its name")
+        @Operation(summary = "Method to rent a bike")
         @ApiResponses(value = {
                 @ApiResponse(responseCode = "201", description = "The use has been created", content = {
                         @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoBeginResponse.class)), examples = {
@@ -178,16 +179,16 @@ public class BicicletaController {
                 @ApiResponse(responseCode = "400", description = "The user has already a bike in use", content = @Content)
         })
         @PostMapping("/rent/{idBicicleta}")
-        public ResponseEntity<UsoBeginResponse> rentABike(@PathVariable UUID idBicicleta, @AuthenticationPrincipal Usuario user) {
+        public ResponseEntity<UsoResponse> rentABike(@PathVariable UUID idBicicleta, @AuthenticationPrincipal Usuario user) {
                 Uso newUso = usoService.addUso(idBicicleta, user);
 
                 URI createdURI = ServletUriComponentsBuilder
                         .fromCurrentRequest()
-                        .path("/{id}")
+                        .path("/{idBicicleta}")
                         .buildAndExpand(newUso.getId()).toUri();
 
                 return ResponseEntity
                         .created(createdURI)
-                        .body(UsoBeginResponse.of(newUso));
+                        .body(UsoResponse.of(newUso));
         }
 }

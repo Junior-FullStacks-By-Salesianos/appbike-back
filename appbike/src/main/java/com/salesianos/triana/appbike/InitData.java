@@ -1,13 +1,7 @@
 package com.salesianos.triana.appbike;
 
-import com.salesianos.triana.appbike.model.Bicicleta;
-import com.salesianos.triana.appbike.model.Estacion;
-import com.salesianos.triana.appbike.model.Estados;
-import com.salesianos.triana.appbike.model.Trabajador;
-import com.salesianos.triana.appbike.repository.BicicletaRepository;
-import com.salesianos.triana.appbike.repository.EstacionRepository;
-import com.salesianos.triana.appbike.repository.TrabajadorRepository;
-import com.salesianos.triana.appbike.repository.UsuarioBiciRepository;
+import com.salesianos.triana.appbike.model.*;
+import com.salesianos.triana.appbike.repository.*;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +20,7 @@ public class InitData {
         private final BicicletaRepository bicicletaRepository;
         private final TrabajadorRepository trabajadorRepository;
         private final PasswordEncoder passwordEncoder;
+        private final CosteRepository costeRepository;
 
         @PostConstruct
         public void init() {
@@ -334,6 +329,12 @@ public class InitData {
                                 .enabled(true)
                                 .build();
 
+                Coste c1 = Coste.builder()
+                        .fechaInicio(LocalDateTime.now())
+                        .precioMinuto(0.20)
+                        .build();
+
+                costeRepository.save(c1);
                 bicicletaRepository.saveAll(bicicletas);
                 trabajadorRepository.saveAll(List.of(t1));
         }
