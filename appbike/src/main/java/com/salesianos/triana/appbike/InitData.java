@@ -322,7 +322,7 @@ public class InitData {
 
                 Trabajador t1 = Trabajador.builder()
                                 .username("admin")
-                                .password(passwordEncoder.encode("admin"))
+                                .password(passwordEncoder.encode("admin1"))
                                 .email("admin@bikeapp.com")
                                 .nombre("admin")
                                 .createdAt(LocalDateTime.now())

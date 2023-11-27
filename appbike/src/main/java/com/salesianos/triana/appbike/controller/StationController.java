@@ -99,6 +99,7 @@ public class StationController {
         return ResponseEntity.ok(all);
     }
 
+    /*
     @ApiResponses(
             @ApiResponse(
                     responseCode = "204 ",description = "Bike from station delete correctly"
@@ -107,7 +108,7 @@ public class StationController {
     @Operation(summary = "deleteBike",description = "Delete a bike from a station checking that exits previously")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBikeFromStation(@PathVariable Long id) {
-        /*bicicletaServicio.delete(id);*/
+        /*bicicletaServicio.delete(id);*//*
         return ResponseEntity.noContent().build();
     }
 
@@ -122,6 +123,6 @@ public class StationController {
         estacionService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
+*/
 
 }
