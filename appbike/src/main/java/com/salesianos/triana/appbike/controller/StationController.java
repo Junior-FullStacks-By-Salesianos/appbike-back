@@ -22,7 +22,7 @@ import java.util.List;
 
 @Controller
 @RestController
-@RequestMapping("stations")
+@RequestMapping("/stations")
 @RequiredArgsConstructor
 @Tag(name="Station",description = "CRUD for managing stations in the API..")
 public class StationController {

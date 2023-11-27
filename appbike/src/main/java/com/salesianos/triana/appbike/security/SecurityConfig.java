@@ -77,37 +77,30 @@ public class SecurityConfig {
 
                 http
                                 .cors(Customizer.withDefaults())
-                                // .csrf().disable()
                                 .csrf((csrf) -> csrf
                                                 .ignoringRequestMatchers(antMatcher("/**")))
-                                /*
-                                 * .exceptionHandling()
-                                 * .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                                 * .accessDeniedHandler(jwtAccessDeniedHandler)
-                                 */
+
                                 .exceptionHandling((exceptionHandling) -> exceptionHandling
                                                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                                                 .accessDeniedHandler(jwtAccessDeniedHandler))
-                                /*
-                                 * .and()
-                                 * .sessionManagement()
-                                 * .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                                 */
+
                                 .sessionManagement((session) -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                                /*
-                                 * .and()
-                                 * .authorizeRequests()
-                                 * .antMatchers("/note/**").hasRole("USER")
-                                 * .antMatchers("/auth/register/admin").hasRole("ADMIN")
-                                 * .anyRequest().authenticated();
-                                 */
-                                .authorizeHttpRequests((authz) -> authz.requestMatchers(antMatcher("/admin/**"))
-                                                .hasRole("ADMIN").anyRequest().authenticated());
+
+                                .authorizeHttpRequests((authz) -> authz
+                                        .requestMatchers(
+                                                antMatcher("/use/**"),
+                                                antMatcher("/cost/**"),
+                                                antMatcher("/issues/**"),
+                                                antMatcher("/station/**"),
+                                                antMatcher("/user/**"),
+                                                antMatcher("/bikes/**")
+                                        ).hasRole("USER")
+                                        .requestMatchers(antMatcher("/admin/**")).hasRole("ADMIN")
+                                        .anyRequest().authenticated());
 
                 http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-                // http.headers().frameOptions().disable();
                 http.headers((headers) -> headers
                                 .frameOptions(opt -> opt.disable()));
 
@@ -121,6 +114,8 @@ public class SecurityConfig {
                                                 antMatcher("/h2-console/**"),
                                                 antMatcher("/auth/register"),
                                                 antMatcher("/auth/login"),
+                                                antMatcher("/swagger/**"),
+                                                antMatcher("/swagger-ui/**"),
                                                 antMatcher("/error")));
         }
 }
