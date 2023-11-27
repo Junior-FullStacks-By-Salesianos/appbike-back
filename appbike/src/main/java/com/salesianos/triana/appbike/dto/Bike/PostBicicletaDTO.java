@@ -4,6 +4,7 @@ import com.salesianos.triana.appbike.model.Estados;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 
 import java.util.UUID;
 
