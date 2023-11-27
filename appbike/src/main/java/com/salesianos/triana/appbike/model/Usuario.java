@@ -19,7 +19,6 @@ import java.util.UUID;
 
 @Entity
 @SuperBuilder
-@Table(name="user_entity")
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
