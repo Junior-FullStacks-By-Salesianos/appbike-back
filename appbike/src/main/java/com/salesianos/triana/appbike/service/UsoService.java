@@ -10,6 +10,7 @@ import com.salesianos.triana.appbike.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.AccessDeniedException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -49,9 +50,14 @@ public class UsoService {
         }
     }
 
-    public Uso findById(Long id){
-        if(usoRepository.findById(id).isPresent()){
-            return usoRepository.findById(id).get();
+    public Uso findByLastUse(Usuario user){
+        Optional<Uso> activeUse = usoRepository.findCurrentUsoByUser(user.getId().toString());
+        Optional<Uso> finishedUse = usoRepository.findLastUsoFinished(user.getId().toString());
+        if(activeUse.isPresent()){
+            throw new InUseException("The user already has a bike in use");
+        }
+        if(finishedUse.isPresent()){
+            return finishedUse.get();
         }
         throw new NotFoundException("Uso");
     }

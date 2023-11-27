@@ -31,7 +31,7 @@ public class UsoController {
 
     private final UsoService usoService;
 
-    @Operation(summary = "Gets a use from its id")
+    @Operation(summary = "Gets finished use")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "The use has been found", content = {
                     @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoResponse.class)), examples = {
@@ -42,16 +42,17 @@ public class UsoController {
                                         "fechaFin": null,
                                         "coste": 0.0,
                                         "bicicleta": "Pacote",
-                                        "estacionFin": "El viaje aun no tiene estación de fin",
+                                        "estacionFin": "Plaza de España",
                                         "usuario": "5b08c955-1463-43d5-8326-8b511663e848"
                                     }
    
                                                                         """) }) }),
             @ApiResponse(responseCode = "404", description = "Not found any use", content = @Content),
+            @ApiResponse(responseCode = "400", description = "The user has already a bike in use", content = @Content),
     })
-    @GetMapping("/{id}")
-    public UsoResponse findById (@PathVariable Long id){
-        return UsoResponse.of(usoService.findById(id));
+    @GetMapping("/last-use")
+    public UsoResponse findLastUse (@AuthenticationPrincipal Usuario user){
+        return UsoResponse.of(usoService.findByLastUse(user));
     }
 
     @Operation(summary = "Gets an active use by an user")
@@ -80,14 +81,17 @@ public class UsoController {
     @Operation(summary = "Method to finish the use")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "The use has been finished", content = {
-                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoBeginResponse.class)), examples = {
+                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoResponse.class)), examples = {
                             @ExampleObject(value = """
-                                        {
-                                            "id": 1,
-                                            "fechaInicio": "2023-11-25T19:52:45.5159449",
-                                            "bicicleta": "Michael",
-                                            "usuario": "933913fc-187e-412e-a77d-54b5e6b0888f"
-                                        }
+                                    {
+                                        "id": 1,
+                                        "fechaInicio": "2023-11-27T12:12:25.658844",
+                                        "fechaFin": "2023-11-27T12:12:47.1572202",
+                                        "coste": 0.0,
+                                        "bicicleta": "Michael",
+                                        "estacionFin": "Plaza de Armas",
+                                        "usuario": "4fa002e5-95d3-43b9-a624-7afad5f1b5ab"
+                                    }
                                                                         """) }) }),
             @ApiResponse(responseCode = "404", description = "Not found any station", content = @Content),
             @ApiResponse(responseCode = "404", description = "Not found any use", content = @Content)
