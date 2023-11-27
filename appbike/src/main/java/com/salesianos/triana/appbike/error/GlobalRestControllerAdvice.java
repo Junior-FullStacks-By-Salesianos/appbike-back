@@ -2,6 +2,8 @@ package com.salesianos.triana.appbike.error;
 
 import com.salesianos.triana.appbike.error.impl.ApiValidationSubError;
 import com.salesianos.triana.appbike.exception.*;
+import com.salesianos.triana.appbike.exception.InUseException;
+import com.salesianos.triana.appbike.exception.InvalidCredentialsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.*;
 import org.springframework.web.ErrorResponse;
@@ -13,6 +15,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.net.URI;
+import java.nio.file.AccessDeniedException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +25,8 @@ import java.util.List;
 public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
 
     @Override
-    public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception, HttpHeaders headers, HttpStatusCode status, WebRequest request){
+    public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception,
+            HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         List<ApiValidationSubError> validationErrors = exception.getBindingResult().getAllErrors().stream()
                 .map(ApiValidationSubError::fromObjectError)
                 .toList();
@@ -35,7 +39,7 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
                 .body(er);
     }
 
-    @ExceptionHandler({EntityNotFoundException.class})
+    @ExceptionHandler({ EntityNotFoundException.class })
     public ErrorResponse handleNotFoundException(EntityNotFoundException exception) {
         return ErrorResponse.builder(exception, HttpStatus.NOT_FOUND, exception.getMessage())
                 .title("Entity not found")
@@ -44,19 +48,17 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
                 .build();
     }
 
-    @ExceptionHandler({InUseException.class})
-    public ResponseEntity<Object> handleAlreadyInUseException(InUseException exception) {
-        ErrorResponse er = ErrorResponse.builder(exception, HttpStatus.BAD_REQUEST, exception.getMessage())
+    @ExceptionHandler({ InUseException.class })
+    public ErrorResponse handleAlreadyInUseException(InUseException exception) {
+        return ErrorResponse.builder(exception, HttpStatus.BAD_REQUEST, exception.getMessage())
                 .title("Already in use")
                 .type(URI.create("https://api.bikeapp.com/errors/user-bike-in-use"))
                 .property("timestamp", Instant.now())
                 .build();
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(er);
     }
 
-    @ExceptionHandler({NoBikesInThatStationException.class})
-    private static ErrorResponse handleNoBikesInThatStationException(NoBikesInThatStationException exception){
+    @ExceptionHandler({ NoBikesInThatStationException.class })
+    private static ErrorResponse handleNoBikesInThatStationException(NoBikesInThatStationException exception) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return ErrorResponse.builder(exception, HttpStatus.NOT_FOUND, exception.getMessage())
                 .title("Station not found for that UUID")
@@ -65,8 +67,27 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
                 .build();
     }
 
-    @ExceptionHandler({BadRequestForBikeAdd.class})
-    private static ErrorResponse handleBadRequestBikeAdd(BadRequestForBikeAdd exception){
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ErrorResponse handleInvalidCredentialsException(
+            InvalidCredentialsException exception) {
+        return ErrorResponse.builder(exception, HttpStatus.UNAUTHORIZED, exception.getMessage())
+                .title("Username or password incorrect")
+                .type(URI.create("https://api.bikeapp.com/errors/invalid-credentials"))
+                .property("timestamp", Instant.now())
+                .build();
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ErrorResponse handleAccessDeniedException(AccessDeniedException exception) {
+        return ErrorResponse.builder(exception, HttpStatus.FORBIDDEN, exception.getMessage())
+                .title("Access denied")
+                .type(URI.create("https://api.bikeapp.com/errors/access-denied"))
+                .property("timestamp", Instant.now())
+                .build();
+    }
+
+    @ExceptionHandler({ BadRequestForBikeAdd.class })
+    private static ErrorResponse handleBadRequestBikeAdd(BadRequestForBikeAdd exception) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return ErrorResponse.builder(exception, HttpStatus.BAD_REQUEST, exception.getMessage())
                 .title("Bad request from user")
@@ -75,8 +96,8 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
                 .build();
     }
 
-    @ExceptionHandler({BikeWithSameNameException.class})
-    private static ErrorResponse handleBikeWithSameNameException(BikeWithSameNameException exception){
+    @ExceptionHandler({ BikeWithSameNameException.class })
+    private static ErrorResponse handleBikeWithSameNameException(BikeWithSameNameException exception) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return ErrorResponse.builder(exception, HttpStatus.BAD_REQUEST, exception.getMessage())
@@ -86,8 +107,8 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
                 .build();
     }
 
-    @ExceptionHandler({StationWithoutCapacityException.class})
-    private static ErrorResponse handleStationWithoutCapacityException(StationWithoutCapacityException exception){
+    @ExceptionHandler({ StationWithoutCapacityException.class })
+    private static ErrorResponse handleStationWithoutCapacityException(StationWithoutCapacityException exception) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return ErrorResponse.builder(exception, HttpStatus.BAD_REQUEST, exception.getMessage())

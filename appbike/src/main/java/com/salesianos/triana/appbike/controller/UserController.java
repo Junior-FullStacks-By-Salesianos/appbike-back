@@ -1,11 +1,15 @@
 package com.salesianos.triana.appbike.controller;
 
+import com.salesianos.triana.appbike.exception.InvalidCredentialsException;
+import com.salesianos.triana.appbike.exception.NotFoundException;
 import com.salesianos.triana.appbike.model.Usuario;
 import com.salesianos.triana.appbike.dto.LoginUser;
+import com.salesianos.triana.appbike.repository.UsuarioRepository;
 import com.salesianos.triana.appbike.security.jwt.JwtProvider;
 import com.salesianos.triana.appbike.security.jwt.JwtUserResponse;
 import com.salesianos.triana.appbike.dto.UsuarioBici.AddUsuarioBici;
 import com.salesianos.triana.appbike.model.UsuarioBici;
+import com.salesianos.triana.appbike.service.CustomUserDetailsService;
 import com.salesianos.triana.appbike.service.UsuarioBiciService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -15,22 +19,16 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import com.salesianos.triana.appbike.dto.UsuarioBici.AddUsuarioBici;
-import com.salesianos.triana.appbike.security.jwt.JwtUserResponse;
-import com.salesianos.triana.appbike.dto.LoginUser;
-import com.salesianos.triana.appbike.dto.UserResponse;
-import com.salesianos.triana.appbike.model.Usuario;
-import com.salesianos.triana.appbike.model.UsuarioBici;
-import com.salesianos.triana.appbike.security.jwt.JwtProvider;
-import com.salesianos.triana.appbike.service.UsuarioBiciService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,34 +60,14 @@ public class UserController {
                         @ApiResponse(responseCode = "400 Bad Request", description = "Login was not succesful", content = @Content),
         })
         @PostMapping("/auth/register")
-        public ResponseEntity<JwtUserResponse> createUserWithUserRole(@Valid @RequestBody AddUsuarioBici addUsuarioBici) {
+        public ResponseEntity<JwtUserResponse> createUserWithUserRole(
+                        @Valid @RequestBody AddUsuarioBici addUsuarioBici) {
                 UsuarioBici usuario = userService.createUser(addUsuarioBici);
-                Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(addUsuarioBici.username(),addUsuarioBici.password()));
+                Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(
+                                addUsuarioBici.username(), addUsuarioBici.password()));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 String token = jwtProvider.generateToken(authentication);
-                return ResponseEntity.status(HttpStatus.CREATED).body(JwtUserResponse.of(usuario, token));}
-
-        @PostMapping("/auth/login")
-        public ResponseEntity<JwtUserResponse> login(@RequestBody LoginUser loginUser) {
-
-                // Realizamos la autenticación
-
-                Authentication authentication = authManager.authenticate(
-                                new UsernamePasswordAuthenticationToken(
-                                                loginUser.username(),
-                                                loginUser.password()));
-
-                // Una vez realizada, la guardamos en el contexto de seguridad
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-
-                // Devolvemos una respuesta adecuada
-                String token = jwtProvider.generateToken(authentication);
-
-                Usuario user = (Usuario) authentication.getPrincipal();
-
-                return ResponseEntity.status(HttpStatus.CREATED)
-                                .body(JwtUserResponse.of(user, token));
-
+                return ResponseEntity.status(HttpStatus.CREATED).body(JwtUserResponse.of(usuario, token));
         }
 
 }
