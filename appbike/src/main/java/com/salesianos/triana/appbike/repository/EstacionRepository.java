@@ -15,4 +15,5 @@ public interface EstacionRepository extends JpaRepository<Estacion, UUID> {
     @Modifying
     @Query("DELETE FROM Estacion e WHERE e.numero = :numero")
     void deleteByNumero(Long numero);
+
 }

@@ -1,14 +1,18 @@
 package com.salesianos.triana.appbike.controller;
 
+import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.dto.station.AddStationDto;
+import com.salesianos.triana.appbike.dto.station.EditStationDto;
 import com.salesianos.triana.appbike.dto.station.GetStationDto;
 import com.salesianos.triana.appbike.dto.station.StationResponse;
 import com.salesianos.triana.appbike.error.BikesInThatStationException;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.service.EstacionService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,6 +26,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RestController
@@ -102,21 +107,62 @@ public class StationController {
         return ResponseEntity.ok(all);
     }
 
-
-    /*
-    @ApiResponses(
-            @ApiResponse(
-                    responseCode = "204 ",description = "Bike from station delete correctly"
-            )
-    )
-    @Operation(summary = "deleteBike",description = "Delete a bike from a station checking that exits previously")
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteBikeFromStation(@PathVariable UUID id) {
-            estacionService.delete(id);
-        return ResponseEntity.noContent().build();
+    @Operation(summary = "Gets a station from its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "The station has been found", content = {
+                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = GetBicicletaDTO.class)), examples = {
+                            @ExampleObject(value = """
+                                    {
+                                        "numero": 2,
+                                        "name": "Plaza de España",
+                                        "coordinates": "37.37739933159319, -5.987447323379356",
+                                        "capacity": 10,
+                                        "bikes": [
+                                            {
+                                                "uuid": "e6c62724-b555-41e2-b8c2-5d27d2b51b06",
+                                                "nombre": "Patricio",
+                                                "marca": "FieldCletas",
+                                                "modelo": "Gen15",
+                                                "estado": "WORN_OUT",
+                                                "usos": 0,
+                                                "estacion": "Plaza de España"
+                                            },
+                                            {
+                                                "uuid": "be2a602d-2bcc-4bd4-93cf-29d3abfaf70a",
+                                                "nombre": "Hofrague",
+                                                "marca": "ChimneyChains",
+                                                "modelo": "SmokeyCruise",
+                                                "estado": "NEW",
+                                                "usos": 0,
+                                                "estacion": "Plaza de España"
+                                            }
+                                        ]
+                                    }
+                                                                        """) }) }),
+            @ApiResponse(responseCode = "404", description = "Any Station was found", content = @Content),
+    })
+    @GetMapping("/get/{id}")
+    public StationResponse findStationById(@PathVariable Long id){
+        return StationResponse.of(estacionService.findById(id));
     }
-*/
 
+    @Operation(summary = "Edit a station ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "The station has been edited", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = StationResponse.class))
+            }),
+            @ApiResponse(responseCode = "404", description = "Something went wrong", content = @Content)
+    })
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<StationResponse> editStation(@PathVariable Long id, @RequestBody @Valid EditStationDto e) {
+        Estacion estacion = estacionService.editStation(id, e);
+        if (estacion != null) {
+            StationResponse stationResponse = StationResponse.of(estacion);
+            return ResponseEntity.status(HttpStatus.OK).body(stationResponse);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
     @ApiResponses({
             @ApiResponse(responseCode = "204", description = "Station delete")
     })
@@ -134,6 +180,5 @@ public class StationController {
         estacionService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }
