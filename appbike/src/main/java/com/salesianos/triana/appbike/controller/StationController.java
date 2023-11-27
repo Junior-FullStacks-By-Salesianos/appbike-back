@@ -3,7 +3,7 @@ package com.salesianos.triana.appbike.controller;
 import com.salesianos.triana.appbike.dto.station.AddStationDto;
 import com.salesianos.triana.appbike.dto.station.GetStationDto;
 import com.salesianos.triana.appbike.dto.station.StationResponse;
-import com.salesianos.triana.appbike.error.impl.BikesInThatStationException;
+import com.salesianos.triana.appbike.error.BikesInThatStationException;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.service.EstacionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,7 +22,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RestController
@@ -124,9 +123,9 @@ public class StationController {
     @Operation(summary = "deleteBike", description = "Delete a Station checking that the station is in the database saved")
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<?> deleteStationById(@PathVariable UUID id) {
+    public ResponseEntity<?> deleteStationById(@PathVariable Long id) {
         Estacion estacion = estacionService.findStationById(id)
-                .orElseThrow(() -> new EntityNotFoundException("La estación no existe"));
+                .orElseThrow(() -> new EntityNotFoundException("Unable to find a station with id: " + id));
 
         if (estacion.getBicicletas() != null && !estacion.getBicicletas().isEmpty()) {
             throw new BikesInThatStationException();

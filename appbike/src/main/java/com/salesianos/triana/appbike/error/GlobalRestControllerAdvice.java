@@ -1,7 +1,6 @@
 package com.salesianos.triana.appbike.error;
 
 import com.salesianos.triana.appbike.error.impl.ApiValidationSubError;
-import com.salesianos.triana.appbike.error.impl.BikesInThatStationException;
 import com.salesianos.triana.appbike.exception.InUseException;
 import com.salesianos.triana.appbike.exception.InvalidCredentialsException;
 import jakarta.persistence.EntityNotFoundException;
@@ -75,10 +74,10 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
                 .build();
     }
     @ExceptionHandler(BikesInThatStationException.class)
-    public ErrorResponse handleNoBikesInThatStationException(BikesInThatStationException exception) {
+    public ErrorResponse handleBikesInThatStationException(BikesInThatStationException exception) {
         return ErrorResponse.builder(exception, HttpStatus.BAD_REQUEST, exception.getMessage())
                 .title("The station can't be deleted")
-                .type(URI.create("https://api.bikeapp.com/errors/no-bikes-in-station"))
+                .type(URI.create("https://api.bikeapp.com/errors/bikes-in-station"))
                 .property("timestamp", Instant.now())
                 .build();
     }

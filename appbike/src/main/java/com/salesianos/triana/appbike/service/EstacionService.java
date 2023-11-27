@@ -4,12 +4,12 @@ import com.salesianos.triana.appbike.dto.station.AddStationDto;
 import com.salesianos.triana.appbike.dto.station.GetStationDto;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.repository.EstacionRepository;
-import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
+import java.util.Optional;
 
 
 @Service
@@ -35,13 +35,15 @@ public class EstacionService {
                 .toList();
     }
 
-    public Estacion findStationById(UUID id){
-        return estacionRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Unable to find a station with id: " + id));
+
+
+    public Optional<Estacion> findStationById(Long id) {
+        return Optional.ofNullable(estacionRepository.findByNumero(id));
     }
 
-    public String delete(UUID id){
-        estacionRepository.deleteById(id);
-        return "Eliminado con exito";
+    @Transactional
+    public String delete(Long id) {
+        estacionRepository.deleteByNumero(id);
+        return "Eliminado con éxito";
     }
 }
