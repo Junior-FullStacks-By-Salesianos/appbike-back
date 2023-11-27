@@ -264,35 +264,4 @@ public class BicicletaController {
 
             return ResponseEntity.created(createdURI).body(GetBicicletaDTO.of(b));
         }
-
-        @Operation(summary = "Create a new bike")
-        @ApiResponses(value = {
-                @ApiResponse(responseCode = "201", description = "The bike has been created",
-                    content = {
-                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoBeginResponse.class)), examples = {
-                            @ExampleObject(value = """
-                                        {
-                                            "uuid": "1c90f4dc-d57f-4398-a33d-f66c42a95f21",
-                                            "nombre": "Luis",
-                                            "marca": "FieldCletas",
-                                            "modelo": "Gen15",
-                                            "estado": "NEEDS_TO_BE_REPLACED",
-                                            "usos": 0,
-                                            "estacion": "Plaza de Armas"
-                                        }
-                                                                        """)
-                    })
-                }),
-            @ApiResponse(responseCode = "400", description = "Bad request from the user", content = @Content),
-        })
-        @PostMapping("/add")
-        public ResponseEntity<GetBicicletaDTO> addABike(@Valid @RequestBody PostBicicletaDTO bike){
-            Bicicleta b = bicicletaService.saveDTO(bike);
-
-            URI createdURI = ServletUriComponentsBuilder
-                    .fromCurrentRequest()
-                    .buildAndExpand(b.getUuid()).toUri();
-
-            return ResponseEntity.created(createdURI).body(GetBicicletaDTO.of(b));
-        }
 }

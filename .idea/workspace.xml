@@ -7,9 +7,8 @@
     <list default="true" id="8df70de6-61f9-4458-b7a0-1f75983a2031" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/BicicletaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/BicicletaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/BicicletaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/BicicletaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/database.mv.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/database.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/db/database.trace.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

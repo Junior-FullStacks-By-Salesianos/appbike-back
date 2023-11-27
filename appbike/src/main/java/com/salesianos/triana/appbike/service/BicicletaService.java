@@ -8,7 +8,6 @@ import com.salesianos.triana.appbike.repository.BicicletaRepository;
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.model.Bicicleta;
 import com.salesianos.triana.appbike.repository.EstacionRepository;
-import com.salesianos.triana.appbike.repository.EstacionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -17,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -24,7 +24,7 @@ import java.util.UUID;
 public class BicicletaService {
 
     private final BicicletaRepository repository;
-    private final EstacionRepository repositoryStation;
+    private final EstacionRepository estacionRepository;
 
     public List<GetBicicletaDTO> findAll() {
 
@@ -44,20 +44,20 @@ public class BicicletaService {
         return pagedResult;
     }
 
-    public List<Bicicleta> findAllByStation(UUID uuidEstacion){
+    public List<Bicicleta> findAllByStation(UUID uuidEstacion) {
         List<Bicicleta> bikes = repository.findBicicletaByEstacionUuid(uuidEstacion);
-        if(!bikes.isEmpty()){
+        if (!bikes.isEmpty()) {
             return bikes;
         }
-        if(estacionRepository.findById(uuidEstacion).isPresent()){
+        if (estacionRepository.findById(uuidEstacion).isPresent()) {
             throw new NotFoundException("Bicicleta");
         }
         throw new NotFoundException("Estación");
-
+    }
     public Bicicleta saveDTO(PostBicicletaDTO nuevo) {
 
         List<Bicicleta> bicicletas = repository.findAll();
-        Estacion estacion = repositoryStation.findByNumero(nuevo.estacion());
+        Estacion estacion = estacionRepository.findByNumero(nuevo.estacion());
 
         boolean nameExists = bicicletas.stream()
                 .anyMatch(b -> b.getNombre().equals(nuevo.nombre()));
@@ -82,7 +82,7 @@ public class BicicletaService {
     }
 
     public Estacion addBicicletaToStationByNumber(Long number) {
-        return repositoryStation.findByNumero(number);
+        return estacionRepository.findByNumero(number);
     }
 
     public Bicicleta findById(UUID uuid) {
