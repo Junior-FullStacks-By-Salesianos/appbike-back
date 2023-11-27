@@ -2,8 +2,8 @@ package com.salesianos.triana.appbike.controller;
 
 import com.salesianos.triana.appbike.dto.Revision.NewRevisionDTO;
 import com.salesianos.triana.appbike.model.Revision;
+import com.salesianos.triana.appbike.repository.EstacionRepository;
 import com.salesianos.triana.appbike.service.RevisionService;
-import com.salesianos.triana.appbike.dto.Revision.EditRevisionDTO;
 import com.salesianos.triana.appbike.dto.Revision.RevisionDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -28,6 +28,7 @@ import java.net.URI;
 public class RevisionController {
 
     private final RevisionService revisionService;
+    private final EstacionRepository estacionRepository;
 
     @Operation(summary = "Obstains a new issues page")
     @ApiResponses(value = {
@@ -72,6 +73,7 @@ public class RevisionController {
                     description = "Unable to find the specified issue",
                     content = @Content),
     })
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/")
     public ResponseEntity<Revision> createIssue(@RequestBody @Valid NewRevisionDTO newRevisionDTO) {
         Revision newRevision = revisionService.save(newRevisionDTO);
@@ -95,9 +97,27 @@ public class RevisionController {
                             examples = {@ExampleObject(
                                     value = """
                                             [
-                                                {"id": 1, "nombre": "Iglesias"},
-                                                {"id": 2, "nombre": "Románico"}
-                                            ]                                          
+                                            {
+                                                "id": 1,
+                                                "fechaProgramada": "2023-11-29",
+                                                "fechaRealizacion": null,
+                                                "anotaciones": "Esta revisión es una de prueba",
+                                                "estacion": {
+                                                    "id": "c7af6951-0967-407d-a6cd-20d79904ee57",
+                                                    "number": 1,
+                                                    "name": "Plaza de Armas",
+                                                    "coordinates": "",
+                                                    "capacity": 10,
+                                                    "bikes": 6
+                                                },
+                                                "trabajador": {
+                                                    "id": "c0a83801-8c0b-1d26-818c-0b6d330c0000",
+                                                    "email": "admin@bikeapp.com",
+                                                    "nombre": "admin"
+                                                },
+                                                "estado": "IN_PROGRESS"
+                                            }
+                                            ]
                                             """
                             )}
                     )}),
@@ -105,6 +125,7 @@ public class RevisionController {
                     description = "Unable to find the specified issue",
                     content = @Content),
     })
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/{id}")
     public RevisionDTO editRevision(@PathVariable Long id, @RequestBody RevisionDTO r) {
         return revisionService.edit(id, r);
@@ -129,6 +150,7 @@ public class RevisionController {
                     description = "Unable to find the specified issue",
                     content = @Content),
     })
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteRevision(@PathVariable Long id) {
         revisionService.delete(id);

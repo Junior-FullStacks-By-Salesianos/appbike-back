@@ -8,7 +8,6 @@ import com.salesianos.triana.appbike.model.Revision;
 import com.salesianos.triana.appbike.model.Trabajador;
 import com.salesianos.triana.appbike.repository.EstacionRepository;
 import com.salesianos.triana.appbike.repository.RevisionRepository;
-import com.salesianos.triana.appbike.dto.Revision.EditRevisionDTO;
 import com.salesianos.triana.appbike.dto.Revision.RevisionDTO;
 import com.salesianos.triana.appbike.repository.TrabajadorRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -18,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
