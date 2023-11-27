@@ -5,7 +5,6 @@ import com.salesianos.triana.appbike.repository.*;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -18,7 +17,6 @@ public class InitData {
 
 
         private final PasswordEncoder passwordEncoder;
-
 
         @PostConstruct
         public void init(){
