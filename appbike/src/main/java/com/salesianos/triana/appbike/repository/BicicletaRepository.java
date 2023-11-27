@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface BicicletaRepository extends JpaRepository<Bicicleta, UUID> {
@@ -20,5 +22,5 @@ public interface BicicletaRepository extends JpaRepository<Bicicleta, UUID> {
     @Query(value = "SELECT  * FROM bicicleta b WHERE b.estacion_id = :uuid", nativeQuery = true)
     List<Bicicleta> findBicicletaByEstacionUuid(@Param("uuid") UUID uuid);
 
-    Bicicleta findByNombre(String nombre);
+    Optional<Bicicleta> findByNombre(String nombre);
 }

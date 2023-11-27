@@ -4,6 +4,7 @@ import com.salesianos.triana.appbike.exception.NotFoundException;
 import com.salesianos.triana.appbike.repository.BicicletaRepository;
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.model.Bicicleta;
+import com.salesianos.triana.appbike.repository.EstacionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -18,6 +20,7 @@ import java.util.UUID;
 public class BicicletaService {
 
     private final BicicletaRepository repository;
+    private final EstacionRepository estacionRepository;
 
     public List<GetBicicletaDTO> findAll(){
 
@@ -38,22 +41,28 @@ public class BicicletaService {
     }
 
     public List<Bicicleta> findAllByStation(UUID uuidEstacion){
-        if(!repository.findBicicletaByEstacionUuid(uuidEstacion).isEmpty()){
-            return repository.findBicicletaByEstacionUuid(uuidEstacion);
+        List<Bicicleta> bikes = repository.findBicicletaByEstacionUuid(uuidEstacion);
+        if(!bikes.isEmpty()){
+            return bikes;
         }
-        throw new NotFoundException("Estacion");
+        if(estacionRepository.findById(uuidEstacion).isPresent()){
+            throw new NotFoundException("Bicicleta");
+        }
+        throw new NotFoundException("Estación");
     }
 
     public Bicicleta findById(UUID uuid){
-        if(repository.findById(uuid).isPresent()) {
-            return repository.findById(uuid).get();
+        Optional<Bicicleta> bike = repository.findById(uuid);
+        if(bike.isPresent()) {
+            return bike.get();
         }
         throw new NotFoundException("Bicicleta");
     }
 
     public Bicicleta findByName(String nombre){
-        if(repository.findByNombre(nombre) !=null){
-            return repository.findByNombre(nombre);
+        Optional<Bicicleta> bike = repository.findByNombre(nombre);
+        if(bike.isPresent()){
+            return bike.get();
         }
         throw new NotFoundException("Bicicleta");
     }
