@@ -77,6 +77,21 @@ public class UsoController {
     }
 
 
+    @Operation(summary = "Method to finish the use")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "The use has been finished", content = {
+                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoBeginResponse.class)), examples = {
+                            @ExampleObject(value = """
+                                        {
+                                            "id": 1,
+                                            "fechaInicio": "2023-11-25T19:52:45.5159449",
+                                            "bicicleta": "Michael",
+                                            "usuario": "933913fc-187e-412e-a77d-54b5e6b0888f"
+                                        }
+                                                                        """) }) }),
+            @ApiResponse(responseCode = "404", description = "Not found any station", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found any use", content = @Content)
+    })
     @PostMapping("/finish/{idEstacion}")
     public ResponseEntity<UsoResponse> finishUse(@AuthenticationPrincipal Usuario usuario, @PathVariable UUID idEstacion){
         Uso newUso = usoService.finishActiveUseByUser(usuario.getId(), idEstacion);
