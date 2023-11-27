@@ -57,7 +57,7 @@ public class RevisionService {
             old.setAnotaciones(r.anotaciones());
             old.setEstacion(e.orElseThrow(() -> new NotFoundException("Estacion")));
             old.setTrabajador(t.orElseThrow(() -> new NotFoundException("Trabajador")));
-            old.setEstado(EstadoRevision.valueOf(r.estado()));
+            old.setEstado(r.estado());
             return RevisionDTO.of(revisionRepository.save(old));
         }).orElseThrow(() -> new EntityNotFoundException("Unable to find issue" +
                 " with id: " + id));

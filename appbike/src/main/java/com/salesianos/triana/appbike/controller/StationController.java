@@ -1,8 +1,8 @@
 package com.salesianos.triana.appbike.controller;
 
-import com.salesianos.triana.appbike.dto.station.AddStationDto;
-import com.salesianos.triana.appbike.dto.station.GetStationDto;
-import com.salesianos.triana.appbike.dto.station.StationResponse;
+import com.salesianos.triana.appbike.dto.Station.AddStationDto;
+import com.salesianos.triana.appbike.dto.Station.GetStationDto;
+import com.salesianos.triana.appbike.dto.Station.StationResponse;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.service.EstacionService;
 import io.swagger.v3.oas.annotations.Operation;

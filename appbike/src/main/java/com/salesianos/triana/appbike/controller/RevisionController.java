@@ -73,7 +73,6 @@ public class RevisionController {
                     description = "Unable to find the specified issue",
                     content = @Content),
     })
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/")
     public ResponseEntity<Revision> createIssue(@RequestBody @Valid NewRevisionDTO newRevisionDTO) {
         Revision newRevision = revisionService.save(newRevisionDTO);
@@ -125,7 +124,6 @@ public class RevisionController {
                     description = "Unable to find the specified issue",
                     content = @Content),
     })
-    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/{id}")
     public RevisionDTO editRevision(@PathVariable Long id, @RequestBody RevisionDTO r) {
         return revisionService.edit(id, r);
@@ -150,7 +148,6 @@ public class RevisionController {
                     description = "Unable to find the specified issue",
                     content = @Content),
     })
-    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteRevision(@PathVariable Long id) {
         revisionService.delete(id);
