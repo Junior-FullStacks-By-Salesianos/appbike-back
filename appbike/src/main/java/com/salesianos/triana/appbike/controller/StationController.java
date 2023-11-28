@@ -29,7 +29,6 @@ import java.util.List;
 
 @Controller
 @RestController
-@RequestMapping("/stations")
 @RequiredArgsConstructor
 @Tag(name = "Station", description = "CRUD for managing stations in the API..")
 public class StationController {
@@ -52,7 +51,7 @@ public class StationController {
     }
 
     )
-    @PostMapping("/add")
+    @PostMapping("/admin/add")
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "addEstacion", description = "Create a new Station")
     public ResponseEntity<StationResponse> addStation(@Valid @RequestBody AddStationDto estacion) {
@@ -86,7 +85,7 @@ public class StationController {
 
     )
     @Operation(summary = "findAll", description = "Find All Stations in the database")
-    @GetMapping("/get")
+    @GetMapping("/stations/get")
     public ResponseEntity<List<GetStationDto>> findAllStations() {
 
         List<GetStationDto> all = estacionService.findAll();
@@ -131,7 +130,7 @@ public class StationController {
                                                                         """) }) }),
             @ApiResponse(responseCode = "404", description = "Any Station was found", content = @Content),
     })
-    @GetMapping("/get/{id}")
+    @GetMapping("/stations/get/{id}")
     public StationResponse findStationById(@PathVariable Long id) {
         return StationResponse.of(estacionService.findById(id));
     }
@@ -143,7 +142,7 @@ public class StationController {
             }),
             @ApiResponse(responseCode = "404", description = "Something went wrong", content = @Content)
     })
-    @PutMapping("/edit/{id}")
+    @PutMapping("/admin/edit/{id}")
     public ResponseEntity<StationResponse> editStation(@PathVariable Long id, @RequestBody @Valid EditStationDto e) {
         Estacion estacion = estacionService.editStation(id, e);
         if (estacion != null) {
@@ -159,7 +158,7 @@ public class StationController {
     })
     @Operation(summary = "deleteBike", description = "Delete a Station checking that the station is in the database saved")
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<?> deleteStationById(@PathVariable Long id) {
         Estacion estacion = estacionService.findStationById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Unable to find a station with id: " + id));

@@ -1,8 +1,9 @@
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('f81345bb-894d-4dcd-8aa4-49987a95ff76', 1, 'Plaza de armas', '37.3886,-5.9823', 15);
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('90a4aa12-0dcb-4ed9-8f4d-c8bcb0b8f687', 2, 'Plaza de España', '37.3925,-5.9827', 12);
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('601c5250-9d2e-4d29-af43-7f61cf1309e2', 3, 'Torre del Oro', '37.3772,-5.9869', 20);
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('d1aa6884-4cfc-4e0d-b4e2-47f97d6a9ec9', 4, 'Setas de Sevilla', '37.3762,-5.9828', 18);
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('f0bf46f4-8835-4f47-920b-d536377b99db', 5, 'La Giralda', '37.3833,-5.9825', 25);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('f81345bb-894d-4dcd-8aa4-49987a95ff76', 1, 'Puerta Jerez', '37.38267461477751, -5.993143047215303', 15);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('90a4aa12-0dcb-4ed9-8f4d-c8bcb0b8f687', 2, 'Ramon Sanchez', '37.384248245922876, -5.97075249936982', 12);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('601c5250-9d2e-4d29-af43-7f61cf1309e2', 3, 'Torre del Oro', '37.38264042480994, -5.996226974246192', 20);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('d1aa6884-4cfc-4e0d-b4e2-47f97d6a9ec9', 4, 'Puente de Triana', '37.38650579044138, -6.002310731919237', 18);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e', 5, 'Parque Principes', '37.374405948794475, -6.005344980963008', 0);
+
 
 INSERT INTO Bicicleta (uuid, marca, modelo, estado, nombre, estacion_id) VALUES ('128329b5-4080-4e0a-8b09-8cf2d3a88c20', 'FieldCletas', 'Gen15', 0, 'Michael', 'f81345bb-894d-4dcd-8aa4-49987a95ff76');
 INSERT INTO Bicicleta (uuid, marca, modelo, estado, nombre, estacion_id) VALUES ('76b27116-6153-4f2b-b6e6-0e21c6306b46', 'FieldCletas', 'Gen15', 1, 'Eustaquio', 'f81345bb-894d-4dcd-8aa4-49987a95ff76');
