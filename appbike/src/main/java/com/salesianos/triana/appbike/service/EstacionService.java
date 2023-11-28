@@ -1,9 +1,8 @@
 package com.salesianos.triana.appbike.service;
 
 import com.salesianos.triana.appbike.dto.Station.AddStationDto;
-import com.salesianos.triana.appbike.dto.station.EditStationDto;
+import com.salesianos.triana.appbike.dto.Station.EditStationDto;
 import com.salesianos.triana.appbike.dto.Station.GetStationDto;
-import com.salesianos.triana.appbike.dto.Station.StationResponse;
 import com.salesianos.triana.appbike.exception.NotFoundException;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.repository.EstacionRepository;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor

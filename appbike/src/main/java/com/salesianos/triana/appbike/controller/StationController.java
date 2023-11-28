@@ -1,7 +1,7 @@
 package com.salesianos.triana.appbike.controller;
 
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
-import com.salesianos.triana.appbike.dto.station.EditStationDto;
+import com.salesianos.triana.appbike.dto.Station.EditStationDto;
 import com.salesianos.triana.appbike.error.BikesInThatStationException;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.service.EstacionService;
@@ -26,7 +26,6 @@ import com.salesianos.triana.appbike.dto.Station.AddStationDto;
 import com.salesianos.triana.appbike.dto.Station.GetStationDto;
 
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RestController
