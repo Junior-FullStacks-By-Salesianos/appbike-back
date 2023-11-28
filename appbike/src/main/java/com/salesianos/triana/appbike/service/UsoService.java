@@ -8,6 +8,8 @@ import com.salesianos.triana.appbike.model.Uso;
 import com.salesianos.triana.appbike.model.Usuario;
 import com.salesianos.triana.appbike.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.AccessDeniedException;
@@ -90,7 +92,7 @@ public class UsoService {
         return usoRepository.save(toFinish);
     }
 
-    public List<Uso> findUsoByUser(UUID userId){
-        return usoRepository.findByAuthor(userId.toString());
+    public Page<Uso> findUsoByUser(UUID userId, Pageable pageable){
+        return usoRepository.findByAuthor(userId.toString(), pageable);
     }
 }

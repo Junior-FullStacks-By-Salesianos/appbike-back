@@ -1,6 +1,8 @@
 package com.salesianos.triana.appbike.repository;
 
 import com.salesianos.triana.appbike.model.Uso;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,7 +15,8 @@ import java.util.UUID;
 @Repository
 public interface UsoRepository extends JpaRepository<Uso, UUID> {
 
-    List<Uso> findByAuthor(String author);
+    @Query("SELECT u from Uso u WHERE u.author = :author")
+    Page<Uso> findByAuthor(@Param("author") String author, Pageable pageable);
 
     @Query("SELECT u FROM Uso u WHERE u.author = :author AND u.fechaFin IS NULL")
     Optional<Uso> findCurrentUsoByUser(@Param("author") String author);

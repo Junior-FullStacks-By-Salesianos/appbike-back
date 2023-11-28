@@ -15,12 +15,16 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -108,5 +112,10 @@ public class UsoController {
         return ResponseEntity
                 .created(createdURI)
                 .body(UsoResponse.of(newUso));
+    }
+
+    @GetMapping("/{userId}")
+    public Page<Uso> getUsesByUser(@PathVariable UUID userId, @PageableDefault(page = 0, size = 20) Pageable pageable){
+        return usoService.findUsoByUser(userId, pageable);
     }
 }

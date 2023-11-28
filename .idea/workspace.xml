@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8df70de6-61f9-4458-b7a0-1f75983a2031" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UsoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UsoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/repository/UsoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/repository/UsoRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/UsoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/UsoService.java" afterDir="false" />
     </list>
