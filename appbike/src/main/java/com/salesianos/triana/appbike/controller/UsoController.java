@@ -102,8 +102,8 @@ public class UsoController {
 
         URI createdURI = ServletUriComponentsBuilder
                 .fromCurrentRequest()
-                .path("/{idBicicleta}")
-                .buildAndExpand(newUso.getId()).toUri();
+                .path("/{id}")
+                .buildAndExpand(newUso.getUuid()).toUri();
 
         return ResponseEntity
                 .created(createdURI)

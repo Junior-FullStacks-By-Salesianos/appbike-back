@@ -5,6 +5,8 @@ import com.salesianos.triana.appbike.error.impl.ApiValidationSubError;
 import com.salesianos.triana.appbike.exception.*;
 import com.salesianos.triana.appbike.exception.InUseException;
 import com.salesianos.triana.appbike.exception.InvalidCredentialsException;
+import com.salesianos.triana.appbike.exception.InvalidPinExcepcion;
+import com.salesianos.triana.appbike.exception.NotEnoughBalanceException;
 import com.salesianos.triana.appbike.security.errorhandling.JwtTokenException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -110,6 +112,24 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
                 ));
     }
 
+    @ExceptionHandler({InvalidPinExcepcion.class})
+    public ErrorResponse handleInvalidPin(InvalidPinExcepcion exception) {
+        return ErrorResponse.builder(exception, HttpStatus.BAD_REQUEST, exception.getMessage())
+                .title("Invalid Pin")
+                .type(URI.create("https://api.bikeapp.com/errors/invalid-pin"))
+                .property("timestamp", Instant.now())
+                .build();
+    }
+
+    @ExceptionHandler({NotEnoughBalanceException.class})
+    public ErrorResponse handleInvalidPin(NotEnoughBalanceException exception) {
+        return ErrorResponse.builder(exception, HttpStatus.BAD_REQUEST, exception.getMessage())
+                .title("Not enough balance")
+                .type(URI.create("https://api.bikeapp.com/errors/not-enough-balance"))
+                .property("timestamp", Instant.now())
+                .build();
+    }
+
     @Getter
     @Setter
     @AllArgsConstructor
@@ -131,6 +151,14 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
                     .build();
         }
 
+    }
+    @ExceptionHandler(BikesInThatStationException.class)
+    public ErrorResponse handleBikesInThatStationException(BikesInThatStationException exception) {
+        return ErrorResponse.builder(exception, HttpStatus.BAD_REQUEST, exception.getMessage())
+                .title("The station can't be deleted")
+                .type(URI.create("https://api.bikeapp.com/errors/bikes-in-station"))
+                .property("timestamp", Instant.now())
+                .build();
     }
 
     @ExceptionHandler({ BadRequestForBikeAddException.class })

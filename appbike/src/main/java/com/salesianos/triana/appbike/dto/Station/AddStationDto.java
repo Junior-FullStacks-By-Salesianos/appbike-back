@@ -1,4 +1,4 @@
-package com.salesianos.triana.appbike.dto.station;
+package com.salesianos.triana.appbike.dto.Station;
 import com.salesianos.triana.appbike.model.Estacion;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
