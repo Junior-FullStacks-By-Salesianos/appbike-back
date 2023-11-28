@@ -1,5 +1,6 @@
 package com.salesianos.triana.appbike.service;
 
+import com.salesianos.triana.appbike.dto.Bike.EditBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Bike.PostBicicletaDTO;
 import com.salesianos.triana.appbike.exception.*;
 import com.salesianos.triana.appbike.model.Estacion;
@@ -78,6 +79,24 @@ public class BicicletaService {
         bike.setUsos(Collections.emptyList());
 
         return repository.save(bike);
+
+    }
+
+    public Bicicleta edit(String nombre, EditBicicletaDTO editado) {
+
+        Optional<Bicicleta> bikeOptional = repository.findByNombre(nombre);
+
+        if(bikeOptional.isPresent()){
+            Bicicleta bike = bikeOptional.get();
+
+            bike.setModelo(editado.modelo());
+            bike.setMarca(editado.marca());
+            bike.setEstado(editado.estado());
+            bike.setEstacion(editado.estacion() == null ? null : addBicicletaToStationByNumber(editado.estacion()));
+
+            return repository.save(bike);
+        }
+            throw new BadRequestForBikeAddException("Enter valid request please");
 
     }
 

@@ -1,5 +1,6 @@
 package com.salesianos.triana.appbike.controller;
 
+import com.salesianos.triana.appbike.dto.Bike.EditBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Bike.PostBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Uso.UsoBeginResponse;
@@ -36,7 +37,6 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/bikes")
 @Tag(name = "Bikes", description = "Controller who manages all requests regarding bikes")
 public class BicicletaController {
 
@@ -75,8 +75,8 @@ public class BicicletaController {
                     description = "Not found any bike",
                     content = @Content),
     })
-    @GetMapping("/paged")
-    public Page<GetBicicletaDTO> findAllPageable(@PageableDefault(page = 0, size = 20) Pageable page) {
+    @GetMapping("/admin/bikes/paged")
+    public Page<GetBicicletaDTO> findAllPageable(@PageableDefault(page = 0, size =20) Pageable page) {
         Page<Bicicleta> pagedResult = bicicletaService.searchPage(page);
         return pagedResult.map(GetBicicletaDTO::of);
     }
@@ -113,7 +113,7 @@ public class BicicletaController {
                     description = "Not found any bike",
                     content = @Content),
     })
-    @GetMapping("/")
+    @GetMapping("/admin/bikes")
     public List<GetBicicletaDTO> findAll() {
         return bicicletaService.findAll();
     }
@@ -151,7 +151,7 @@ public class BicicletaController {
                     description = "Not found the station",
                     content = @Content),
     })
-    @GetMapping("/station/{idEstacion}/bikes")
+    @GetMapping("/bikes/station/{idEstacion}/bikes")
     public List<GetBicicletaDTO> findAllByStation(@PathVariable UUID idEstacion) {
         return bicicletaService.findAllByStation(idEstacion).stream().map(GetBicicletaDTO::of).toList();
     }
@@ -174,7 +174,7 @@ public class BicicletaController {
                                                                         """) }) }),
                 @ApiResponse(responseCode = "404", description = "Not found any bike", content = @Content),
         })
-        @GetMapping("/{uuid}")
+        @GetMapping("/bikes/{uuid}")
         public GetBicicletaDTO findBikeById(@PathVariable UUID uuid){
                 return GetBicicletaDTO.of(bicicletaService.findById(uuid));
         }
@@ -199,7 +199,7 @@ public class BicicletaController {
                 }),
                 @ApiResponse(responseCode = "404", description = "Not found any bike", content = @Content),
         })
-        @GetMapping("/byname/{name}")
+        @GetMapping("/bikes/byname/{name}")
         public GetBicicletaDTO findBikeByName(@PathVariable String name){
                 return GetBicicletaDTO.of(bicicletaService.findByName(name));
         }
@@ -220,7 +220,7 @@ public class BicicletaController {
                 @ApiResponse(responseCode = "400", description = "The bike is already in use", content = @Content),
                 @ApiResponse(responseCode = "400", description = "The user has already a bike in use", content = @Content)
         })
-        @PostMapping("/rent/{idBicicleta}")
+        @PostMapping("/bikes/rent/{idBicicleta}")
         public ResponseEntity<UsoResponse> rentABike(@PathVariable UUID idBicicleta, @AuthenticationPrincipal Usuario user) {
                 Uso newUso = usoService.addUso(idBicicleta, user);
 
@@ -254,7 +254,7 @@ public class BicicletaController {
                 }),
             @ApiResponse(responseCode = "400", description = "Bad request from the user", content = @Content),
         })
-        @PostMapping("/add")
+        @PostMapping("/admin/bikes/add")
         public ResponseEntity<GetBicicletaDTO> addABike(@Valid @RequestBody PostBicicletaDTO bike){
             Bicicleta b = bicicletaService.saveDTO(bike);
 
@@ -264,4 +264,9 @@ public class BicicletaController {
 
             return ResponseEntity.created(createdURI).body(GetBicicletaDTO.of(b));
         }
+
+    @PutMapping("/admin/bikes/edit/{nombre}")
+    public GetBicicletaDTO addABike(@Valid @RequestBody EditBicicletaDTO bike, @PathVariable String nombre){
+        return GetBicicletaDTO.of(bicicletaService.edit(nombre,bike));
+    }
 }
