@@ -14,6 +14,7 @@ import java.nio.file.AccessDeniedException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -87,5 +88,9 @@ public class UsoService {
         toFinish.setCoste(difference * coste.getPrecioMinuto()); //Entity Cost
 
         return usoRepository.save(toFinish);
+    }
+
+    public List<Uso> findUsoByUser(UUID userId){
+        return usoRepository.findByAuthor(userId.toString());
     }
 }
