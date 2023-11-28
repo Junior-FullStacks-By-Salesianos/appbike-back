@@ -36,8 +36,8 @@ INSERT INTO Usuario_bici (id, pin, num_tarjeta, saldo) VALUES ('04d0595e-45d5-4f
 INSERT INTO Usuario_bici (id, pin, num_tarjeta, saldo) VALUES ('e010f144-b376-4dbb-933d-b3ec8332ed0d', '5678', '1111222233334442', 25.00);
 INSERT INTO Usuario_bici (id, pin, num_tarjeta, saldo) VALUES ('5cf8b808-3b6e-4d9d-90d5-65c83b0e75b2', '9101', '1111222233334443', 30.00);
 
-INSERT INTO Uso (id, fecha_inicio, fecha_fin, coste, bicicleta_id, estacion_id, author) VALUES (1, '2023-11-27T17:00:00', '2023-11-27T17:30:00', 5.00, '7a5e8fe0-4002-4df3-bcd1-292b4de4532b', 'f81345bb-894d-4dcd-8aa4-49987a95ff76', '04d0595e-45d5-4f63-8b53-1d79e9d84a5d');
-INSERT INTO Uso (id, fecha_inicio, fecha_fin, coste, bicicleta_id, estacion_id, author) VALUES (2, '2023-11-27T17:00:00', '2023-11-27T17:30:00', 5.00, '9365971d-ff77-4469-9370-af6d4d8e44e3', 'f0bf46f4-8835-4f47-920b-d536377b99db', 'e010f144-b376-4dbb-933d-b3ec8332ed0d');
-INSERT INTO Uso (id, fecha_inicio, fecha_fin, coste, bicicleta_id, estacion_id, author) VALUES (3, '2023-11-27T17:00:00', '2023-11-27T17:30:00', 5.00, '4f3f19d1-8539-4e82-bc46-8570de481534', 'f0bf46f4-8835-4f47-920b-d536377b99db', '5cf8b808-3b6e-4d9d-90d5-65c83b0e75b2');
+INSERT INTO Uso (uuid, fecha_inicio, fecha_fin, coste, bicicleta_id, estacion_id, author) VALUES ('57c4051c-cfa8-4175-a8a5-67b7a3dbe14c', '2023-11-27T17:00:00', '2023-11-27T17:30:00', 5.00, '7a5e8fe0-4002-4df3-bcd1-292b4de4532b', 'f81345bb-894d-4dcd-8aa4-49987a95ff76', '04d0595e-45d5-4f63-8b53-1d79e9d84a5d');
+INSERT INTO Uso (uuid, fecha_inicio, fecha_fin, coste, bicicleta_id, estacion_id, author) VALUES ('cf30627d-8696-4106-8c83-793f9da6e3f8', '2023-11-27T17:00:00', '2023-11-27T17:30:00', 5.00, '9365971d-ff77-4469-9370-af6d4d8e44e3', 'f0bf46f4-8835-4f47-920b-d536377b99db', 'e010f144-b376-4dbb-933d-b3ec8332ed0d');
+INSERT INTO Uso (uuid, fecha_inicio, fecha_fin, coste, bicicleta_id, estacion_id, author) VALUES ('9365d1a9-7997-4a52-a3c9-4e9e3d36eca2', '2023-11-27T17:00:00', '2023-11-27T17:30:00', 5.00, '4f3f19d1-8539-4e82-bc46-8570de481534', 'f0bf46f4-8835-4f47-920b-d536377b99db', '5cf8b808-3b6e-4d9d-90d5-65c83b0e75b2');
 
 INSERT INTO Coste (id, precio_minuto, fecha_inicio) VALUES (1, 0.20, current_timestamp);

@@ -4,10 +4,12 @@ import com.salesianos.triana.appbike.model.Bicicleta;
 import com.salesianos.triana.appbike.model.Estacion;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -20,8 +22,10 @@ import java.time.LocalDateTime;
 public class Uso {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @UuidGenerator
+    @Column(columnDefinition = "uuid")
+    private UUID uuid;
 
     private LocalDateTime fechaInicio, fechaFin;
     private double coste;

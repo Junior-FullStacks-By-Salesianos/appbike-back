@@ -52,4 +52,14 @@ public class Estacion {
         numeroUnicoActual++;
         return numeroUnicoActual;
     }
+
+    public void addBicicleta(Bicicleta bike) {
+        bicicletas.add(bike);
+        bike.setEstacion(this);
+    }
+
+    public void removeBicicleta(Bicicleta bike) {
+        bicicletas.remove(bike);
+        bike.setEstacion(null);
+    }
 }
