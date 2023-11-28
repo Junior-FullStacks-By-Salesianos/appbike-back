@@ -3,6 +3,7 @@ package com.salesianos.triana.appbike.controller;
 import com.salesianos.triana.appbike.dto.Bike.EditBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Bike.PostBicicletaDTO;
+import com.salesianos.triana.appbike.dto.Revision.RevisionDTO;
 import com.salesianos.triana.appbike.dto.Uso.UsoBeginResponse;
 import com.salesianos.triana.appbike.dto.Uso.UsoResponse;
 import com.salesianos.triana.appbike.model.Bicicleta;
@@ -264,5 +265,24 @@ public class BicicletaController {
         @PutMapping("/admin/bikes/edit/{nombre}")
         public GetBicicletaDTO addABike(@Valid @RequestBody EditBicicletaDTO bike, @PathVariable String nombre) {
                 return GetBicicletaDTO.of(bicicletaService.edit(nombre, bike));
+        }
+
+        @Operation(summary = "Deletes a bike with his UUID")
+        @ApiResponses(value = {
+                @ApiResponse(responseCode = "204",
+                        description = "That bike has been deleted by its UUID",
+                        content = { @Content(mediaType = "application/json",
+                                array = @ArraySchema(schema = @Schema(implementation = Bicicleta.class))
+                        )}),
+                @ApiResponse(responseCode = "404",
+                        description = "The bike was not found for the indicated UUID",
+                        content = @Content),
+        })
+        @DeleteMapping("/admin/bikes/delete/{name}")
+        public ResponseEntity<?> deleteBike(@PathVariable String name){
+                bicicletaService.deleteByName(name);
+
+                return ResponseEntity.noContent().build();
+
         }
 }
