@@ -38,6 +38,7 @@ public class Estacion {
     @OneToMany(mappedBy = "estacion")
     private List<Uso> usos;
 
+    /*
     @PrePersist
     private void asegurarNumeroUnico() {
         if (this.numero == null) {
@@ -51,4 +52,5 @@ public class Estacion {
         numeroUnicoActual++;
         return numeroUnicoActual;
     }
+    */
 }

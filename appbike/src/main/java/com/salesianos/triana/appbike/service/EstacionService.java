@@ -25,7 +25,7 @@ public class EstacionService {
         Estacion e = new Estacion();
         e.setNombre(nuevo.nombre());
         e.setCapacidad(nuevo.capacidad());
-        e.setNumero(nuevo.numero());
+        e.setNumero((long) (estacionRepository.findAll().size() + 1));
         e.setCoordenadas(nuevo.coordenadas());
         return estacionRepository.save(e);
     }
