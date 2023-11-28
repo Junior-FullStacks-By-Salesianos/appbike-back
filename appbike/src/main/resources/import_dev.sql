@@ -53,10 +53,10 @@ INSERT INTO Uso (id, fecha_inicio, fecha_fin, coste, bicicleta_id, estacion_id, 
 
 INSERT INTO Coste (id, precio_minuto, fecha_inicio) VALUES (1, 0.20, current_timestamp);
 
-INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (1, '2023-01-01', '2022-12-31',0, 'f0bf46f4-8835-4f47-920b-d536377b99db', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 1');
+INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (996, '2023-01-01', '2022-12-31',0, '3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 1');
 
-INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (2, '2023-02-01', '2023-02-02',0, 'f0bf46f4-8835-4f47-920b-d536377b99db', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 2');
+INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (997, '2023-02-01', '2023-02-02',0, '3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 2');
 
-INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (3, '2023-03-01', '2023-03-02',0, 'd1aa6884-4cfc-4e0d-b4e2-47f97d6a9ec9', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 3');
+INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (998, '2023-03-01', '2023-03-02',0, '3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 3');
 
-INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (4, '2023-10-01', '2023-09-16',0, '90a4aa12-0dcb-4ed9-8f4d-c8bcb0b8f687', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 10');
+INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (999, '2023-10-01', '2023-09-16',0, '3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 10');

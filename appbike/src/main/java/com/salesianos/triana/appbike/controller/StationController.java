@@ -23,7 +23,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.salesianos.triana.appbike.dto.Station.StationResponse;
 import com.salesianos.triana.appbike.dto.Station.AddStationDto;
-import com.salesianos.triana.appbike.dto.Station.GetStationDto;
 
 import java.util.List;
 
@@ -86,9 +85,9 @@ public class StationController {
     )
     @Operation(summary = "findAll", description = "Find All Stations in the database")
     @GetMapping("/stations/get")
-    public ResponseEntity<List<GetStationDto>> findAllStations() {
+    public ResponseEntity<List<StationResponse>> findAllStations() {
 
-        List<GetStationDto> all = estacionService.findAll();
+        List<StationResponse> all = estacionService.findAll();
 
         if (all.isEmpty())
             return ResponseEntity.notFound().build();

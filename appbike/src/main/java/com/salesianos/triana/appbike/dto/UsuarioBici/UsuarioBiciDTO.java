@@ -1,12 +1,14 @@
 package com.salesianos.triana.appbike.dto.UsuarioBici;
 
 import com.salesianos.triana.appbike.model.UsuarioBici;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
-public record UsuarioBiciDTO(UUID id, LocalDate createdAt, String email,
-                             String nombre, String username, String numTarjeta,
+public record UsuarioBiciDTO(@NotNull UUID id, @NotNull LocalDate createdAt, @NotEmpty String email,
+                             @NotEmpty String nombre, @NotEmpty String username, String numTarjeta,
                              String pin, double saldo) {
 
     public static UsuarioBiciDTO of(UsuarioBici u){
