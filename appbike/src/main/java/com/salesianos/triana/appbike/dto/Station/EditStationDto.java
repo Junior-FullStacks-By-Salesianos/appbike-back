@@ -13,7 +13,7 @@ public record EditStationDto(
         @Pattern(regexp = "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$")
         @NotNull
         String coordenadas,
-        @Min(1)
+        @Min(0)
         @Max(31)
         @NotNull
         int capacidad
