@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8df70de6-61f9-4458-b7a0-1f75983a2031" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UsuarioBiciController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/UsuarioBici/UsuarioBiciDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/exception/DateEarlierThanTodayException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/BicicletaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/BicicletaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/BicicletaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/BicicletaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/repository/EstacionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/repository/EstacionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/RevisionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/RevisionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/UsuarioBiciService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/UsuarioBiciService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appbike/src/main/resources/import_dev.sql" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/resources/import_dev.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Record" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -43,17 +48,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;hu19-bike-add&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/polonio.doalv23_tria/Desktop/bikeapp/appbike-back&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "user-bikes-uses-back",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/polonio.doalv23_tria/Desktop/bikeapp/appbike-back",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\polonio.doalv23_tria\Desktop\repos\appbike-back\appbike\src\main\java\com\salesianos\triana\appbike\config" />

@@ -1,8 +1,8 @@
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('f81345bb-894d-4dcd-8aa4-49987a95ff76', 2, 'Estación 2', '37.3886,-5.9823', 15);
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('90a4aa12-0dcb-4ed9-8f4d-c8bcb0b8f687', 3, 'Estación 3', '37.3925,-5.9827', 12);
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('601c5250-9d2e-4d29-af43-7f61cf1309e2', 4, 'Estación 4', '37.3772,-5.9869', 20);
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('d1aa6884-4cfc-4e0d-b4e2-47f97d6a9ec9', 5, 'Estación 5', '37.3762,-5.9828', 18);
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('f0bf46f4-8835-4f47-920b-d536377b99db', 6, 'Estación 6', '37.3833,-5.9825', 25);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('f81345bb-894d-4dcd-8aa4-49987a95ff76', 1, 'Plaza de armas', '37.3886,-5.9823', 15);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('90a4aa12-0dcb-4ed9-8f4d-c8bcb0b8f687', 2, 'Plaza de España', '37.3925,-5.9827', 12);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('601c5250-9d2e-4d29-af43-7f61cf1309e2', 3, 'Torre del Oro', '37.3772,-5.9869', 20);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('d1aa6884-4cfc-4e0d-b4e2-47f97d6a9ec9', 4, 'Setas de Sevilla', '37.3762,-5.9828', 18);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('f0bf46f4-8835-4f47-920b-d536377b99db', 5, 'La Giralda', '37.3833,-5.9825', 25);
 
 INSERT INTO Bicicleta (uuid, marca, modelo, estado, nombre, estacion_id) VALUES ('128329b5-4080-4e0a-8b09-8cf2d3a88c20', 'FieldCletas', 'Gen15', 0, 'Michael', 'f81345bb-894d-4dcd-8aa4-49987a95ff76');
 INSERT INTO Bicicleta (uuid, marca, modelo, estado, nombre, estacion_id) VALUES ('76b27116-6153-4f2b-b6e6-0e21c6306b46', 'FieldCletas', 'Gen15', 1, 'Eustaquio', 'f81345bb-894d-4dcd-8aa4-49987a95ff76');
@@ -41,3 +41,11 @@ INSERT INTO Uso (id, fecha_inicio, fecha_fin, coste, bicicleta_id, estacion_id, 
 INSERT INTO Uso (id, fecha_inicio, fecha_fin, coste, bicicleta_id, estacion_id, author) VALUES (3, '2023-11-27T17:00:00', '2023-11-27T17:30:00', 5.00, '4f3f19d1-8539-4e82-bc46-8570de481534', 'f0bf46f4-8835-4f47-920b-d536377b99db', '5cf8b808-3b6e-4d9d-90d5-65c83b0e75b2');
 
 INSERT INTO Coste (id, precio_minuto, fecha_inicio) VALUES (1, 0.20, current_timestamp);
+
+INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (1, '2023-01-01', '2022-12-31',0, 'f0bf46f4-8835-4f47-920b-d536377b99db', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 1');
+
+INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (2, '2023-02-01', '2023-02-02',0, 'f0bf46f4-8835-4f47-920b-d536377b99db', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 2');
+
+INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (3, '2023-03-01', '2023-03-02',0, 'd1aa6884-4cfc-4e0d-b4e2-47f97d6a9ec9', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 3');
+
+INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (4, '2023-10-01', '2023-09-16',0, '90a4aa12-0dcb-4ed9-8f4d-c8bcb0b8f687', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 10');
