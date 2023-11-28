@@ -32,72 +32,63 @@ import java.util.UUID;
 @RestController
 @RequestMapping("stations")
 @RequiredArgsConstructor
-@Tag(name="Station",description = "CRUD for managing stations in the API..")
+@Tag(name = "Station", description = "CRUD for managing stations in the API..")
 public class StationController {
 
     private final EstacionService estacionService;
-    @ApiResponses(
-            value = {
-                    @ApiResponse(responseCode = "201",description = "Creation of new Stations",content =
-                            {@Content(mediaType = "application/json",examples = {@ExampleObject(
-                                    value = """
-                                            {
-                                                 "id": "f1b6d478-d973-435b-bab6-42b0771e2278",
-                                                 "name": "Plaza de Cuba",
-                                                 "coordinates": "12.345,-0.12345",
-                                                 "capacity": 29,
-                                                 "bikes": null
-                                             }
-                                            """
-                            )})}),
-                    @ApiResponse(responseCode = "400",
-                            description = "The creation of the station has not been done",
-                            content = @Content)
 
-            }
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Creation of new Stations", content = {
+                    @Content(mediaType = "application/json", examples = { @ExampleObject(value = """
+                            {
+                                 "id": "f1b6d478-d973-435b-bab6-42b0771e2278",
+                                 "name": "Plaza de Cuba",
+                                 "coordinates": "12.345,-0.12345",
+                                 "capacity": 29,
+                                 "bikes": null
+                             }
+                            """) }) }),
+            @ApiResponse(responseCode = "400", description = "The creation of the station has not been done", content = @Content)
+
+    }
 
     )
     @PostMapping("/add")
     @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "addEstacion",description = "Create a new Station")
-    public ResponseEntity<StationResponse>addStation(@Valid @RequestBody AddStationDto estacion){
+    @Operation(summary = "addEstacion", description = "Create a new Station")
+    public ResponseEntity<StationResponse> addStation(@Valid @RequestBody AddStationDto estacion) {
         Estacion e = estacionService.newStation(estacion);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(StationResponse.of(e));
     }
 
-    @ApiResponses(
-            value = {
-                    @ApiResponse(responseCode = "201",description = "Get all stations",content =
-                            {@Content(mediaType = "application/json",examples = {@ExampleObject(
-                                    value = """
-                                                {
-                                                    "number": "1",
-                                                    "name": "Plaza de Armas",
-                                                    "coordinates": "12.345,-0.12345",
-                                                    "capacity": 0,
-                                                    "bikes": 0
-                                                },
-                                                {
-                                                    "number": "12",
-                                                    "name": "Plaza de Cuba",
-                                                    "coordinates": "12.345,-0.12345",
-                                                    "capacity": 0,
-                                                    "bikes": 0
-                                                }
-                                            """
-                            )})}),
-                    @ApiResponse(responseCode = "400",
-                            description = "An error appears with the list of the stations",
-                            content = @Content)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Get all stations", content = {
+                    @Content(mediaType = "application/json", examples = { @ExampleObject(value = """
+                                {
+                                    "number": "1",
+                                    "name": "Plaza de Armas",
+                                    "coordinates": "12.345,-0.12345",
+                                    "capacity": 0,
+                                    "bikes": 0
+                                },
+                                {
+                                    "number": "12",
+                                    "name": "Plaza de Cuba",
+                                    "coordinates": "12.345,-0.12345",
+                                    "capacity": 0,
+                                    "bikes": 0
+                                }
+                            """) }) }),
+            @ApiResponse(responseCode = "400", description = "An error appears with the list of the stations", content = @Content)
 
-            }
+    }
 
     )
-    @Operation(summary = "findAll",description = "Find All Stations in the database")
+    @Operation(summary = "findAll", description = "Find All Stations in the database")
     @GetMapping("/get")
-    public ResponseEntity<List<GetStationDto>>findAllStations() {
+    public ResponseEntity<List<GetStationDto>> findAllStations() {
 
         List<GetStationDto> all = estacionService.findAll();
 
@@ -142,7 +133,7 @@ public class StationController {
             @ApiResponse(responseCode = "404", description = "Any Station was found", content = @Content),
     })
     @GetMapping("/get/{id}")
-    public StationResponse findStationById(@PathVariable Long id){
+    public StationResponse findStationById(@PathVariable Long id) {
         return StationResponse.of(estacionService.findById(id));
     }
 
@@ -163,6 +154,7 @@ public class StationController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
     @ApiResponses({
             @ApiResponse(responseCode = "204", description = "Station delete")
     })

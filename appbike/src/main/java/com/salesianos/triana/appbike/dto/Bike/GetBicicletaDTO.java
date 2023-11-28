@@ -22,7 +22,7 @@ public record GetBicicletaDTO(
                 b.getModelo(),
                 b.getEstado().toString(),
                 b.getUsos().size(),
-                b.getEstacion() == null ? "Sin estación" : b.getEstacion().getNombre()
+                b.getEstacion() == null || b.getEstacion().getNumero() == null ? "Sin estación" : b.getEstacion().getNombre()
         );
     }
 }

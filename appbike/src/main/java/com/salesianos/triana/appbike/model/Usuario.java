@@ -64,7 +64,6 @@ public abstract class Usuario implements UserDetails {
         }
         return List.of(new SimpleGrantedAuthority(role));
     }
-
     @Override
     public boolean isAccountNonExpired() {
         return accountNonExpired;

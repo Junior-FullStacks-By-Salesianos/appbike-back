@@ -1,7 +1,14 @@
 package com.salesianos.triana.appbike.dto.Revision;
 
+import com.salesianos.triana.appbike.dto.Station.GetStationDto;
+import com.salesianos.triana.appbike.dto.Trabajador.TrabajadorDTO;
+import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.model.EstadoRevision;
 import com.salesianos.triana.appbike.model.Revision;
+import com.salesianos.triana.appbike.model.Trabajador;
+import com.salesianos.triana.appbike.repository.EstacionRepository;
+import jakarta.validation.constraints.NotNull;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 

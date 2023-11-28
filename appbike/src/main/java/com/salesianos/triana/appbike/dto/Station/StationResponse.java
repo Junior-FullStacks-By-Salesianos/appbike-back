@@ -1,6 +1,5 @@
 package com.salesianos.triana.appbike.dto.Station;
 
-import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.model.Bicicleta;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.model.Uso;
@@ -20,26 +19,16 @@ public class StationResponse {
     private String name;
     private String coordinates;
     private int capacity;
-    private List<GetBicicletaDTO> bikes = new ArrayList<>();
+    private Set<Bicicleta> bikes = new HashSet<>();
 
-    public static StationResponse of(Estacion e) {
-        List<GetBicicletaDTO> bikeDTOs = new ArrayList<>();
-
-        if (e.getBicicletas() != null && !e.getBicicletas().isEmpty()) {
-            for (Bicicleta bicicleta : e.getBicicletas()) {
-                bikeDTOs.add(GetBicicletaDTO.of(bicicleta));
-            }
-        } else {
-            GetBicicletaDTO emptyBikeDTO = new GetBicicletaDTO(null, "", "", "", "", 0, "");
-            bikeDTOs.add(emptyBikeDTO);
-        }
-
+    public static StationResponse of (Estacion e){
         return StationResponse.builder()
                 .numero(e.getNumero())
                 .name(e.getNombre())
                 .capacity(e.getCapacidad())
                 .coordinates(e.getCoordenadas())
-                .bikes(bikeDTOs)
+                .bikes(e.getBicicletas())
                 .build();
+
     }
 }
