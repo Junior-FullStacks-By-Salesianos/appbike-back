@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/use")
 @Tag(name = "Uses", description = "Controller who manages all requests regarding uses")
 public class UsoController {
 
@@ -50,7 +50,7 @@ public class UsoController {
             @ApiResponse(responseCode = "404", description = "Not found any use", content = @Content),
             @ApiResponse(responseCode = "400", description = "The user has already a bike in use", content = @Content),
     })
-    @GetMapping("/last-use")
+    @GetMapping("/use/last-use")
     public UsoResponse findLastUse (@AuthenticationPrincipal Usuario user){
         return UsoResponse.of(usoService.findByLastUse(user));
     }
@@ -72,7 +72,7 @@ public class UsoController {
                                                                         """) }) }),
             @ApiResponse(responseCode = "404", description = "Not found any active use", content = @Content),
     })
-    @GetMapping("/active")
+    @GetMapping("/use/active")
     public UsoResponse findActiveUse (@AuthenticationPrincipal Usuario usuario){
         return UsoResponse.of(usoService.findActiveUseByUser(usuario.getId()));
     }
@@ -96,7 +96,7 @@ public class UsoController {
             @ApiResponse(responseCode = "404", description = "Not found any station", content = @Content),
             @ApiResponse(responseCode = "404", description = "Not found any use", content = @Content)
     })
-    @PostMapping("/finish/{idEstacion}")
+    @PostMapping("/use/finish/{idEstacion}")
     public ResponseEntity<UsoResponse> finishUse(@AuthenticationPrincipal Usuario usuario, @PathVariable UUID idEstacion){
         Uso newUso = usoService.finishActiveUseByUser(usuario.getId(), idEstacion);
 
@@ -109,4 +109,12 @@ public class UsoController {
                 .created(createdURI)
                 .body(UsoResponse.of(newUso));
     }
+
+    @GetMapping("/admin/travels")
+    public List<UsoResponse> findAll(){
+        return usoService.findAllUses().stream()
+                .map(UsoResponse::of)
+                .toList();
+    }
+
 }

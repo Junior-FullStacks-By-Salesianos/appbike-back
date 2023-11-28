@@ -12,6 +12,7 @@ import java.nio.file.AccessDeniedException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -96,5 +97,13 @@ public class UsoService {
         usuarioBiciRepository.save(usuarioBici);
 
         return usoRepository.save(toFinish);
+    }
+
+    public List<Uso> findAllUses(){
+        List<Uso> usos =  usoRepository.findAll();
+        if(usos.isEmpty()){
+            throw new NotFoundException("Uso");
+        }
+        return usos;
     }
 }
