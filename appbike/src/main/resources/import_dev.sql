@@ -1,8 +1,8 @@
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('f81345bb-894d-4dcd-8aa4-49987a95ff76', 2, 'Estación 2', '37.3886,-5.9823', 15);
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('90a4aa12-0dcb-4ed9-8f4d-c8bcb0b8f687', 3, 'Estación 3', '37.3925,-5.9827', 12);
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('601c5250-9d2e-4d29-af43-7f61cf1309e2', 4, 'Estación 4', '37.3772,-5.9869', 20);
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('d1aa6884-4cfc-4e0d-b4e2-47f97d6a9ec9', 5, 'Estación 5', '37.3762,-5.9828', 18);
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('f0bf46f4-8835-4f47-920b-d536377b99db', 6, 'Estación 6', '37.3833,-5.9825', 25);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('f81345bb-894d-4dcd-8aa4-49987a95ff76', 1, 'Estación 2', '37.3886,-5.9823', 15);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('90a4aa12-0dcb-4ed9-8f4d-c8bcb0b8f687', 2, 'Estación 3', '37.3925,-5.9827', 12);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('601c5250-9d2e-4d29-af43-7f61cf1309e2', 3, 'Estación 4', '37.3772,-5.9869', 20);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('d1aa6884-4cfc-4e0d-b4e2-47f97d6a9ec9', 4, 'Estación 5', '37.3762,-5.9828', 18);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('f0bf46f4-8835-4f47-920b-d536377b99db', 5, 'Estación 6', '37.3833,-5.9825', 25);
 
 INSERT INTO Bicicleta (uuid, marca, modelo, estado, nombre, estacion_id) VALUES ('128329b5-4080-4e0a-8b09-8cf2d3a88c20', 'FieldCletas', 'Gen15', 0, 'Michael', 'f81345bb-894d-4dcd-8aa4-49987a95ff76');
 INSERT INTO Bicicleta (uuid, marca, modelo, estado, nombre, estacion_id) VALUES ('76b27116-6153-4f2b-b6e6-0e21c6306b46', 'FieldCletas', 'Gen15', 1, 'Eustaquio', 'f81345bb-894d-4dcd-8aa4-49987a95ff76');
