@@ -132,7 +132,8 @@ public class BicicletaService {
         return repository.existsById(uuid);
     }
 
-    public void deleteById(UUID uuid) {
-        repository.deleteById(uuid);
+    public void deleteByName(String name) {
+        Bicicleta bike = findByName(name);
+        repository.delete(bike);
     }
 }
