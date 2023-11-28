@@ -192,4 +192,15 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
                 .property("date", LocalDateTime.now().format(formatter))
                 .build();
     }
+
+    @ExceptionHandler({ NameOfBikeNotFoundException.class })
+    private static ErrorResponse handleNameOfBikeNotFoundException(NameOfBikeNotFoundException exception) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return ErrorResponse.builder(exception, HttpStatus.NOT_FOUND, exception.getMessage())
+                .title("That bicycle name does not exist")
+                .type(URI.create("https://api.bikeapp.com/errors/not-found"))
+                .property("date", LocalDateTime.now().format(formatter))
+                .build();
+    }
 }

@@ -199,7 +199,7 @@ public class BicicletaController {
         @PostMapping("/rent/{idBicicleta}")
         public ResponseEntity<UsoResponse> rentABike(@PathVariable UUID idBicicleta,
                         @AuthenticationPrincipal UsuarioBici user) {
-                Uso newUso = usoService.addUso(idBicicleta, user); add 
+                Uso newUso = usoService.addUso(idBicicleta, user);
 
                 URI createdURI = ServletUriComponentsBuilder
                                 .fromCurrentRequest()
@@ -241,6 +241,26 @@ public class BicicletaController {
                 return ResponseEntity.created(createdURI).body(GetBicicletaDTO.of(b));
         }
 
+
+        @ApiResponses(value = {
+                @ApiResponse(responseCode = "200", description = "The bike has been edited", content = {
+                                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Bicicleta.class)), examples = {
+                                @ExampleObject(value = """
+                                                                        {
+                                                                            "uuid": "1c90f4dc-d57f-4398-a33d-f66c42a95f21",
+                                                                            "nombre": "LuisEditado",
+                                                                            "marca": "FieldCletasEditado",
+                                                                            "modelo": "Gen15",
+                                                                            "estado": "NEEDS_TO_BE_REPLACED",
+                                                                            "usos": 3,
+                                                                            "estacion": "Setas de Sevilla"
+                                                                        }
+                                                                                                        """)
+                        })
+                }),
+                @ApiResponse(responseCode = "404", description = "That name don´t exist in bikes", content = @Content),
+                @ApiResponse(responseCode = "400", description = "Bad request from user", content = @Content)
+        })
         @PutMapping("/admin/bikes/edit/{nombre}")
         public GetBicicletaDTO addABike(@Valid @RequestBody EditBicicletaDTO bike, @PathVariable String nombre) {
                 return GetBicicletaDTO.of(bicicletaService.edit(nombre, bike));

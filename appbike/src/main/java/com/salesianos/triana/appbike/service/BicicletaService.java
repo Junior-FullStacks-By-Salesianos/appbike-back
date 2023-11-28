@@ -84,6 +84,15 @@ public class BicicletaService {
 
     public Bicicleta edit(String nombre, EditBicicletaDTO editado) {
 
+        List<Bicicleta> allBikes = repository.findAll();
+
+        boolean existe = allBikes.stream()
+                .anyMatch(bicicleta -> bicicleta.getNombre().equals(nombre));
+
+        if (!existe) {
+            throw new NameOfBikeNotFoundException("That name does not exist, change it please");
+        }
+
         Optional<Bicicleta> bikeOptional = repository.findByNombre(nombre);
 
         if(bikeOptional.isPresent()){
