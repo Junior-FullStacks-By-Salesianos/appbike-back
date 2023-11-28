@@ -11,6 +11,8 @@ public record UsoResponse(
         LocalDateTime fechaFin,
         double coste,
         String bicicleta,
+        String modeloBicicleta,
+        String marcaBicicleta,
         String estacionFin,
         String usuario
 ) {
@@ -22,7 +24,9 @@ public record UsoResponse(
                 u.getFechaFin(),
                 u.getCoste(),
                 u.getBicicleta().getNombre(),
-                u.getEstacion() != null ? u.getEstacion().getNombre() : "El viaje aun no tiene estación de fin",
+                u.getBicicleta().getModelo(),
+                u.getBicicleta().getMarca(),
+                u.getEstacion() != null ? u.getEstacion().getNombre() : "Trip is still ongoing",
                 u.getAuthor()
         );
     }

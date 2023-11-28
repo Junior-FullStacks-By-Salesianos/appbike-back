@@ -1,5 +1,6 @@
 package com.salesianos.triana.appbike.service;
 
+import com.salesianos.triana.appbike.dto.Uso.UsoResponse;
 import com.salesianos.triana.appbike.exception.NotFoundException;
 import com.salesianos.triana.appbike.exception.InUseException;
 import com.salesianos.triana.appbike.model.Bicicleta;
@@ -92,7 +93,7 @@ public class UsoService {
         return usoRepository.save(toFinish);
     }
 
-    public Page<Uso> findUsoByUser(UUID userId, Pageable pageable){
-        return usoRepository.findByAuthor(userId.toString(), pageable);
+    public Page<UsoResponse> findUsoByUser(UUID userId, Pageable pageable){
+        return usoRepository.findByAuthor(userId.toString(), pageable).map(UsoResponse::of);
     }
 }

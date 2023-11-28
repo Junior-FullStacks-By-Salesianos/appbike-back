@@ -115,7 +115,7 @@ public class UsoController {
     }
 
     @GetMapping("/{userId}")
-    public Page<Uso> getUsesByUser(@PathVariable UUID userId, @PageableDefault(page = 0, size = 20) Pageable pageable){
+    public Page<UsoResponse> getUsesByUser(@PathVariable UUID userId, @PageableDefault(page = 0, size = 10) Pageable pageable){
         return usoService.findUsoByUser(userId, pageable);
     }
 }
