@@ -1,0 +1,937 @@
+{
+	"info": {
+		"_postman_id": "0f50d748-26ab-4a2c-b025-a302cec28ea0",
+		"name": "BikeApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30052609",
+		"_collection_link": "https://bikeapp.postman.co/workspace/BikeApp~b1f1fc26-fcc1-4ef7-88c8-c25102bceef8/collection/30052626-0f50d748-26ab-4a2c-b025-a302cec28ea0?action=share&source=collection_link&creator=30052609"
+	},
+	"item": [
+		{
+			"name": "w-auth",
+			"item": [
+				{
+					"name": "Use",
+					"item": [
+						{
+							"name": "Rent a Bike",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}bikes/rent/eb986f44-005c-4282-80d0-d83825efd93c",
+									"host": [
+										"{{BASE_URL}}bikes"
+									],
+									"path": [
+										"rent",
+										"eb986f44-005c-4282-80d0-d83825efd93c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Last Use (finished)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}use/last-use",
+									"host": [
+										"{{BASE_URL}}use"
+									],
+									"path": [
+										"last-use"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Active Use",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}use/active",
+									"host": [
+										"{{BASE_URL}}use"
+									],
+									"path": [
+										"active"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Finish Use",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}use/finish/e27c4faa-c851-431f-b514-62d897997029",
+									"host": [
+										"{{BASE_URL}}use"
+									],
+									"path": [
+										"finish",
+										"e27c4faa-c851-431f-b514-62d897997029"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Bikes",
+					"item": [
+						{
+							"name": "bike-list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}admin/bikes/paged?page=0",
+									"host": [
+										"{{BASE_URL}}admin"
+									],
+									"path": [
+										"bikes",
+										"paged"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "bike-list-by-station",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}bikes/station/638bb8d4ef574046b260fd6e8da88420/bikes",
+									"host": [
+										"{{BASE_URL}}bikes"
+									],
+									"path": [
+										"station",
+										"638bb8d4ef574046b260fd6e8da88420",
+										"bikes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "find-by-id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}bikes/1c90f4dc-d57f-4398-a33d-f66c42a95f53",
+									"host": [
+										"{{BASE_URL}}bikes"
+									],
+									"path": [
+										"1c90f4dc-d57f-4398-a33d-f66c42a95f53"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add-bike",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"nombre\": \"Lukébakio\",\r\n            \"marca\": \"FieldCletas\",\r\n            \"modelo\": \"Gen15\",\r\n            \"estado\": \"WORN_OUT\",\r\n            \"estacion\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}admin/bikes/add",
+									"host": [
+										"{{BASE_URL}}admin"
+									],
+									"path": [
+										"bikes",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit-bike",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"marca\": \"FieldCletasEditado\",\r\n            \"modelo\": \"Gen15Editado\",\r\n            \"estado\": \"WORN_OUT\",\r\n            \"estacion\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}admin/bikes/edit/Braulio",
+									"host": [
+										"{{BASE_URL}}admin"
+									],
+									"path": [
+										"bikes",
+										"edit",
+										"Braulio"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "bike-list-without-pageable",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}admin/bikes",
+									"host": [
+										"{{BASE_URL}}admin"
+									],
+									"path": [
+										"bikes"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Station",
+					"item": [
+						{
+							"name": "addStations",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Palmete\",\r\n    \"coordenadas\": \"40.7128,-74.0060\",\r\n    \"capacidad\":29\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_STATION_URL}}/add",
+									"host": [
+										"{{BASE_STATION_URL}}"
+									],
+									"path": [
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllStations",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_STATION_URL}}/get",
+									"host": [
+										"{{BASE_STATION_URL}}"
+									],
+									"path": [
+										"get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteStation",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_STATION_URL}}/delete/5",
+									"host": [
+										"{{BASE_STATION_URL}}"
+									],
+									"path": [
+										"delete",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findStationById",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_STATION_URL}}/get/1",
+									"host": [
+										"{{BASE_STATION_URL}}"
+									],
+									"path": [
+										"get",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "editStation",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Manolete\",\r\n    \"coordenadas\": \"40.7128,-74.0060\",\r\n    \"capacidad\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_STATION_URL}}/edit/6",
+									"host": [
+										"{{BASE_STATION_URL}}"
+									],
+									"path": [
+										"edit",
+										"6"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Stations CRUD methods"
+				},
+				{
+					"name": "Issues",
+					"item": [
+						{
+							"name": "GetAll",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}admin/issues/",
+									"host": [
+										"{{BASE_URL}}admin"
+									],
+									"path": [
+										"issues",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Issue",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"fechaProgramada\": \"2023-11-29\",\r\n    \"fechaRealizacion\": \"2024-01-14\",\r\n    \"anotaciones\": \"Esta revisión es una de prueba\",\r\n    \"nombreEstacion\": \"Plaza de Armas\",\r\n    \"nombreTrabajador\": \"admin\",\r\n    \"estado\": \"FINISHED\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}admin/issues/1",
+									"host": [
+										"{{BASE_URL}}admin"
+									],
+									"path": [
+										"issues",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Issue",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}admin/issues/1",
+									"host": [
+										"{{BASE_URL}}admin"
+									],
+									"path": [
+										"issues",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Issue",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fechaProgramada\": \"2030-01-01\",\r\n    \"anotaciones\": \"Esta revisión es una de prueba\",\r\n    \"nombreEstacion\": \"Plaza de Armas\",\r\n    \"nombreTrabajador\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}admin/issues/",
+									"host": [
+										"{{BASE_URL}}admin"
+									],
+									"path": [
+										"issues",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Worker",
+					"item": [
+						{
+							"name": "Get All Workers",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}worker/",
+									"host": [
+										"{{BASE_URL}}worker"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cost",
+					"item": [
+						{
+							"name": "Get Current Cost",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}cost/current",
+									"host": [
+										"{{BASE_URL}}cost"
+									],
+									"path": [
+										"current"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Recharge Balance",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"recharge\": 2,\r\n    \"pin\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}user/recharge",
+									"host": [
+										"{{BASE_URL}}user"
+									],
+									"path": [
+										"recharge"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Details",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}user/04d0595e-45d5-4f63-8b53-1d79e9d84a5d",
+									"host": [
+										"{{BASE_URL}}user"
+									],
+									"path": [
+										"04d0595e-45d5-4f63-8b53-1d79e9d84a5d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "wo-auth",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Register User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var json = pm.response.json();\r",
+											"pm.collectionVariables.set(\"token\", json.token);\r",
+											"pm.collectionVariables.set(\"refresh_token\", json.refreshToken);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"alexluque\",\r\n    \"password\": \"111111\",\r\n    \"verifyPassword\": \"111111\", \r\n    \"email\": \"user@gmail.com\",\r\n    \"nombre\": \"Alexander Luque\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}auth/register",
+									"host": [
+										"{{BASE_URL}}auth"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var json = pm.response.json();\r",
+											"pm.collectionVariables.set(\"token\", json.token);\r",
+											"pm.collectionVariables.set(\"refresh_token\", json.refreshToken);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"user1\",\r\n    \"password\": \"user1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}auth/login",
+									"host": [
+										"{{BASE_URL}}auth"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login Admin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var json = pm.response.json();\r",
+											"pm.collectionVariables.set(\"token\", json.token);\r",
+											"pm.collectionVariables.set(\"refresh_token\", json.refreshToken);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}auth/login",
+									"host": [
+										"{{BASE_URL}}auth"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:8080/",
+			"type": "string"
+		},
+		{
+			"key": "BASE_STATION_URL",
+			"value": "http://localhost:8080/stations",
+			"type": "string"
+		},
+		{
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "refresh_token",
+			"value": ""
+		}
+	]
+}

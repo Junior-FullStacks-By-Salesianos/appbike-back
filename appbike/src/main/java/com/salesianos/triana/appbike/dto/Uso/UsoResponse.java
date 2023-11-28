@@ -4,9 +4,10 @@ import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.model.Uso;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public record UsoResponse(
-        Long id,
+        UUID id,
         LocalDateTime fechaInicio,
         LocalDateTime fechaFin,
         double coste,
@@ -19,7 +20,7 @@ public record UsoResponse(
 
     public static UsoResponse of(Uso u){
         return new UsoResponse(
-                u.getId(),
+                u.getUuid(),
                 u.getFechaInicio(),
                 u.getFechaFin(),
                 u.getCoste(),
