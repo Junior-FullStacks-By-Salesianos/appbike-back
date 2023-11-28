@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -31,5 +32,10 @@ public class EstacionService {
                 .stream()
                 .map(GetStationDto::of)
                 .toList();
+    }
+
+    public String delete(UUID id){
+        estacionRepository.deleteById(id);
+        return "Eliminado con exito";
     }
 }

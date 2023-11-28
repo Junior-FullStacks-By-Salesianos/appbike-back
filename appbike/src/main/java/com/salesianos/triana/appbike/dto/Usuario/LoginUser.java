@@ -1,4 +1,4 @@
-package com.salesianos.triana.appbike.dto;
+package com.salesianos.triana.appbike.dto.Usuario;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

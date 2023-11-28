@@ -1,4 +1,4 @@
-package com.salesianos.triana.appbike.dto;
+package com.salesianos.triana.appbike.dto.Usuario;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.salesianos.triana.appbike.model.Usuario;

@@ -1,4 +1,4 @@
-package com.salesianos.triana.appbike.error;
+package com.salesianos.triana.appbike.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
