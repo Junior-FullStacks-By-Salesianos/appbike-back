@@ -199,7 +199,7 @@ public class BicicletaController {
         @PostMapping("/rent/{idBicicleta}")
         public ResponseEntity<UsoResponse> rentABike(@PathVariable UUID idBicicleta,
                         @AuthenticationPrincipal UsuarioBici user) {
-                Uso newUso = usoService.addUso(idBicicleta, user);
+                Uso newUso = usoService.addUso(idBicicleta, user); add 
 
                 URI createdURI = ServletUriComponentsBuilder
                                 .fromCurrentRequest()

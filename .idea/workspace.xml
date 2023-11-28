@@ -4,47 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8df70de6-61f9-4458-b7a0-1f75983a2031" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BikeApp.postman_collection.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UsuarioBiciController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Revision/NewRevisionDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Station/EditStationDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/UsuarioBici/EditSaldo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/UsuarioBici/UsuarioBiciResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/error/BikesInThatStationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/exception/InvalidPinExcepcion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/exception/NotEnoughBalanceException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/InitData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/BicicletaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/BicicletaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/RevisionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/RevisionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/StationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/TrabajadorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/TrabajadorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UsoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UsoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Revision/EditRevisionDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Revision/RevisionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Revision/RevisionDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Uso/UsoBeginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Uso/UsoBeginResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Uso/UsoResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Uso/UsoResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/station/AddStationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Station/AddStationDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/station/GetStationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Station/GetStationDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/station/StationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Station/StationResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/error/GlobalRestControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/error/GlobalRestControllerAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/model/Estacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/model/Estacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/model/Uso.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/model/Uso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/model/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/repository/EstacionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/repository/EstacionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/repository/RevisionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/repository/RevisionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/repository/TrabajadorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/repository/TrabajadorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/EstacionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/EstacionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/RevisionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/RevisionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/UsoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/UsoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/UsuarioBiciService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/UsuarioBiciService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/resources/import_dev.sql" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/resources/import_dev.sql" afterDir="false" />
-    </list>
+    <list default="true" id="8df70de6-61f9-4458-b7a0-1f75983a2031" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,7 +43,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Merging ",
+    "git-widget-placeholder": "613f857f",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/polonio.doalv23_tria/Desktop/bikeapp/appbike-back",
     "settings.editor.selected.configurable": "preferences.lookFeel"
