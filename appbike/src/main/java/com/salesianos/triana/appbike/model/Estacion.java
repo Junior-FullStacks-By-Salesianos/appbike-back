@@ -47,8 +47,7 @@ public class Estacion {
 
     private static Long numeroUnicoActual = 0L;
 
-    // Por el momento esto está bien pero realizar una consulta
-    private synchronized Long generarNumeroUnico() {
+    public static synchronized Long generarNumeroUnico() {
         numeroUnicoActual++;
         return numeroUnicoActual;
     }

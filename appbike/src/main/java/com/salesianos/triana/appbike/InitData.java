@@ -9,11 +9,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class InitData {
 
-
         private final PasswordEncoder passwordEncoder;
 
         @PostConstruct
-        public void init(){
+        public void init() {
                 System.out.println(passwordEncoder.encode("user1234"));
         }
 }

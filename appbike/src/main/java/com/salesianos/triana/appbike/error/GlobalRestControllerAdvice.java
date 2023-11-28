@@ -144,6 +144,14 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
         }
 
     }
+    @ExceptionHandler(BikesInThatStationException.class)
+    public ErrorResponse handleBikesInThatStationException(BikesInThatStationException exception) {
+        return ErrorResponse.builder(exception, HttpStatus.BAD_REQUEST, exception.getMessage())
+                .title("The station can't be deleted")
+                .type(URI.create("https://api.bikeapp.com/errors/bikes-in-station"))
+                .property("timestamp", Instant.now())
+                .build();
+    }
 
     @ExceptionHandler({ BadRequestForBikeAdd.class })
     private static ErrorResponse handleBadRequestBikeAdd(BadRequestForBikeAdd exception) {
