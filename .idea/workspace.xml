@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8df70de6-61f9-4458-b7a0-1f75983a2031" name="Changes" comment="">
+    <list default="true" id="8df70de6-61f9-4458-b7a0-1f75983a2031" name="Changes" comment="bike controller added with findAll method and GET bike DTO too">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/BicicletaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/BicicletaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/error/GlobalRestControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/error/GlobalRestControllerAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/BicicletaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/BicicletaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appbike/src/main/resources/import_dev.sql" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/resources/import_dev.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +46,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "bike-admin-delete",
+    "git-widget-placeholder": "bike-list-admin-see-available",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/polonio.doalv23_tria/Desktop/bikeapp/appbike-back",
     "settings.editor.selected.configurable": "preferences.lookFeel"
