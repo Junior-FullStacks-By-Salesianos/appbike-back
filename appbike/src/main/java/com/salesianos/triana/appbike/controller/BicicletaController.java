@@ -37,12 +37,10 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/bikes")
 @Tag(name = "Bikes", description = "Controller who manages all requests regarding bikes")
 public class BicicletaController {
 
         private final BicicletaService bicicletaService;
-        private final UsoService usoService;
 
     @Operation(summary = "Obtains a list of bikes")
     @ApiResponses(value = {
@@ -125,7 +123,7 @@ public class BicicletaController {
             @ApiResponse(responseCode = "200",
                     description = "All bikes have been found in that station.",
                     content = { @Content(mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = Bicicleta.class)),
+                            array = @ArraySchema(schema = @Schema(implementation = GetBicicletaDTO.class)),
                             examples = {@ExampleObject(
                                     value = """
                                             [
@@ -152,7 +150,7 @@ public class BicicletaController {
                     description = "Not found the station",
                     content = @Content),
     })
-    @GetMapping("/station/{idEstacion}/bikes")
+    @GetMapping("/bikes/station/{idEstacion}/bikes")
     public List<GetBicicletaDTO> findAllByStation(@PathVariable UUID idEstacion) {
         return bicicletaService.findAllByStation(idEstacion).stream().map(GetBicicletaDTO::of).toList();
     }
@@ -175,7 +173,7 @@ public class BicicletaController {
                                                                         """) }) }),
                 @ApiResponse(responseCode = "404", description = "Not found any bike", content = @Content),
         })
-        @GetMapping("/{uuid}")
+        @GetMapping("/bikes/{uuid}")
         public GetBicicletaDTO findBikeById(@PathVariable UUID uuid){
                 return GetBicicletaDTO.of(bicicletaService.findById(uuid));
         }
@@ -200,39 +198,9 @@ public class BicicletaController {
                 }),
                 @ApiResponse(responseCode = "404", description = "Not found any bike", content = @Content),
         })
-        @GetMapping("/byname/{name}")
-        public GetBicicletaDTO findBikeByName(@PathVariable String name){
-                return GetBicicletaDTO.of(bicicletaService.findByName(name));
-        }
-
-        @Operation(summary = "Method to rent a bike")
-        @ApiResponses(value = {
-                @ApiResponse(responseCode = "201", description = "The use has been created", content = {
-                        @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoBeginResponse.class)), examples = {
-                                @ExampleObject(value = """
-                                        {
-                                            "id": 1,
-                                            "fechaInicio": "2023-11-25T19:52:45.5159449",
-                                            "bicicleta": "Michael",
-                                            "usuario": "933913fc-187e-412e-a77d-54b5e6b0888f"
-                                        }
-                                                                        """) }) }),
-                @ApiResponse(responseCode = "404", description = "Not found any bike", content = @Content),
-                @ApiResponse(responseCode = "400", description = "The bike is already in use", content = @Content),
-                @ApiResponse(responseCode = "400", description = "The user has already a bike in use", content = @Content)
-        })
-        @PostMapping("/rent/{idBicicleta}")
-        public ResponseEntity<UsoResponse> rentABike(@PathVariable UUID idBicicleta, @AuthenticationPrincipal UsuarioBici user) {
-                Uso newUso = usoService.addUso(idBicicleta, user);
-
-                URI createdURI = ServletUriComponentsBuilder
-                        .fromCurrentRequest()
-                        .path("/{id}")
-                        .buildAndExpand(newUso.getUuid()).toUri();
-
-                return ResponseEntity
-                        .created(createdURI)
-                        .body(UsoResponse.of(newUso));
+        @GetMapping("/bikes/byname/{name}")
+        public GetBicicletaDTO findBikeByName(@PathVariable String name) {
+            return GetBicicletaDTO.of(bicicletaService.findByName(name));
         }
 
         @Operation(summary = "Create a new bike")
