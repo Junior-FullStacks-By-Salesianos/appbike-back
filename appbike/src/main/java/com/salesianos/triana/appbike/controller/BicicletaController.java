@@ -7,6 +7,7 @@ import com.salesianos.triana.appbike.dto.Uso.UsoResponse;
 import com.salesianos.triana.appbike.model.Bicicleta;
 import com.salesianos.triana.appbike.model.Uso;
 import com.salesianos.triana.appbike.model.Usuario;
+import com.salesianos.triana.appbike.model.UsuarioBici;
 import com.salesianos.triana.appbike.service.BicicletaService;
 import com.salesianos.triana.appbike.service.UsoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -221,13 +222,13 @@ public class BicicletaController {
                 @ApiResponse(responseCode = "400", description = "The user has already a bike in use", content = @Content)
         })
         @PostMapping("/rent/{idBicicleta}")
-        public ResponseEntity<UsoResponse> rentABike(@PathVariable UUID idBicicleta, @AuthenticationPrincipal Usuario user) {
+        public ResponseEntity<UsoResponse> rentABike(@PathVariable UUID idBicicleta, @AuthenticationPrincipal UsuarioBici user) {
                 Uso newUso = usoService.addUso(idBicicleta, user);
 
                 URI createdURI = ServletUriComponentsBuilder
                         .fromCurrentRequest()
-                        .path("/{idBicicleta}")
-                        .buildAndExpand(newUso.getId()).toUri();
+                        .path("/{id}")
+                        .buildAndExpand(newUso.getUuid()).toUri();
 
                 return ResponseEntity
                         .created(createdURI)

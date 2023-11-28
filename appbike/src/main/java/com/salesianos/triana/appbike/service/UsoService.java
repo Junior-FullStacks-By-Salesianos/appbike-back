@@ -1,11 +1,9 @@
 package com.salesianos.triana.appbike.service;
 
+import com.salesianos.triana.appbike.exception.NotEnoughBalanceException;
 import com.salesianos.triana.appbike.exception.NotFoundException;
 import com.salesianos.triana.appbike.exception.InUseException;
-import com.salesianos.triana.appbike.model.Bicicleta;
-import com.salesianos.triana.appbike.model.Coste;
-import com.salesianos.triana.appbike.model.Uso;
-import com.salesianos.triana.appbike.model.Usuario;
+import com.salesianos.triana.appbike.model.*;
 import com.salesianos.triana.appbike.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,12 +26,16 @@ public class UsoService {
     private final EstacionRepository estacionRepository;
     private final CosteRepository costeRepository;
 
-    public Uso addUso(UUID idBicicleta, Usuario user) {
+    public Uso addUso(UUID idBicicleta, UsuarioBici user) {
         Uso u = new Uso();
         Optional<Bicicleta> bike = bicicletaRepository.findById(idBicicleta);
 
         if(usoRepository.findCurrentUsoByUser(user.getId().toString()).isPresent()){
             throw new InUseException("The user already has a bike in use");
+        }
+
+        if(user.getSaldo()<=0){
+            throw new NotEnoughBalanceException("You can´t rent a bike because you haven´t got enough balance");
         }
 
         if (bike.isPresent()) {
@@ -69,22 +71,29 @@ public class UsoService {
     }
 
     public Uso finishActiveUseByUser(UUID idUser, UUID idEstacion) {
-        Duration duration;
         Coste coste = costeRepository.getCurrentCost();
+        Optional<Estacion> e = estacionRepository.findById(idEstacion);
+        UsuarioBici usuarioBici = usuarioBiciRepository.findById(idUser).orElseThrow(()-> new NotFoundException("User"));
+        long difference;
+        double totalCost;
 
         Uso toFinish = usuarioBiciRepository.findActiveUsoByUsuario(idUser.toString())
                 .orElseThrow(() -> new NotFoundException("Uso"));
 
-        if (estacionRepository.findById(idEstacion).isPresent()) {
+        if (e.isPresent()) {
             toFinish.setFechaFin(LocalDateTime.now());
-            toFinish.setEstacion(estacionRepository.findById(idEstacion).get());
+            toFinish.setEstacion(e.get());
+            e.get().addBicicleta(toFinish.getBicicleta());
         } else {
             throw new NotFoundException("Estacion");
         }
 
-        long difference = ChronoUnit.MINUTES.between(toFinish.getFechaInicio(), toFinish.getFechaFin());
+        difference = ChronoUnit.MINUTES.between(toFinish.getFechaInicio(), toFinish.getFechaFin());
+        totalCost = difference * coste.getPrecioMinuto();
+        toFinish.setCoste(totalCost); //Entity Cost
 
-        toFinish.setCoste(difference * coste.getPrecioMinuto()); //Entity Cost
+        usuarioBici.setSaldo(usuarioBici.getSaldo()-totalCost);
+        usuarioBiciRepository.save(usuarioBici);
 
         return usoRepository.save(toFinish);
     }

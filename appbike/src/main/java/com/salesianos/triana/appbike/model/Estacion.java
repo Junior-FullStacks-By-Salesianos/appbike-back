@@ -38,19 +38,13 @@ public class Estacion {
     @OneToMany(mappedBy = "estacion")
     private List<Uso> usos;
 
-    /*
-    @PrePersist
-    private void asegurarNumeroUnico() {
-        if (this.numero == null) {
-            this.numero = generarNumeroUnico();
-        }
+    public void addBicicleta(Bicicleta bike) {
+        bicicletas.add(bike);
+        bike.setEstacion(this);
     }
 
-    private static Long numeroUnicoActual = 0L;
-
-    public static synchronized Long generarNumeroUnico() {
-        numeroUnicoActual++;
-        return numeroUnicoActual;
+    public void removeBicicleta(Bicicleta bike) {
+        bicicletas.remove(bike);
+        bike.setEstacion(null);
     }
-    */
 }
