@@ -20,9 +20,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.http.*;
 import org.springframework.web.ErrorResponse;
-import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -69,16 +67,6 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
                 .title("Already in use")
                 .type(URI.create("https://api.bikeapp.com/errors/user-bike-in-use"))
                 .property("timestamp", Instant.now())
-                .build();
-    }
-
-    @ExceptionHandler({ NoBikesInThatStationException.class })
-    private static ErrorResponse handleNoBikesInThatStationException(NoBikesInThatStationException exception) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        return ErrorResponse.builder(exception, HttpStatus.NOT_FOUND, exception.getMessage())
-                .title("Station not found for that UUID")
-                .type(URI.create("https://api.bikeapp.com/errors/not-found"))
-                .property("date", LocalDateTime.now().format(formatter))
                 .build();
     }
 
@@ -173,8 +161,8 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
                 .build();
     }
 
-    @ExceptionHandler({ BadRequestForBikeAdd.class })
-    private static ErrorResponse handleBadRequestBikeAdd(BadRequestForBikeAdd exception) {
+    @ExceptionHandler({ BadRequestForBikeAddException.class })
+    private static ErrorResponse handleBadRequestBikeAdd(BadRequestForBikeAddException exception) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return ErrorResponse.builder(exception, HttpStatus.BAD_REQUEST, exception.getMessage())
                 .title("Bad request from user")
@@ -204,4 +192,16 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
                 .property("date", LocalDateTime.now().format(formatter))
                 .build();
     }
+
+    @ExceptionHandler({ NameOfBikeNotFoundException.class })
+    private static ErrorResponse handleNameOfBikeNotFoundException(NameOfBikeNotFoundException exception) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return ErrorResponse.builder(exception, HttpStatus.NOT_FOUND, exception.getMessage())
+                .title("That bicycle name does not exist")
+                .type(URI.create("https://api.bikeapp.com/errors/not-found"))
+                .property("date", LocalDateTime.now().format(formatter))
+                .build();
+    }
+
 }

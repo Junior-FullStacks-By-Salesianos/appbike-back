@@ -1,5 +1,6 @@
 package com.salesianos.triana.appbike.service;
 
+import com.salesianos.triana.appbike.dto.Bike.EditBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Bike.PostBicicletaDTO;
 import com.salesianos.triana.appbike.exception.*;
 import com.salesianos.triana.appbike.model.Estacion;
@@ -81,6 +82,33 @@ public class BicicletaService {
 
     }
 
+    public Bicicleta edit(String nombre, EditBicicletaDTO editado) {
+
+        List<Bicicleta> allBikes = repository.findAll();
+
+        boolean existe = allBikes.stream()
+                .anyMatch(bicicleta -> bicicleta.getNombre().equals(nombre));
+
+        if (!existe) {
+            throw new NameOfBikeNotFoundException("That name does not exist, change it please");
+        }
+
+        Optional<Bicicleta> bikeOptional = repository.findByNombre(nombre);
+
+        if(bikeOptional.isPresent()){
+            Bicicleta bike = bikeOptional.get();
+
+            bike.setModelo(editado.modelo());
+            bike.setMarca(editado.marca());
+            bike.setEstado(editado.estado());
+            bike.setEstacion(editado.estacion() == null ? null : addBicicletaToStationByNumber(editado.estacion()));
+
+            return repository.save(bike);
+        }
+            throw new BadRequestForBikeAddException("Enter valid request please");
+
+    }
+
     public Estacion addBicicletaToStationByNumber(Long number) {
         return estacionRepository.findByNumero(number);
     }
@@ -104,7 +132,8 @@ public class BicicletaService {
         return repository.existsById(uuid);
     }
 
-    public void deleteById(UUID uuid) {
-        repository.deleteById(uuid);
+    public void deleteByName(String name) {
+        Bicicleta bike = findByName(name);
+        repository.delete(bike);
     }
 }
