@@ -1,10 +1,7 @@
 package com.salesianos.triana.appbike.controller;
 
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
-import com.salesianos.triana.appbike.dto.station.AddStationDto;
 import com.salesianos.triana.appbike.dto.station.EditStationDto;
-import com.salesianos.triana.appbike.dto.station.GetStationDto;
-import com.salesianos.triana.appbike.dto.station.StationResponse;
 import com.salesianos.triana.appbike.error.BikesInThatStationException;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.service.EstacionService;
@@ -24,6 +21,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import com.salesianos.triana.appbike.dto.Station.StationResponse;
+import com.salesianos.triana.appbike.dto.Station.AddStationDto;
+import com.salesianos.triana.appbike.dto.Station.GetStationDto;
 
 import java.util.List;
 import java.util.UUID;
