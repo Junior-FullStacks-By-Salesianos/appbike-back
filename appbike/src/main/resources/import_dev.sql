@@ -2,13 +2,14 @@ INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('f8134
 INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('90a4aa12-0dcb-4ed9-8f4d-c8bcb0b8f687', 2, 'Ramon Sanchez', '37.384248245922876, -5.97075249936982', 12);
 INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('601c5250-9d2e-4d29-af43-7f61cf1309e2', 3, 'Torre del Oro', '37.38264042480994, -5.996226974246192', 20);
 INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('d1aa6884-4cfc-4e0d-b4e2-47f97d6a9ec9', 4, 'Puente de Triana', '37.38650579044138, -6.002310731919237', 18);
-INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e', 5, 'Parque Principes', '37.374405948794475, -6.005344980963008', 0);
+INSERT INTO Estacion (id, numero, nombre, coordenadas, capacidad) VALUES ('3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e', 5, 'Parque Principes', '37.374405948794475, -6.005344980963008', 4);
 
 
 INSERT INTO Bicicleta (uuid, marca, modelo, estado, nombre, estacion_id) VALUES ('128329b5-4080-4e0a-8b09-8cf2d3a88c20', 'FieldCletas', 'Gen15', 0, 'Michael', 'f81345bb-894d-4dcd-8aa4-49987a95ff76');
 INSERT INTO Bicicleta (uuid, marca, modelo, estado, nombre, estacion_id) VALUES ('76b27116-6153-4f2b-b6e6-0e21c6306b46', 'FieldCletas', 'Gen15', 1, 'Eustaquio', 'f81345bb-894d-4dcd-8aa4-49987a95ff76');
 INSERT INTO Bicicleta (uuid, marca, modelo, estado, nombre, estacion_id) VALUES ('9ce34fe4-eb4b-41b1-9337-04bfe6e3acda', 'ChimneyChains', 'CamelBox', 2, 'Antonia', 'f81345bb-894d-4dcd-8aa4-49987a95ff76');
-INSERT INTO Bicicleta (uuid, marca, modelo, estado, nombre, estacion_id) VALUES ('c9b07e57-6b22-4b85-baa0-1850c80a3e02', 'FieldCletas', 'FieldTrooper', 3, 'FelipeYeit', 'f81345bb-894d-4dcd-8aa4-49987a95ff76');
+INSERT INTO Bicicleta (uuid, marca, modelo, estado, nombre, estacion_id) VALUES ('c9b07e57-6b22-4b85-baa0-1850c80a3e02', 'FieldCletas
+', 'FieldTrooper', 3, 'FelipeYeit', 'f81345bb-894d-4dcd-8aa4-49987a95ff76');
 INSERT INTO Bicicleta (uuid, marca, modelo, estado, nombre, estacion_id) VALUES ('e128262a-b0b9-42c4-8bbd-11078da75cb8', 'FieldCletas', 'Gen15', 4, 'Pacote', '90a4aa12-0dcb-4ed9-8f4d-c8bcb0b8f687');
 INSERT INTO Bicicleta (uuid, marca, modelo, estado, nombre, estacion_id) VALUES ('7edfbb7e-8711-4153-a80d-3d1285a6d5b7', 'ChimneyChains', 'SmokeyCruise', 0, 'Ñoño', '90a4aa12-0dcb-4ed9-8f4d-c8bcb0b8f687');
 INSERT INTO Bicicleta (uuid, marca, modelo, estado, nombre, estacion_id) VALUES ('4c6f7471-9c3d-4a1d-80cd-e73479f5d843', 'FieldCletas', 'Gen15', 0, 'Fernando', '90a4aa12-0dcb-4ed9-8f4d-c8bcb0b8f687');

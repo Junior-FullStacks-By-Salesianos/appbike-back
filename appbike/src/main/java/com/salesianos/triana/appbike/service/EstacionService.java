@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -40,12 +41,8 @@ public class EstacionService {
         return Optional.ofNullable(estacionRepository.findByNumero(id));
     }
 
-    public Estacion findById(Long id) {
-        Optional<Estacion> optionalEstacion = findStationById(id);
-        if (optionalEstacion.isPresent()) {
-            return optionalEstacion.get();
-        }
-        throw new NotFoundException("Estación");
+    public Estacion findById(UUID id) {
+        return estacionRepository.findById(id).orElseThrow(()->new NotFoundException("Estación"));
     }
 
     public Estacion editStation(Long id, EditStationDto nuevo) {
