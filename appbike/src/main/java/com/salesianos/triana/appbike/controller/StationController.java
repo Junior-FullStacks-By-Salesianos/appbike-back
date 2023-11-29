@@ -2,6 +2,7 @@ package com.salesianos.triana.appbike.controller;
 
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Station.EditStationDto;
+import com.salesianos.triana.appbike.dto.Station.GetStationDto;
 import com.salesianos.triana.appbike.error.BikesInThatStationException;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.service.EstacionService;
@@ -85,10 +86,10 @@ public class StationController {
 
     )
     @Operation(summary = "findAll", description = "Find All Stations in the database")
-    @GetMapping("/stations/get")
-    public ResponseEntity<List<StationResponse>> findAllStations() {
+    @GetMapping("/station/get")
+    public ResponseEntity<List<GetStationDto>> findAllStations() {
 
-        List<StationResponse> all = estacionService.findAll();
+        List<GetStationDto> all = estacionService.findAll();
 
         if (all.isEmpty())
             return ResponseEntity.notFound().build();
@@ -112,7 +113,7 @@ public class StationController {
                                                                         """) }) }),
             @ApiResponse(responseCode = "404", description = "Unable to find station with that id.", content = @Content),
     })
-    @GetMapping("/stations/get/{id}")
+    @GetMapping("/station/get/{id}")
     public StationResponse findStationById(@PathVariable UUID id) {
         return StationResponse.of(estacionService.findById(id));
     }
