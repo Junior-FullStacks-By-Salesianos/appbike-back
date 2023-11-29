@@ -41,6 +41,25 @@ public class UsuarioBiciController {
                                         "nombre": "User 1",
                                         "saldo": 20.0
                                     }
+                                                                        """) }) }),
+            @ApiResponse(responseCode = "404", description = "Not found any user", content = @Content)
+    })
+    @GetMapping("/details")
+    public UsuarioBiciResponse getUserDetailsAlex(@AuthenticationPrincipal UsuarioBici user){
+        return UsuarioBiciResponse.of(usuarioBiciService.getDetails(user));
+    }
+
+    @Operation(summary = "Method to get the User details")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "The user list charged successfully", content = {
+                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsuarioBiciResponse.class)), examples = {
+                            @ExampleObject(value = """
+                                    {
+                                        "id": "04d0595e-45d5-4f63-8b53-1d79e9d84a5d",
+                                        "username": "user1",
+                                        "nombre": "User 1",
+                                        "saldo": 20.0
+                                    }
                                                                         """)})}),
             @ApiResponse(responseCode = "404", description = "Not found any user", content = @Content)
     })

@@ -18,5 +18,9 @@ public class UsuarioService {
         return usuarioRepository.findById(id);
     }
 
+    public boolean userExists(String username) {
+        return usuarioRepository.existsByUsernameIgnoreCase(username);
+    }
+
 
 }
