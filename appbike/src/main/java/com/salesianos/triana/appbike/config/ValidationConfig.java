@@ -12,7 +12,7 @@ public class ValidationConfig {
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:messages/errors");
+        messageSource.setBasename("classpath:/error");
         messageSource.setDefaultEncoding("ISO-8859-1");
         return messageSource;
     }

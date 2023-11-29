@@ -34,9 +34,6 @@ public class UsuarioBiciService {
 
     public UsuarioBici createUser(AddUsuarioBici addUsuarioBici) {
 
-        if (usuarioRepository.existsByUsernameIgnoreCase(addUsuarioBici.username()))
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El nombre de usuario ya existe");
-
         UsuarioBici user = new UsuarioBici();
         user.setUsername(addUsuarioBici.username());
         user.setPassword(passwordEncoder.encode(addUsuarioBici.password()));
@@ -69,6 +66,5 @@ public class UsuarioBiciService {
             return usuarioBiciRepository.save(old);
         }).orElseThrow(() -> new EntityNotFoundException("Could not set card for user as there are no users with a matching id"));
     }
-
 
 }

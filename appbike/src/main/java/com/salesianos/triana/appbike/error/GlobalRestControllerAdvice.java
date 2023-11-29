@@ -1,6 +1,5 @@
 package com.salesianos.triana.appbike.error;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.salesianos.triana.appbike.error.impl.ApiValidationSubError;
 import com.salesianos.triana.appbike.exception.*;
 import com.salesianos.triana.appbike.exception.InUseException;
@@ -9,11 +8,6 @@ import com.salesianos.triana.appbike.exception.InvalidPinExcepcion;
 import com.salesianos.triana.appbike.exception.NotEnoughBalanceException;
 import com.salesianos.triana.appbike.security.errorhandling.JwtTokenException;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.servlet.http.HttpServletRequest;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -83,16 +77,19 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler({ AuthenticationException.class })
     public ErrorResponse handleAuthenticationException(AuthenticationException exception) {
         return ErrorResponse.builder(exception, HttpStatus.UNAUTHORIZED, exception.getMessage())
+                .title("AUTHENTICATION")
+                .type(URI.create("https://api.bikeapp.com/errors/unauthorized-user"))
+                .property("timestamp", Instant.now())
                 .build();
-                /*ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .header("WWW-Authenticate", "Bearer")
-                .body(GlobalRestControllerAdvice.ErrorMessage.of(HttpStatus.UNAUTHORIZED, ex.getMessage(), request.getRequestURI()));*/
 
     }
 
     @ExceptionHandler({ AccessDeniedException.class })
     public ErrorResponse handleAccessDeniedException(AccessDeniedException exception) {
         return ErrorResponse.builder(exception, HttpStatus.FORBIDDEN, exception.getMessage())
+                .title("ACCESS DENIED")
+                .type(URI.create("https://api.bikeapp.com/errors/access-denied"))
+                .property("timestamp", Instant.now())
                 .build();
 
     }
@@ -101,12 +98,18 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler({JwtTokenException.class})
     public ErrorResponse handleTokenException(JwtTokenException exception) {
         return ErrorResponse.builder(exception, HttpStatus.FORBIDDEN, exception.getMessage())
+                .title("TOKEN INVALID")
+                .type(URI.create("https://api.bikeapp.com/errors/invalid-token"))
+                .property("timestamp", Instant.now())
                 .build();
     }
 
     @ExceptionHandler({UsernameNotFoundException.class})
     public ErrorResponse handleUserNotExistsException(UsernameNotFoundException exception) {
         return ErrorResponse.builder(exception, HttpStatus.FORBIDDEN, exception.getMessage())
+                .title("FORBIDDEN")
+                .type(URI.create("https://api.bikeapp.com/errors/forbidden"))
+                .property("timestamp", Instant.now())
                 .build();
     }
 
