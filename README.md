@@ -100,16 +100,16 @@ Para ejecutar la aplicación en tu entorno local, sigue estos pasos:
    `spring.profiles.active=dev`.
     De esta manera el perfil de base de datos utilizado es el de desarrollo y podemos cambiarlo a producción, sustituyendo `dev` por `prod`
 
-6. **Credenciales**
-   En el perfil de desarrollo se pueden hacer pruebas con estas cuentas o añadiendo más:
-   - Admin:
-     - username: admin
-     - password: admin1
-   - User (3 cuentas):
-     - username: user1, user2, y user3
-     - password: user1234
+6. **Credenciales**: Las credenciales que se pueden usar para probar la API REST:
+- En el perfil de desarrollo se pueden hacer pruebas con estas cuentas o añadiendo más:
+     - Admin:
+       - username: admin
+       - password: admin1
+     - User (3 cuentas):
+       - username: user1, user2, y user3
+       - password: user1234
 
-En el perfil de producción se pueden hacer pruebas con la cuenta de admin, que es la única añadida hasta el momento, así como tampoco hay datos de prueba; tampoco hay cuentas de usuario activas:
+- En el perfil de producción se pueden hacer pruebas con la cuenta de admin, que es la única añadida hasta el momento, así como tampoco hay datos de prueba; tampoco hay cuentas de usuario activas:
    - Admin:
      - username: admin
      - password: admin1
