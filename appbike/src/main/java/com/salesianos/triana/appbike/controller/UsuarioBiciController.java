@@ -3,6 +3,7 @@ package com.salesianos.triana.appbike.controller;
 import com.salesianos.triana.appbike.dto.Uso.UsoResponse;
 import com.salesianos.triana.appbike.dto.UsuarioBici.EditSaldo;
 
+import com.salesianos.triana.appbike.dto.UsuarioBici.UsuarioBiciCardDataDTO;
 import com.salesianos.triana.appbike.dto.UsuarioBici.UsuarioBiciDTO;
 import com.salesianos.triana.appbike.dto.UsuarioBici.UsuarioBiciResponse;
 import com.salesianos.triana.appbike.model.UsuarioBici;
@@ -107,7 +108,7 @@ public class UsuarioBiciController {
             @ApiResponse(responseCode = "400", description = "Error setting card. Check credit card number and pin.", content = @Content)
     })
     @PutMapping("/setCard/{id}")
-    public UsuarioBiciDTO setCard(@PathVariable UUID id, @RequestBody @Valid UsuarioBiciDTO u){
+    public UsuarioBiciDTO setCard(@PathVariable UUID id, @RequestBody @Valid UsuarioBiciCardDataDTO u){
         return UsuarioBiciDTO.of(usuarioBiciService.setCard(id,u));
     }
 }

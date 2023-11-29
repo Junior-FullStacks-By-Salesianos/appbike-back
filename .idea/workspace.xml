@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8df70de6-61f9-4458-b7a0-1f75983a2031" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/resources/import_dev.sql" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/resources/import_dev.sql" afterDir="false" />
+    <list default="true" id="627cb987-a582-476e-933b-d8e929d6a066" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/UsuarioBici/UsuarioBiciCardDataDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/validation/annotation/PinMatch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/validation/validator/PinMatchValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Changes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Changes.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/RevisionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/RevisionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/StationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/TrabajadorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/TrabajadorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UsoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UsoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UsuarioBiciController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UsuarioBiciController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Revision/NewRevisionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Revision/NewRevisionDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/UsuarioBici/UsuarioBiciDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/UsuarioBici/UsuarioBiciDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/UsuarioBiciService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/UsuarioBiciService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,52 +24,20 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
+        <option value="AnnotationType" />
         <option value="Class" />
-        <option value="Record" />
       </list>
     </option>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="JpbToolWindowState">
-    <option name="isToolWindowVisible" value="false" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
-}</component>
-  <component name="ProjectId" id="2YRIdQj7jMjDqHowSyl4tCNo2FB" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/polonio.doalv23_tria/Desktop/bikeapp/appbike-back",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "git-widget-placeholder": "minor-improvements-back"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\polonio.doalv23_tria\Desktop\repos\appbike-back\appbike\src\main\java\com\salesianos\triana\appbike\config" />
-    </key>
-  </component>
-  <component name="RunAnythingCache">
-    <option name="myCommands">
-      <command value="mvn spring-boot:run" />
-    </option>
-  </component>
+}]]></component>
   <component name="RunManager">
     <configuration name="AppbikeApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.salesianos.triana.appbike.AppbikeApplication" />
@@ -88,19 +58,18 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="8df70de6-61f9-4458-b7a0-1f75983a2031" name="Changes" comment="" />
-      <created>1700482053382</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1700482053382</updated>
-    </task>
     <servers />
   </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

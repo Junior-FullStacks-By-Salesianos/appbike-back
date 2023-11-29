@@ -9,8 +9,10 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
-public record NewRevisionDTO(@NotNull LocalDate fechaProgramada, String anotaciones,
-                             @NotEmpty String nombreEstacion, @NotEmpty String nombreTrabajador,
+public record NewRevisionDTO(@NotNull(message = "{NewRevisionDTO.fechaProgramada.isNull}") LocalDate fechaProgramada,
+                             String anotaciones,
+                             @NotEmpty(message = "{NewRevisionDTO.fechaProgramada.isEmpty}") String nombreEstacion,
+                             @NotEmpty(message = "{NewRevisionDTO.fechaProgramada.isEmpty}") String nombreTrabajador,
                              String estado) {
 
     public static NewRevisionDTO of(Revision r) {

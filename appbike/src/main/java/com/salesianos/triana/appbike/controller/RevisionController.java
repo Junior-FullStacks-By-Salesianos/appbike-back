@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,10 +26,10 @@ import java.net.URI;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("admin/issues")
+@Tag(name = "Revision", description = "CRUD for managing issues in the API..")
 public class RevisionController {
 
     private final RevisionService revisionService;
-    private final EstacionRepository estacionRepository;
 
     @Operation(summary = "Obstains a new issues page")
     @ApiResponses(value = {
