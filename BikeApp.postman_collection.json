@@ -143,8 +143,27 @@
 								{
 									"name": "User Details Alex",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "GET",
-										"header": []
+										"header": [],
+										"url": {
+											"raw": "{{BASE_URL}}user/details",
+											"host": [
+												"{{BASE_URL}}user"
+											],
+											"path": [
+												"details"
+											]
+										}
 									},
 									"response": []
 								},
@@ -380,33 +399,6 @@
 							"name": "Station",
 							"item": [
 								{
-									"name": "getAllStations",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{token}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{BASE_URL}}stations/get",
-											"host": [
-												"{{BASE_URL}}stations"
-											],
-											"path": [
-												"get"
-											]
-										}
-									},
-									"response": []
-								},
-								{
 									"name": "findStationById",
 									"request": {
 										"auth": {
@@ -429,6 +421,33 @@
 											"path": [
 												"get",
 												"3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAllStationsWoPageable",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{BASE_URL}}stations/get",
+											"host": [
+												"{{BASE_URL}}stations"
+											],
+											"path": [
+												"get"
 											]
 										}
 									},
@@ -639,13 +658,13 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "{{BASE_URL}}admin/issues/1",
+											"raw": "{{BASE_URL}}admin/issues/996",
 											"host": [
 												"{{BASE_URL}}admin"
 											],
 											"path": [
 												"issues",
-												"1"
+												"996"
 											]
 										}
 									},
@@ -845,14 +864,14 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "{{BASE_URL}}admin/bikes/delete/Michael",
+											"raw": "{{BASE_URL}}admin/bikes/delete/Antonia",
 											"host": [
 												"{{BASE_URL}}admin"
 											],
 											"path": [
 												"bikes",
 												"delete",
-												"Michael"
+												"Antonia"
 											]
 										}
 									},
@@ -923,13 +942,13 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "{{BASE_URL}}admin/delete/6",
+											"raw": "{{BASE_URL}}admin/delete/4",
 											"host": [
 												"{{BASE_URL}}admin"
 											],
 											"path": [
 												"delete",
-												"6"
+												"4"
 											]
 										}
 									},
@@ -971,6 +990,33 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "findAllPageable",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{BASE_URL}}admin/station",
+											"host": [
+												"{{BASE_URL}}admin"
+											],
+											"path": [
+												"station"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}
@@ -982,125 +1028,120 @@
 			"name": "wo-auth",
 			"item": [
 				{
-					"name": "User",
-					"item": [
+					"name": "Login User",
+					"event": [
 						{
-							"name": "Register User",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"var json = pm.response.json();\r",
-											"pm.collectionVariables.set(\"token\", json.token);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"alexluqu\",\r\n    \"password\": \"111111\",\r\n    \"verifyPassword\": \"111111\", \r\n    \"email\": \"user@gmail.com\",\r\n    \"nombre\": \"Alexander Luque\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{BASE_URL}}auth/register",
-									"host": [
-										"{{BASE_URL}}auth"
-									],
-									"path": [
-										"register"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Login Admin",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"var json = pm.response.json();\r",
-											"pm.collectionVariables.set(\"token\", json.token);\r",
-											"pm.collectionVariables.set(\"refresh_token\", json.refreshToken);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin1\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{BASE_URL}}auth/login",
-									"host": [
-										"{{BASE_URL}}auth"
-									],
-									"path": [
-										"login"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Login User",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"var json = pm.response.json();\r",
-											"pm.collectionVariables.set(\"token\", json.token);\r",
-											"pm.collectionVariables.set(\"refresh_token\", json.refreshToken);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"user1\",\r\n    \"password\": \"user1234\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{BASE_URL}}auth/login",
-									"host": [
-										"{{BASE_URL}}auth"
-									],
-									"path": [
-										"login"
-									]
-								}
-							},
-							"response": []
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json();\r",
+									"pm.collectionVariables.set(\"token\", json.token);\r",
+									"pm.collectionVariables.set(\"refresh_token\", json.refreshToken);"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user1\",\r\n    \"password\": \"user1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}auth/login",
+							"host": [
+								"{{BASE_URL}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json();\r",
+									"pm.collectionVariables.set(\"token\", json.token);\r",
+									"pm.collectionVariables.set(\"refresh_token\", json.refreshToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}auth/login",
+							"host": [
+								"{{BASE_URL}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json();\r",
+									"pm.collectionVariables.set(\"token\", json.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"alexluqu\",\r\n    \"password\": \"111111\",\r\n    \"verifyPassword\": \"111111\", \r\n    \"email\": \"user@gmail.com\",\r\n    \"nombre\": \"Alexander Luque\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}auth/register",
+							"host": [
+								"{{BASE_URL}}auth"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
