@@ -8,13 +8,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface EstacionRepository extends JpaRepository<Estacion, UUID> {
 
-
-    Optional<Estacion> findByNombre(String s);
 
     @Query("SELECT COUNT(b) FROM Bicicleta b WHERE b.estacion.numero = :numeroEstacion")
     int countBikesInAStationForUuid(@Param("numeroEstacion") Long numeroEstacion);
@@ -26,4 +25,5 @@ public interface EstacionRepository extends JpaRepository<Estacion, UUID> {
     @Query("DELETE FROM Estacion e WHERE e.numero = :numero")
     void deleteByNumero(Long numero);
 
+    Optional<Estacion> findByNombre(String s);
 }

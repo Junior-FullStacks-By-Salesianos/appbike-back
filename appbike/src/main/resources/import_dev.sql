@@ -42,3 +42,11 @@ INSERT INTO Uso (uuid, fecha_inicio, fecha_fin, coste, bicicleta_id, estacion_id
 INSERT INTO Uso (uuid, fecha_inicio, fecha_fin, coste, bicicleta_id, estacion_id, author) VALUES ('9365d1a9-7997-4a52-a3c9-4e9e3d36eca2', '2023-11-27T17:00:00', '2023-11-27T17:30:00', 5.00, '4f3f19d1-8539-4e82-bc46-8570de481534', '3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e', '5cf8b808-3b6e-4d9d-90d5-65c83b0e75b2');
 
 INSERT INTO Coste (id, precio_minuto, fecha_inicio) VALUES (1, 0.20, current_timestamp);
+
+INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (996, '2023-01-01', '2022-12-31',0, '3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 1');
+
+INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (997, '2023-02-01', '2023-02-02',0, '3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 2');
+
+INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (998, '2023-03-01', '2023-03-02',0, '3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 3');
+
+INSERT INTO Revision (id, fecha_programada, fecha_realizacion ,estado, estacion_id, trabajador_id, anotaciones) VALUES (999, '2023-10-01', '2023-09-16',0, '3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e', 'c62db400-22e3-4e92-94db-1447f5688f2c', 'Anotaciones 10');

@@ -11,14 +11,14 @@ import java.time.LocalDate;
 
 public record NewRevisionDTO(@NotNull LocalDate fechaProgramada, String anotaciones,
                              @NotEmpty String nombreEstacion, @NotEmpty String nombreTrabajador,
-                             EstadoRevision estado) {
+                             String estado) {
 
     public static NewRevisionDTO of(Revision r) {
         return new NewRevisionDTO(r.getFechaProgramada(),
                 r.getAnotaciones(),
                 r.getEstacion().getNombre(),
                 r.getTrabajador().getNombre(),
-                r.getEstado());
+                r.getEstado().toString());
     }
 
     public static Revision toEntity(NewRevisionDTO r, Estacion e, Trabajador t){
@@ -27,7 +27,7 @@ public record NewRevisionDTO(@NotNull LocalDate fechaProgramada, String anotacio
                 .anotaciones(r.anotaciones)
                 .trabajador(t)
                 .estacion(e)
-                .estado(r.estado)
+                .estado(EstadoRevision.valueOf(r.estado))
                 .build();
     }
 }
