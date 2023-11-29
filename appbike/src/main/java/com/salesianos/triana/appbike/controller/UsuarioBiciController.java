@@ -69,6 +69,24 @@ public class UsuarioBiciController {
         return UsuarioBiciResponse.of(usuarioBiciService.rechargeBalanceByUser(recharge, user));
     }
 
+    @Operation(summary = "Method to set a user's card")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "The user list charged successfully", content = {
+                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsuarioBiciResponse.class)), examples = {
+                            @ExampleObject(value = """
+                                    {
+                                         "id": "04d0595e-45d5-4f63-8b53-1d79e9d84a5d",
+                                         "createdAt": "2023-11-29",
+                                         "email": "user1@user.com",
+                                         "nombre": "User 1",
+                                         "username": "user1",
+                                         "numTarjeta": "1111-1111-1111-1111",
+                                         "pin": "1111",
+                                         "saldo": 0.0
+                                     }
+                                                                        """)})}),
+            @ApiResponse(responseCode = "400", description = "Error setting card. Check credit card number and pin.", content = @Content)
+    })
     @PutMapping("/setCard/{id}")
     public UsuarioBiciDTO setCard(@PathVariable UUID id, @RequestBody @Valid UsuarioBiciDTO u){
         return UsuarioBiciDTO.of(usuarioBiciService.setCard(id,u));

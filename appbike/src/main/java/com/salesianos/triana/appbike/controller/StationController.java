@@ -62,7 +62,7 @@ public class StationController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Get all stations", content = {
+            @ApiResponse(responseCode = "201", description = "Gets all stations", content = {
                     @Content(mediaType = "application/json", examples = { @ExampleObject(value = """
                                 {
                                     "number": "1",
@@ -79,7 +79,7 @@ public class StationController {
                                     "bikes": 0
                                 }
                             """) }) }),
-            @ApiResponse(responseCode = "400", description = "An error appears with the list of the stations", content = @Content)
+            @ApiResponse(responseCode = "400", description = "Unable to find any stations", content = @Content)
 
     }
 
@@ -96,7 +96,7 @@ public class StationController {
         return ResponseEntity.ok(all);
     }
 
-    @Operation(summary = "Gets a station from its id")
+    @Operation(summary = "Gets specific station")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "The station has been found", content = {
                     @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = GetBicicletaDTO.class)), examples = {
@@ -128,7 +128,7 @@ public class StationController {
                                         ]
                                     }
                                                                         """) }) }),
-            @ApiResponse(responseCode = "404", description = "Any Station was found", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Unable to find station with that id.", content = @Content),
     })
     @GetMapping("/stations/get/{id}")
     public StationResponse findStationById(@PathVariable UUID id) {
