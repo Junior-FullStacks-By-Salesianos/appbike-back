@@ -3,7 +3,7 @@ package com.salesianos.triana.appbike.controller;
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Station.EditStationDto;
 import com.salesianos.triana.appbike.dto.Station.GetStationDto;
-import com.salesianos.triana.appbike.error.BikesInThatStationException;
+import com.salesianos.triana.appbike.exception.BikesInThatStationException;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.service.EstacionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -132,15 +132,15 @@ public class StationController {
             @ApiResponse(responseCode = "200", description = "The station has been found", content = {
                     @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = GetBicicletaDTO.class)), examples = {
                             @ExampleObject(value = """
-                                                   {
-                                                        "id": "3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e",
-                                                        "number": 5,
-                                                        "name": "Parque Principes",
-                                                        "coordinates": "37.374405948794475, -6.005344980963008",
-                                                        "capacity": 4,
-                                                        "bikes": 4
-                                                    }
-                                                                        """) }) }),
+                                    {
+                                         "id": "3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e",
+                                         "number": 5,
+                                         "name": "Parque Principes",
+                                         "coordinates": "37.374405948794475, -6.005344980963008",
+                                         "capacity": 4,
+                                         "bikes": 4
+                                     }
+                                                         """) }) }),
             @ApiResponse(responseCode = "404", description = "Unable to find station with that id. Try it again", content = @Content),
     })
     @GetMapping("/station/get/{id}")
@@ -153,24 +153,24 @@ public class StationController {
             @ApiResponse(responseCode = "200", description = "The station has been edited", content = {
                     @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = GetBicicletaDTO.class)), examples = {
                             @ExampleObject(value = """
-                                                   {
-                                                         "numero": 6,
-                                                         "name": "Huevete",
-                                                         "coordinates": "40.7128,-74.0060",
-                                                         "capacity": 1,
-                                                         "bikes": [
-                                                             {
-                                                                 "uuid": null,
-                                                                 "nombre": "",
-                                                                 "marca": "",
-                                                                 "modelo": "",
-                                                                 "estado": "",
-                                                                 "usos": 0,
-                                                                 "estacion": ""
-                                                             }
-                                                         ]
-                                                     }
-                                                                        """) }) }),
+                                    {
+                                          "numero": 6,
+                                          "name": "Huevete",
+                                          "coordinates": "40.7128,-74.0060",
+                                          "capacity": 1,
+                                          "bikes": [
+                                              {
+                                                  "uuid": null,
+                                                  "nombre": "",
+                                                  "marca": "",
+                                                  "modelo": "",
+                                                  "estado": "",
+                                                  "usos": 0,
+                                                  "estacion": ""
+                                              }
+                                          ]
+                                      }
+                                                         """) }) }),
             @ApiResponse(responseCode = "404", description = "Any Station was found", content = @Content),
     })
     @PutMapping("/admin/edit/{id}")

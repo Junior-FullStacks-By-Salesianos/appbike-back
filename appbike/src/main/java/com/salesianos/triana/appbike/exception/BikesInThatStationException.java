@@ -1,4 +1,4 @@
-package com.salesianos.triana.appbike.error;
+package com.salesianos.triana.appbike.exception;
 
 public class BikesInThatStationException extends RuntimeException {
     public BikesInThatStationException() {

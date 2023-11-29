@@ -1,0 +1,2 @@
+INSERT INTO Usuario (id, username, password, email, nombre, account_non_expired, account_non_locked, credentials_non_expired, enabled, created_at, last_password_change_at) VALUES ('c62db400-22e3-4e92-94db-1447f5688f2c', 'admin', '{bcrypt}$2a$10$4zcpWiElBDO8KELG3JE37ukgcCVfrdYeDd2i.F3MEioTkHFIfcqfK', 'admin@admin.com', 'admin',  true, true, true, true, current_timestamp, current_timestamp);
+INSERT INTO Trabajador (id, turno, es_jefe) VALUES ('c62db400-22e3-4e92-94db-1447f5688f2c', 'Tarde', true);

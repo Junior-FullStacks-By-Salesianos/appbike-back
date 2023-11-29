@@ -25,4 +25,8 @@ public interface BicicletaRepository extends JpaRepository<Bicicleta, UUID> {
     List<Bicicleta> findBicicletaByEstacionUuid(@Param("uuid") UUID uuid);
 
     Optional<Bicicleta> findByNombre(String nombre);
+
+    @Query("SELECT b FROM Bicicleta b LEFT JOIN FETCH b.usos u WHERE b.nombre = :nombre AND u.fechaFin IS NULL")
+    Optional<Bicicleta> isBikeNotAvailableByNameOfBike(@Param("nombre") String nombre);
+
 }

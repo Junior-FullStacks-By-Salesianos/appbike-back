@@ -33,10 +33,19 @@ public class Bicicleta {
     private String marca, modelo;
     private Estados estado;
 
-    @OneToMany(mappedBy = "bicicleta")
+    @OneToMany(mappedBy = "bicicleta", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Uso> usos;
 
     @ManyToOne
     @JoinColumn(name = "estacion_id")
     private Estacion estacion;
+
+    public void removeUsosFromBicicleta() {
+        if (usos != null) {
+            for (Uso uso : usos) {
+                uso.setBicicleta(null);
+            }
+            usos.clear();
+        }
+    }
 }

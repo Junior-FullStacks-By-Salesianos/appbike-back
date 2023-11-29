@@ -32,10 +32,10 @@ public class Estacion {
     private String coordenadas;
     private int capacidad;
 
-    @OneToMany(mappedBy = "estacion")
+    @OneToMany(mappedBy = "estacion", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Bicicleta> bicicletas;
 
-    @OneToMany(mappedBy = "estacion")
+    @OneToMany(mappedBy = "estacion", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Uso> usos;
 
     public void addBicicleta(Bicicleta bike) {

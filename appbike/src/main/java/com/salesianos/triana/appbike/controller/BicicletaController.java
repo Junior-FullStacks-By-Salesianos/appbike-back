@@ -4,6 +4,7 @@ import com.salesianos.triana.appbike.dto.Bike.EditBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Bike.PostBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Revision.RevisionDTO;
+import com.salesianos.triana.appbike.dto.Station.StationResponse;
 import com.salesianos.triana.appbike.dto.Uso.UsoBeginResponse;
 import com.salesianos.triana.appbike.dto.Uso.UsoResponse;
 import com.salesianos.triana.appbike.model.Bicicleta;
@@ -34,6 +35,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -137,7 +139,7 @@ public class BicicletaController {
                     description = "Not found the station",
                     content = @Content),
     })
-    @GetMapping("/bikes/station/{idEstacion}/bikes")
+    @GetMapping("/bikes/station/{idEstacion}/bikes") //Autor del método Alex
     public List<GetBicicletaDTO> findAllByStation(@PathVariable UUID idEstacion) {
         return bicicletaService.findAllByStation(idEstacion).stream().map(GetBicicletaDTO::of).toList();
     }
@@ -262,4 +264,17 @@ public class BicicletaController {
                 return ResponseEntity.noContent().build();
 
         }
+
+    @Operation(summary = "Check if a bike is available or not")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "The station has been edited", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Bicicleta.class))
+            }),
+            @ApiResponse(responseCode = "404", description = "That name don´t exist in bikes", content = @Content)
+    })
+    @GetMapping("/admin/bikes/available/{nombre}")
+    public boolean verificarDisponibilidadBike(@PathVariable String nombre) {
+        Optional<Bicicleta> bicicletaOptional = bicicletaService.isBikeAvailable(nombre);
+        return bicicletaOptional.isPresent();
+    }
 }
