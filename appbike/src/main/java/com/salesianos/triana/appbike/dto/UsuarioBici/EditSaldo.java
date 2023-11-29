@@ -1,15 +1,17 @@
 package com.salesianos.triana.appbike.dto.UsuarioBici;
 
+import com.salesianos.triana.appbike.validation.annotation.Recharge;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record EditSaldo(
-        @Min(value = 2, message = "Recharge amount must be greater than or equal to 2")
-        @Max(value = 100, message = "Recharge amount must be lower than or equal to 100")
-        double recharge,
+        @Recharge
+        @NotNull( message = "{editSaldo.recharge.notnull}")
+        Double recharge,
 
-        @NotBlank(message = "PIN is required")
+        @NotBlank(message = "{editSaldo.pin.notblank}")
         String pin
 ) {
 
