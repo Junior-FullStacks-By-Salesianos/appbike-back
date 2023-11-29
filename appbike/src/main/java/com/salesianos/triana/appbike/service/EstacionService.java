@@ -2,12 +2,17 @@ package com.salesianos.triana.appbike.service;
 
 import com.salesianos.triana.appbike.dto.Station.AddStationDto;
 import com.salesianos.triana.appbike.dto.Station.EditStationDto;
+import com.salesianos.triana.appbike.dto.Station.GetStationDto;
 import com.salesianos.triana.appbike.dto.Station.StationResponse;
 import com.salesianos.triana.appbike.exception.NotFoundException;
+import com.salesianos.triana.appbike.model.Bicicleta;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.repository.EstacionRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,11 +34,19 @@ public class EstacionService {
         return estacionRepository.save(e);
     }
 
-    public List<StationResponse> findAll() {
+    public Page<Estacion> searchPage(Pageable pageable) {
+        Page<Estacion> pagedResult = estacionRepository.searchPage(pageable);
+
+        if (pagedResult.isEmpty())
+            throw new EntityNotFoundException("There are no stations in that page.");
+
+        return pagedResult;
+    }
+    public List<GetStationDto> findAll() {
 
         return estacionRepository.findAll()
                 .stream()
-                .map(StationResponse::of)
+                .map(GetStationDto::of)
                 .toList();
     }
 
