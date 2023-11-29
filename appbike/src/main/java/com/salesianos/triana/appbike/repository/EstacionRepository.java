@@ -22,6 +22,15 @@ public interface EstacionRepository extends JpaRepository<Estacion, UUID> {
     @Query("SELECT e FROM Estacion e WHERE e.numero = :numero")
     Estacion findByNumero(Long numero);
 
+    /*
+    @Query("SELECT COUNT(b.estacion_id) AS cantidad_bicicletas\n" +
+           "FROM estacion e\n" +
+           "LEFT JOIN bicicleta b ON e.id = b.estacion_id\n" +
+           "WHERE e.id = :uuid\n" +
+           "GROUP BY e.id, e.nombre;")
+    int bikeInStation(UUID uuid);
+*/
+
     @Modifying
     @Query("DELETE FROM Estacion e WHERE e.numero = :numero")
     void deleteByNumero(Long numero);

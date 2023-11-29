@@ -102,32 +102,14 @@ public class StationController {
             @ApiResponse(responseCode = "200", description = "The station has been found", content = {
                     @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = GetBicicletaDTO.class)), examples = {
                             @ExampleObject(value = """
-                                    {
-                                        "numero": 2,
-                                        "name": "Plaza de España",
-                                        "coordinates": "37.37739933159319, -5.987447323379356",
-                                        "capacity": 10,
-                                        "bikes": [
-                                            {
-                                                "uuid": "e6c62724-b555-41e2-b8c2-5d27d2b51b06",
-                                                "nombre": "Patricio",
-                                                "marca": "FieldCletas",
-                                                "modelo": "Gen15",
-                                                "estado": "WORN_OUT",
-                                                "usos": 0,
-                                                "estacion": "Plaza de España"
-                                            },
-                                            {
-                                                "uuid": "be2a602d-2bcc-4bd4-93cf-29d3abfaf70a",
-                                                "nombre": "Hofrague",
-                                                "marca": "ChimneyChains",
-                                                "modelo": "SmokeyCruise",
-                                                "estado": "NEW",
-                                                "usos": 0,
-                                                "estacion": "Plaza de España"
-                                            }
-                                        ]
-                                    }
+                                                   {
+                                                        "id": "3a35f7a1-95f7-4fc8-b2f4-6d5a147a7c8e",
+                                                        "number": 5,
+                                                        "name": "Parque Principes",
+                                                        "coordinates": "37.374405948794475, -6.005344980963008",
+                                                        "capacity": 4,
+                                                        "bikes": 4
+                                                    }
                                                                         """) }) }),
             @ApiResponse(responseCode = "404", description = "Any Station was found", content = @Content),
     })
@@ -136,12 +118,30 @@ public class StationController {
         return GetStationDto.of(estacionService.findById(id));
     }
 
-    @Operation(summary = "Edit a station ")
+    @Operation(summary = "Edit a Station")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "The station has been edited", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = StationResponse.class))
-            }),
-            @ApiResponse(responseCode = "404", description = "Something went wrong", content = @Content)
+                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = GetBicicletaDTO.class)), examples = {
+                            @ExampleObject(value = """
+                                                   {
+                                                         "numero": 6,
+                                                         "name": "Huevete",
+                                                         "coordinates": "40.7128,-74.0060",
+                                                         "capacity": 1,
+                                                         "bikes": [
+                                                             {
+                                                                 "uuid": null,
+                                                                 "nombre": "",
+                                                                 "marca": "",
+                                                                 "modelo": "",
+                                                                 "estado": "",
+                                                                 "usos": 0,
+                                                                 "estacion": ""
+                                                             }
+                                                         ]
+                                                     }
+                                                                        """) }) }),
+            @ApiResponse(responseCode = "404", description = "Any Station was found", content = @Content),
     })
     @PutMapping("/admin/edit/{id}")
     public ResponseEntity<StationResponse> editStation(@PathVariable Long id, @RequestBody @Valid EditStationDto e) {
