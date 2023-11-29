@@ -19,6 +19,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -146,6 +147,56 @@ public class UsoController {
                 .body(UsoResponse.of(newUso));
     }
 
+    @Operation(summary = "Gets a pageable list of the uses (trips) of a single user")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "The list has been found", content = {
+                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsoResponse.class)), examples = {
+                            @ExampleObject(value = """
+                                    {
+                                        "content": [
+                                            {
+                                                "id": "57c4051c-cfa8-4175-a8a5-67b7a3dbe14c",
+                                                "fechaInicio": "2023-11-27T17:00:00",
+                                                "fechaFin": "2023-11-27T17:30:00",
+                                                "coste": 5.0,
+                                                "bicicleta": "Braulio",
+                                                "estacionFin": "Puerta Jerez",
+                                                "usuario": "04d0595e-45d5-4f63-8b53-1d79e9d84a5d"
+                                            }
+                                        ],
+                                        "pageable": {
+                                            "pageNumber": 0,
+                                            "pageSize": 10,
+                                            "sort": {
+                                                "empty": true,
+                                                "unsorted": true,
+                                                "sorted": false
+                                            },
+                                            "offset": 0,
+                                            "unpaged": false,
+                                            "paged": true
+                                        },
+                                        "totalElements": 1,
+                                        "totalPages": 1,
+                                        "last": true,
+                                        "size": 10,
+                                        "number": 0,
+                                        "sort": {
+                                            "empty": true,
+                                            "unsorted": true,
+                                            "sorted": false
+                                        },
+                                        "numberOfElements": 1,
+                                        "first": true,
+                                        "empty": false
+                                    }
+                                                                        """) }) }),
+            @ApiResponse(responseCode = "404", description = "Not found any uses for this user", content = @Content),
+    })
+    @GetMapping("use/{userId}")
+    public Page<UsoResponse> getUsesByUser(@PathVariable UUID userId, @PageableDefault(page = 0, size = 10) Pageable pageable){
+        return usoService.findUsoByUser(userId, pageable);
+    }
     @Operation(summary = "Gets a pageable list of all uses")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "The list has been found", content = {
