@@ -15,7 +15,8 @@ import java.util.UUID;
 @Repository
 public interface UsoRepository extends JpaRepository<Uso, UUID> {
 
-    List<Uso> findByAuthor(String author);
+    @Query("SELECT u from Uso u WHERE u.author = :author")
+    Page<Uso> findByAuthor(@Param("author") String author, Pageable pageable);
 
     @Query("SELECT u FROM Uso u WHERE u.author = :author AND u.fechaFin IS NULL")
     Optional<Uso> findCurrentUsoByUser(@Param("author") String author);

@@ -2,7 +2,7 @@ package com.salesianos.triana.appbike.service;
 
 import com.salesianos.triana.appbike.dto.Station.AddStationDto;
 import com.salesianos.triana.appbike.dto.Station.EditStationDto;
-import com.salesianos.triana.appbike.dto.Station.GetStationDto;
+import com.salesianos.triana.appbike.dto.Station.StationResponse;
 import com.salesianos.triana.appbike.exception.NotFoundException;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.repository.EstacionRepository;
@@ -29,11 +29,11 @@ public class EstacionService {
         return estacionRepository.save(e);
     }
 
-    public List<GetStationDto> findAll() {
+    public List<StationResponse> findAll() {
 
         return estacionRepository.findAll()
                 .stream()
-                .map(GetStationDto::of)
+                .map(StationResponse::of)
                 .toList();
     }
 
