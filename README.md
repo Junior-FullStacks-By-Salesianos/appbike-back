@@ -108,6 +108,7 @@ Para ejecutar la aplicación en tu entorno local, sigue estos pasos:
    - User (3 cuentas):
      - username: user1, user2, y user3
      - password: user1234
+
 En el perfil de producción se pueden hacer pruebas con la cuenta de admin, que es la única añadida hasta el momento, así como tampoco hay datos de prueba; tampoco hay cuentas de usuario activas:
    - Admin:
      - username: admin
