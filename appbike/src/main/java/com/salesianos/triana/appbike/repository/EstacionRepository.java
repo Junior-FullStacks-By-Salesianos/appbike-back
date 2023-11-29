@@ -1,6 +1,9 @@
 package com.salesianos.triana.appbike.repository;
 
+import com.salesianos.triana.appbike.model.Bicicleta;
 import com.salesianos.triana.appbike.model.Estacion;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +17,11 @@ import java.util.UUID;
 @Repository
 public interface EstacionRepository extends JpaRepository<Estacion, UUID> {
 
+
+    @Query("""
+            select e from Estacion e
+            """)
+    Page<Estacion> searchPage(Pageable pageable);
 
     @Query("SELECT COUNT(b) FROM Bicicleta b WHERE b.estacion.numero = :numeroEstacion")
     int countBikesInAStationForUuid(@Param("numeroEstacion") Long numeroEstacion);

@@ -96,7 +96,9 @@ public class SecurityConfig {
                                                 antMatcher("/user/**"),
                                                 antMatcher("/bikes/**")
                                         ).hasRole("USER")
-                                        .requestMatchers(antMatcher("/admin/**")).hasRole("ADMIN")
+                                        .requestMatchers(
+                                                antMatcher("/admin/**"))
+                                        .hasRole("ADMIN")
                                         .anyRequest().authenticated());
 
                 http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

@@ -17,6 +17,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,7 +34,7 @@ import java.util.UUID;
 @Controller
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "Station", description = "CRUD for managing stations in the API..")
+@Tag(name = "Station", description = "CRUD for managing stations in the API.")
 public class StationController {
 
     private final EstacionService estacionService;
@@ -97,7 +100,34 @@ public class StationController {
         return ResponseEntity.ok(all);
     }
 
-    @Operation(summary = "Gets specific station")
+    @Operation(summary = "Obtains a list of stations paged for admin")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "All stations have been found.", content = {
+                    @Content(mediaType = "application/json", examples = { @ExampleObject(value = """
+                                {
+                                    "number": "1",
+                                    "name": "Plaza de Armas",
+                                    "coordinates": "12.345,-0.12345",
+                                    "capacity": 0,
+                                    "bikes": 0
+                                },
+                                {
+                                    "number": "12",
+                                    "name": "Plaza de Cuba",
+                                    "coordinates": "12.345,-0.12345",
+                                    "capacity": 0,
+                                    "bikes": 0
+                                }
+                            """) }) }),
+            @ApiResponse(responseCode = "404", description = "Not found any stations", content = @Content),
+    })
+    @GetMapping("/admin/station")
+    public Page<StationResponse> findAllPageable(@PageableDefault(page = 0, size = 20) Pageable page) {
+        Page<Estacion> pagedResult = estacionService.searchPage(page);
+        return pagedResult.map(StationResponse::of);
+    }
+
+    @Operation(summary = "Gets specific station of the database")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "The station has been found", content = {
                     @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = GetBicicletaDTO.class)), examples = {
@@ -111,7 +141,7 @@ public class StationController {
                                                         "bikes": 4
                                                     }
                                                                         """) }) }),
-            @ApiResponse(responseCode = "404", description = "Unable to find station with that id.", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Unable to find station with that id. Try it again", content = @Content),
     })
     @GetMapping("/station/get/{id}")
     public StationResponse findStationById(@PathVariable UUID id) {
