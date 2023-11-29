@@ -1,9 +1,7 @@
 package com.salesianos.triana.appbike.service;
 
-import com.salesianos.triana.appbike.dto.UsuarioBici.AddUsuarioBici;
-import com.salesianos.triana.appbike.dto.UsuarioBici.UsuarioBiciDTO;
+import com.salesianos.triana.appbike.dto.UsuarioBici.*;
 import com.salesianos.triana.appbike.exception.NotFoundException;
-import com.salesianos.triana.appbike.dto.UsuarioBici.EditSaldo;
 import com.salesianos.triana.appbike.exception.InvalidPinExcepcion;
 import com.salesianos.triana.appbike.exception.NotFoundException;
 import com.salesianos.triana.appbike.model.Usuario;
@@ -59,7 +57,7 @@ public class UsuarioBiciService {
         return usuarioBiciRepository.findById(id).orElseThrow(() -> new NotFoundException("Cannot find a user with the specified id."));
     }
 
-    public UsuarioBici setCard(UUID id, UsuarioBiciDTO u){
+    public UsuarioBici setCard(UUID id, UsuarioBiciCardDataDTO u){
         return usuarioBiciRepository.findById(id).map(old -> {
             old.setNumTarjeta(u.numTarjeta());
             old.setPin(u.pin());
