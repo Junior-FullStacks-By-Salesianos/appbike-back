@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8df70de6-61f9-4458-b7a0-1f75983a2031" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/MyPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Uso/EditUso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/BicicletaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/BicicletaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/StationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UsoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/controller/UsoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Uso/UsoResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/dto/Uso/UsoResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/repository/UsoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/repository/UsoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/EstacionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/EstacionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/UsoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/java/com/salesianos/triana/appbike/service/UsoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/resources/application-dev.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/resources/application-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/resources/application-prod.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appbike/src/main/resources/import_dev.sql" beforeDir="false" afterPath="$PROJECT_DIR$/appbike/src/main/resources/import_dev.sql" afterDir="false" />
-    </list>
+    <list default="true" id="8df70de6-61f9-4458-b7a0-1f75983a2031" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,7 +43,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Merging user-bikes-uses-back",
+    "git-widget-placeholder": "user-bikes-uses-back",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/polonio.doalv23_tria/Desktop/bikeapp/appbike-back",
     "settings.editor.selected.configurable": "preferences.lookFeel"

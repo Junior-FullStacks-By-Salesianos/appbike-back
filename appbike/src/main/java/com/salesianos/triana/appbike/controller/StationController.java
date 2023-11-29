@@ -131,8 +131,8 @@ public class StationController {
             @ApiResponse(responseCode = "404", description = "Any Station was found", content = @Content),
     })
     @GetMapping("/stations/get/{id}")
-    public GetStationDto findStationById(@PathVariable UUID id) {
-        return GetStationDto.of(estacionService.findById(id));
+    public StationResponse findStationById(@PathVariable UUID id) {
+        return StationResponse.of(estacionService.findById(id));
     }
 
     @Operation(summary = "Edit a station ")
