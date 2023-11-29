@@ -2,7 +2,7 @@ package com.salesianos.triana.appbike.controller;
 
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.dto.Station.EditStationDto;
-import com.salesianos.triana.appbike.error.BikesInThatStationException;
+import com.salesianos.triana.appbike.exception.BikesInThatStationException;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.service.EstacionService;
 import io.swagger.v3.oas.annotations.Operation;
