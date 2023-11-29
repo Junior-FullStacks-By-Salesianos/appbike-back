@@ -24,7 +24,7 @@ public record UsoResponse(
                 u.getFechaInicio(),
                 u.getFechaFin(),
                 u.getCoste(),
-                u.getBicicleta().getNombre(),
+                u.getBicicleta() != null ? u.getBicicleta().getNombre(): "Bike has been deleted from database",
                 u.getEstacion() != null ? u.getEstacion().getNombre() : "Unfinished Use",
                 u.getAuthor()
         );
@@ -36,7 +36,7 @@ public record UsoResponse(
                 u.getFechaInicio(),
                 u.getFechaFin(),
                 u.getCoste(),
-                u.getBicicleta().getNombre(),
+                u.getBicicleta() != null ? u.getBicicleta().getNombre(): "Bike has been deleted from database",
                 u.getEstacion() != null ? u.getEstacion().getNombre() : "Unfinished Use",
                 usuarioBici.getUsername()
         );
