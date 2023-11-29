@@ -139,7 +139,7 @@ public class BicicletaController {
                     description = "Not found the station",
                     content = @Content),
     })
-    @GetMapping("/bikes/station/{idEstacion}/bikes")
+    @GetMapping("/bikes/station/{idEstacion}/bikes") //Autor del método Alex
     public List<GetBicicletaDTO> findAllByStation(@PathVariable UUID idEstacion) {
         return bicicletaService.findAllByStation(idEstacion).stream().map(GetBicicletaDTO::of).toList();
     }
