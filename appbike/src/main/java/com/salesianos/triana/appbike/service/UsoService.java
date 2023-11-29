@@ -1,8 +1,8 @@
 package com.salesianos.triana.appbike.service;
 
+import com.salesianos.triana.appbike.dto.Uso.UsoResponse;
 import com.salesianos.triana.appbike.MyPage;
 import com.salesianos.triana.appbike.dto.Uso.EditUso;
-import com.salesianos.triana.appbike.dto.Uso.UsoResponse;
 import com.salesianos.triana.appbike.dto.Usuario.UserResponse;
 import com.salesianos.triana.appbike.exception.NotEnoughBalanceException;
 import com.salesianos.triana.appbike.exception.NotFoundException;
@@ -103,6 +103,10 @@ public class UsoService {
         usuarioBiciRepository.save(usuarioBici);
 
         return usoRepository.save(toFinish);
+    }
+
+    public Page<UsoResponse> findUsoByUser(UUID userId, Pageable pageable){
+        return usoRepository.findByAuthor(userId.toString(), pageable).map(UsoResponse::of);
     }
 
     public MyPage<UsoResponse> findAllUses(Pageable pageable){

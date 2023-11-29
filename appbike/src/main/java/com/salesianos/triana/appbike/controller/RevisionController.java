@@ -38,10 +38,53 @@ public class RevisionController {
                             array = @ArraySchema(schema = @Schema(implementation = RevisionDTO.class)),
                             examples = {@ExampleObject(
                                     value = """
-                                            [
-                                                {"id": 1, "nombre": "Iglesias"},
-                                                {"id": 2, "nombre": "Románico"}
-                                            ]
+                                            {
+                                                 "content": [
+                                                     {
+                                                         "id": 996,
+                                                         "fechaProgramada": "2023-01-01",
+                                                         "fechaRealizacion": "2022-12-31",
+                                                         "anotaciones": "Anotaciones 1",
+                                                         "nombreEstacion": "Parque Principes",
+                                                         "nombreTrabajador": "admin",
+                                                         "estado": "FINISHED"
+                                                     },
+                                                     {
+                                                         "id": 997,
+                                                         "fechaProgramada": "2023-02-01",
+                                                         "fechaRealizacion": "2023-02-02",
+                                                         "anotaciones": "Anotaciones 2",
+                                                         "nombreEstacion": "Parque Principes",
+                                                         "nombreTrabajador": "admin",
+                                                         "estado": "FINISHED"
+                                                     }
+                                                 ],
+                                                 "pageable": {
+                                                     "pageNumber": 0,
+                                                     "pageSize": 20,
+                                                     "sort": {
+                                                         "empty": true,
+                                                         "unsorted": true,
+                                                         "sorted": false
+                                                     },
+                                                     "offset": 0,
+                                                     "unpaged": false,
+                                                     "paged": true
+                                                 },
+                                                 "totalElements": 4,
+                                                 "totalPages": 1,
+                                                 "last": true,
+                                                 "size": 20,
+                                                 "number": 0,
+                                                 "sort": {
+                                                     "empty": true,
+                                                     "unsorted": true,
+                                                     "sorted": false
+                                                 },
+                                                 "numberOfElements": 4,
+                                                 "first": true,
+                                                 "empty": false
+                                             }
                                             """
                             )}
                     )}),
@@ -62,10 +105,54 @@ public class RevisionController {
                             array = @ArraySchema(schema = @Schema(implementation = RevisionDTO.class)),
                             examples = {@ExampleObject(
                                     value = """
-                                            [
-                                                {"id": 1, "nombre": "Iglesias"},
-                                                {"id": 2, "nombre": "Románico"}
-                                            ]
+                                            [{
+                                                 "content": [
+                                                     {
+                                                         "id": 996,
+                                                         "fechaProgramada": "2023-01-01",
+                                                         "fechaRealizacion": "2022-12-31",
+                                                         "anotaciones": "Anotaciones 1",
+                                                         "nombreEstacion": "Parque Principes",
+                                                         "nombreTrabajador": "admin",
+                                                         "estado": "FINISHED"
+                                                     },
+                                                     {
+                                                         "id": 997,
+                                                         "fechaProgramada": "2023-02-01",
+                                                         "fechaRealizacion": "2023-02-02",
+                                                         "anotaciones": "Anotaciones 2",
+                                                         "nombreEstacion": "Parque Principes",
+                                                         "nombreTrabajador": "admin",
+                                                         "estado": "FINISHED"
+                                                     },
+                                                     
+                                                 ],
+                                                 "pageable": {
+                                                     "pageNumber": 0,
+                                                     "pageSize": 20,
+                                                     "sort": {
+                                                         "empty": true,
+                                                         "unsorted": true,
+                                                         "sorted": false
+                                                     },
+                                                     "offset": 0,
+                                                     "unpaged": false,
+                                                     "paged": true
+                                                 },
+                                                 "totalElements": 4,
+                                                 "totalPages": 1,
+                                                 "last": true,
+                                                 "size": 20,
+                                                 "number": 0,
+                                                 "sort": {
+                                                     "empty": true,
+                                                     "unsorted": true,
+                                                     "sorted": false
+                                                 },
+                                                 "numberOfElements": 4,
+                                                 "first": true,
+                                                 "empty": false
+                                             }
                                             """
                             )}
                     )}),
@@ -131,18 +218,10 @@ public class RevisionController {
 
     @Operation(summary = "Deletes an issue")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
+            @ApiResponse(responseCode = "204",
                     description = "An issue has been deleted",
                     content = {@Content(mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = RevisionDTO.class)),
-                            examples = {@ExampleObject(
-                                    value = """
-                                            [
-                                                {"id": 1, "nombre": "Iglesias"},
-                                                {"id": 2, "nombre": "Románico"}
-                                            ]
-                                            """
-                            )}
+                            array = @ArraySchema(schema = @Schema(implementation = Revision.class))
                     )}),
             @ApiResponse(responseCode = "404",
                     description = "Unable to find the specified issue",

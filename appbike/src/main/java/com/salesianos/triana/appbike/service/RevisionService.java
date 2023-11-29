@@ -1,6 +1,7 @@
 package com.salesianos.triana.appbike.service;
 
 import com.salesianos.triana.appbike.dto.Revision.NewRevisionDTO;
+import com.salesianos.triana.appbike.exception.DateEarlierThanTodayException;
 import com.salesianos.triana.appbike.exception.NotFoundException;
 import com.salesianos.triana.appbike.model.Estacion;
 import com.salesianos.triana.appbike.model.EstadoRevision;
@@ -66,6 +67,9 @@ public class RevisionService {
     public Revision save(NewRevisionDTO newDTO){
         Estacion e = estacionRepository.findByNombre(newDTO.nombreEstacion()).orElseThrow(() -> new NotFoundException("Estacion"));
         Trabajador t = trabajadorRepository.findByNombre(newDTO.nombreTrabajador()).orElseThrow(() -> new NotFoundException("Trabajador"));
+
+        if(newDTO.fechaProgramada().isBefore(LocalDate.now()))
+            throw new DateEarlierThanTodayException("Cannot create an issue with a deadline date which is earlier than the current date.");
 
         return revisionRepository.save(NewRevisionDTO.toEntity(newDTO,e,t));
     }
