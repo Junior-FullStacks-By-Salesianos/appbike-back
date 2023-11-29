@@ -27,5 +27,8 @@ public interface UsoRepository extends JpaRepository<Uso, UUID> {
     @Query("SELECT u FROM Uso u WHERE u.fechaFin IS NOT NULL AND u.author = :author ORDER BY u.fechaFin DESC LIMIT 1")
     Optional<Uso> findLastUsoFinished(@Param("author") String author);
 
+    @Query("SELECT u FROM Uso u")
+    Page<Uso> findAllPageable(Pageable pageable);
+
 
 }

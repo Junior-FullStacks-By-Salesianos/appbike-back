@@ -25,6 +25,7 @@ import com.salesianos.triana.appbike.dto.Station.StationResponse;
 import com.salesianos.triana.appbike.dto.Station.AddStationDto;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RestController
@@ -130,8 +131,8 @@ public class StationController {
             @ApiResponse(responseCode = "404", description = "Any Station was found", content = @Content),
     })
     @GetMapping("/stations/get/{id}")
-    public StationResponse findStationById(@PathVariable Long id) {
-        return StationResponse.of(estacionService.findById(id));
+    public GetStationDto findStationById(@PathVariable UUID id) {
+        return GetStationDto.of(estacionService.findById(id));
     }
 
     @Operation(summary = "Edit a station ")

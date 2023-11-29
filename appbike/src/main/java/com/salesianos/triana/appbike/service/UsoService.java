@@ -1,6 +1,9 @@
 package com.salesianos.triana.appbike.service;
 
 import com.salesianos.triana.appbike.dto.Uso.UsoResponse;
+import com.salesianos.triana.appbike.MyPage;
+import com.salesianos.triana.appbike.dto.Uso.EditUso;
+import com.salesianos.triana.appbike.dto.Usuario.UserResponse;
 import com.salesianos.triana.appbike.exception.NotEnoughBalanceException;
 import com.salesianos.triana.appbike.exception.NotFoundException;
 import com.salesianos.triana.appbike.exception.InUseException;
@@ -104,5 +107,23 @@ public class UsoService {
 
     public Page<UsoResponse> findUsoByUser(UUID userId, Pageable pageable){
         return usoRepository.findByAuthor(userId.toString(), pageable).map(UsoResponse::of);
+    }
+
+    public MyPage<UsoResponse> findAllUses(Pageable pageable){
+        Page<Uso> usos =  usoRepository.findAllPageable(pageable);
+        if(usos.isEmpty()){
+            throw new NotFoundException("Uso");
+        }
+        return MyPage.of(usos
+                .map(uso -> UsoResponse.of(uso, usuarioBiciRepository.findById(UUID.fromString(uso.getAuthor())).orElseThrow(()-> new NotFoundException("User")))));
+    }
+
+    public Uso editUse (UUID id, EditUso editUso){
+        Uso u = usoRepository.findById(id).orElseThrow(() -> new NotFoundException("Uso"));
+        if(u.getFechaFin() == null){
+            throw new InUseException("the Trip you have choosed is taking place");
+        }
+        u.setCoste(editUso.coste());
+        return usoRepository.save(u);
     }
 }
