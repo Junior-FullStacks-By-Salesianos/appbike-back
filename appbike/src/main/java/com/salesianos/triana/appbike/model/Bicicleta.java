@@ -39,4 +39,13 @@ public class Bicicleta {
     @ManyToOne
     @JoinColumn(name = "estacion_id")
     private Estacion estacion;
+
+    public void removeUsosFromBicicleta() {
+        if (usos != null) {
+            for (Uso uso : usos) {
+                uso.setBicicleta(null);
+            }
+            usos.clear();
+        }
+    }
 }

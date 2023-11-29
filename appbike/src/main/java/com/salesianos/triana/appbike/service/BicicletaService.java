@@ -9,6 +9,7 @@ import com.salesianos.triana.appbike.repository.BicicletaRepository;
 import com.salesianos.triana.appbike.dto.Bike.GetBicicletaDTO;
 import com.salesianos.triana.appbike.model.Bicicleta;
 import com.salesianos.triana.appbike.repository.EstacionRepository;
+import com.salesianos.triana.appbike.repository.UsoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,6 +27,7 @@ public class BicicletaService {
 
     private final BicicletaRepository repository;
     private final EstacionRepository estacionRepository;
+    private final UsoRepository usoRepository;
 
     public List<GetBicicletaDTO> findAll() {
 
@@ -134,6 +136,11 @@ public class BicicletaService {
 
     public void deleteByName(String name) {
         Bicicleta bike = findByName(name);
+        bike.removeUsosFromBicicleta();
         repository.delete(bike);
+    }
+
+    public Optional<Bicicleta> isBikeAvailable(String nombre){
+        return repository.isBikeNotAvailableByNameOfBike(nombre);
     }
 }
