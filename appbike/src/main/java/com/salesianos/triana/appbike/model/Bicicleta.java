@@ -33,7 +33,7 @@ public class Bicicleta {
     private String marca, modelo;
     private Estados estado;
 
-    @OneToMany(mappedBy = "bicicleta", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "bicicleta")
     private List<Uso> usos;
 
     @ManyToOne
